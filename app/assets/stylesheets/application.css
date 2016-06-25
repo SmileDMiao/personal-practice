@@ -10,13 +10,15 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_directory ./bootstrap
+ *= require bootstrap/bootstrap.css
  *= require_directory ./font_icon
+ *= require bootstrap/slider
  *= require date_picker/daterangepicker-bs3
  *= require date_picker/bootstrap-datetimepicker
  *= require date_picker/bootstrap-timepicker
  *= require select/select2
  *= require color_picker/bootstrap-colorpicker
+ *= require_directory ./dist
  *= require_tree .
  *= require_self
  */

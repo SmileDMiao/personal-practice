@@ -9,14 +9,13 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+// bug:打开一个高度不够的页面，页面只有当前打开页面的额高度，导致左边菜单栏高度不够，禁用turbolinks可以消除对app.js的影响
 //
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap/bootstrap
-//= require bootstrap/bootstrap-slider
 //= require jquery-ui/jquery-ui
-//= require dist/app.js
 //= require chartjs/Chart
 //= require select/select2.full
 //= require input_mask/jquery.inputmask
@@ -28,3 +27,7 @@
 //= require date_picker/bootstrap-timepicker
 //= require color_picker/bootstrap-colorpicker
 //= require icheck/icheck
+//= require editor/bootstrap3-wysihtml5.all
+//= require bootstrap/bootstrap-slider
+//= require dist/app.js
+//= require_tree .
