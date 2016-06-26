@@ -61,8 +61,16 @@ class HomeController < ApplicationController
 
   end
 
+  def login
+    render layout: false
+  end
 
+  def register
+    render layout: false
+  end
 
-
+  def lock_screen
+    render layout: false
+  end
 
 end

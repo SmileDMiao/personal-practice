@@ -11,17 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614114129) do
+ActiveRecord::Schema.define(version: 20160626063900) do
 
-  create_table "calendars", force: :cascade do |t|
-    t.string   "name",       limit: 30
-    t.string   "title",      limit: 50
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "color",      limit: 10
-    t.string   "all_day",    limit: 10, default: "Y"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+  create_table "foods", force: :cascade do |t|
+    t.string   "name",        limit: 20
+    t.string   "type",        limit: 20
+    t.string   "color",       limit: 20
+    t.string   "odor",        limit: 20
+    t.text     "description", limit: 255
+    t.integer  "number",      limit: 4
+    t.decimal  "price",                   precision: 5, scale: 2
+    t.string   "country",     limit: 20
+    t.string   "rate_flag",   limit: 10,                          default: "N"
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
   end
 
 end
