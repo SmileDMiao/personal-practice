@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'example/login', to: 'home#login'
   get 'example/register', to: 'home#register'
   get 'example/lock_screen', to: 'home#lock_screen'
+  get 'tables/simple', to: 'home#table_simple'
 
   resources :foods
 
