@@ -17,7 +17,17 @@ gem 'uuid'
 # 表单
 gem 'simple_form'
 
+# markdown
+gem 'redcarpet'
+
+# 验证
 gem 'client_side_validations'
+
+# 分页
+gem 'kaminari'
+
+# 后台队列
+gem  'sidekiq'
 
 group :development, :test do
   gem 'byebug'

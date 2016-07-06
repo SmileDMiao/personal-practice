@@ -1,5 +1,112 @@
-<%= simple_form_for @food do |f| %>
-    <%= f.input :name %>
-    <%= f.input :color %>
-    <%= f.button :submit %>
-<% end %>
+<section class="content-header">
+  <h1>
+    CRUD DEMO
+    <small>Preview</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Index</a></li>
+    <li class="active">CRUD Demo</li>
+  </ol>
+</section>
+
+<section class="content">
+
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">新建</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+      </div>
+    </div>
+
+    <div class="box-body">
+      <!--错误信息-->
+      <%= render "shared/error_messages", target: @food %>
+      <!-- form_for 水平排列表单-->
+      <%= form_for @food,:validate=>true, :html=>{:class=>"form-horizontal"} do |f| %>
+          <div class="form-group">
+            <%#= f.label :name %>
+            <label class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-8">
+              <%= f.text_field :name, :class=>"form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Type</label>
+            <div class="col-sm-8">
+              <%= f.text_field :category, :class=>"form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Color</label>
+            <div class="col-sm-8">
+              <%= f.text_field :color, :class=>"form-control my-colorpicker" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Odor</label>
+            <div class="col-sm-8">
+              <%= f.text_field :odor, :class=>"form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Number</label>
+            <div class="col-sm-8">
+              <%= f.text_field :number, :class=>"form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Country</label>
+            <div class="col-sm-8">
+              <%= f.text_field :country, :class=>"form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Price</label>
+            <div class="col-sm-8">
+              <%= f.text_field :price, :class=>"form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Flag</label>
+            <div class="col-sm-8">
+              <div class="checkbox">
+                 <%= f.check_box :rate_flag, :class=>"flat-red" %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-8">
+              <%= f.text_area :description, :class=>"form-control textarea" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+              <%= f.submit "提交",:class=>"btn btn-block bg-maroon" %>
+            </div>
+          </div>
+      <% end %>
+
+    </div>
+
+  </div>
+
+
+</section>
+<script>
+    //富文本编辑器-bootstrap
+    $(".textarea").wysihtml5();
+
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass: 'iradio_flat-green'
+    });
+
+    $(".my-colorpicker").colorpicker();
+
+</script>

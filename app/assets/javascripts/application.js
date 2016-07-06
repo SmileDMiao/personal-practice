@@ -29,4 +29,5 @@
 //= require editor/bootstrap3-wysihtml5.all
 //= require bootstrap/bootstrap-slider
 //= require dist/app.js
+//= require rails.validations
 //= require_tree .
