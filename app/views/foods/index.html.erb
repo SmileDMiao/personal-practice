@@ -16,7 +16,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Responsive Hover Table</h3>
+          <h3 class="box-title"><a href="/foods/new">New Food</a></h3>
 
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
@@ -38,6 +38,7 @@
               <th>odor</th>
               <th>number</th>
             </tr>
+            <tbody id="foods">
             <% @foods.each do |food| %>
                 <tr>
                   <td><%= food.name %></td>
@@ -47,15 +48,16 @@
                   <td><%= food.number %></td>
                 </tr>
             <% end %>
+            </table>
           </table>
         </div>
-        <div class="box-footer clearfix">
-            <%= paginate @foods,:theme => 'bootstrap3' %>
-          <!--</ul>-->
+        <div class="box-footer clearfix" id="paginator">
+          <!-- kaminari的bootstrap主题-->
+            <%= paginate @foods,:remote=>true,:theme => 'bootstrap3' %>
         </div>
-        <!-- /.box-body -->
+
       </div>
-      <!-- /.box -->
+
     </div>
   </div>
 </section>

@@ -17,8 +17,16 @@ gem 'uuid'
 # 表单
 gem 'simple_form'
 
+# 加密
+gem 'bcrypt'
+
 # markdown
 gem 'redcarpet'
+
+# 上传组件
+gem 'carrierwave'
+# gem 'carrierwave-upyun'
+# gem 'mini_magick'
 
 # 验证
 gem 'client_side_validations'
@@ -27,7 +35,10 @@ gem 'client_side_validations'
 gem 'kaminari'
 
 # 后台队列
-gem  'sidekiq'
+gem 'sidekiq'
+
+# Permission
+gem 'cancancan'
 
 group :development, :test do
   gem 'byebug'
@@ -37,5 +48,6 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'better_errors'
 end
 

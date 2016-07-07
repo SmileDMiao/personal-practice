@@ -1,10 +1,12 @@
 class FoodsController < ApplicationController
 
   def index
+    #params[:page]分页参数(可定制),10records per page
     @foods = Food.page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js
       format.json { render json: @foods }
     end
   end
