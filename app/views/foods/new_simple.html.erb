@@ -43,7 +43,7 @@
             <%= f.input :price %>
             <%= f.input :rate_flag, {:required=>false, :as=>:check_boxes} %>
 
-            <%= f.input :description,:required=>false, :placeholder=>"Place some text here",:input_html=>{:class=>"textarea"} %>
+            <%= f.input :description,{:required=>false, :placeholder=>"Place some text here",:input_html=>{:class=>"textarea"}} %>
             <div class="form-group">
               <div class="col-sm-offset-6 col-sm-4">
                 <button type="submit" class="btn btn-default">保存</button>

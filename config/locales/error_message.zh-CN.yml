@@ -6,7 +6,7 @@
         inclusion: "is not included in the list"
         exclusion: "is reserved"
         invalid: "is invalid"
-        confirmation: "doesn't match %{attribute}"
+        confirmation: "不匹配 %{attribute}"
         accepted: "must be accepted"
         empty: "can't be empty"
         blank: "不可以为空"
@@ -30,3 +30,4 @@
         other_than: "must be other than %{count}"
         odd: "must be odd"
         even: "must be even"
+        email: "不是正确邮箱格式"

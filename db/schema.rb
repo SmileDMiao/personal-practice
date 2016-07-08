@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626063900) do
+ActiveRecord::Schema.define(version: 20160707134531) do
 
   create_table "foods", force: :cascade do |t|
     t.string   "name",        limit: 20
-    t.string   "type",        limit: 20
+    t.string   "category",    limit: 20
     t.string   "color",       limit: 20
     t.string   "odor",        limit: 20
     t.text     "description", limit: 255
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20160626063900) do
     t.string   "rate_flag",   limit: 10,                          default: "N"
     t.datetime "created_at",                                                    null: false
     t.datetime "updated_at",                                                    null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "full_name",       limit: 255
+    t.string   "email",           limit: 255
+    t.string   "password_digest", limit: 255
+    t.string   "city",            limit: 255
+    t.string   "company",         limit: 255
+    t.string   "github",          limit: 255
+    t.string   "twitter",         limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end

@@ -19,6 +19,12 @@ Rails.application.routes.draw do
   get 'example/lock_screen', to: 'home#lock_screen'
   get 'tables/simple', to: 'home#table_simple'
 
+  get 'foods/new_simple', to: 'foods#new_simple'
   resources :foods
+
+  get 'register', to: 'users#register'
+  get 'login', to: 'users#login'
+  post 'sign_up', to: 'users#sign_up'
+  resources :users
 
 end

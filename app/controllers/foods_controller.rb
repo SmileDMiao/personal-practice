@@ -20,7 +20,7 @@ class FoodsController < ApplicationController
   end
 
   def create
-    @food = Food.new(post_params)
+    @food = Food.new(permit_params)
 
     respond_to do |format|
       if @food.save
@@ -55,9 +55,10 @@ class FoodsController < ApplicationController
   end
 
   private
-  def post_params
+  #strong_parameters-详情查看github官方文档
+  def permit_params
     #一开始我使用type而不是category，但是保存失败，type属于rails的关键字，请避免使用
-    params.require(:food).permit(:name,:color,:number,:category,:odor,:price,:rate_flag,:description)
+    params.require(:food).permit!
   end
 
 end
