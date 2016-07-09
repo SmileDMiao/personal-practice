@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'register', to: 'users#register'
   get 'login', to: 'users#login'
   post 'sign_up', to: 'users#sign_up'
+  get 'profile', to: 'users#profile'
+  delete 'logout', to: 'users#logout'
   resources :users
 
 end

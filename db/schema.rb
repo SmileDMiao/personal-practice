@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160707134531) do
     t.string   "full_name",       limit: 255
     t.string   "email",           limit: 255
     t.string   "password_digest", limit: 255
+    t.string   "auth_token",      limit: 255
     t.string   "city",            limit: 255
     t.string   "company",         limit: 255
     t.string   "github",          limit: 255

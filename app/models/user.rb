@@ -4,5 +4,14 @@ class User < ActiveRecord::Base
 
   validates_presence_of :full_name, :email
   validates :email, email: true
+  validates_uniqueness_of :full_name, :email
+
+  before_create do
+    self.auth_token = generate_token
+  end
+
+  def generate_token
+    SecureRandom.urlsafe_base64
+  end
 
 end

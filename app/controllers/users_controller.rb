@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(permit_params)
     if @user.save
+      cookies.permanent[:auth_token] = @user.auth_token
       redirect_to :root
     else
       render :register,layout: false
@@ -19,21 +20,29 @@ class UsersController < ApplicationController
   end
 
   def sign_up
-    binding.pry
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      # if params[:remember_me]
-      #   cookies.permanent[:auth_token] = user.auth_token
-      # else
-      #   cookies[:auth_token] = user.auth_token
-      # end
+      user.auth_token = user.generate_token
+      user.save
+        if params[:remember_me]
+          cookies.permanent[:auth_token] = user.auth_token
+        else
+          cookies[:auth_token] = user.auth_token
+        end
       flash.notice = "登录成功！"
       redirect_to :root
     else
       flash.notice = "用户名密码错误！"
       redirect_to :login
     end
+  end
+
+  def logout
+    cookies.delete(:auth_token)
+    redirect_to :root
+  end
+
+  def profile
 
   end
 

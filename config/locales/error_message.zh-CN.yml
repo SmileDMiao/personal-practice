@@ -31,3 +31,4 @@
         odd: "must be odd"
         even: "must be even"
         email: "不是正确邮箱格式"
+        taken: "已经被使用了"
