@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Food Demo
+    <%= t 'foods.model' %>
     <small>basic crud demo</small>
   </h1>
   <ol class="breadcrumb">
@@ -16,7 +16,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title"><a href="/foods/new">New Food</a></h3>
+          <h3 class="box-title"><a href="/foods/new"><%= t 'helpers.submit.create' %></a></h3>
 
           <div class="box-tools">
             <%= form_tag foods_path, :remote => true, :method => 'get'  do %>
@@ -34,12 +34,12 @@
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tr>
-              <th>name</th>
-              <th>category</th>
-              <th>number</th>
-              <th>price</th>
-              <th>country</th>
-              <th>operation</th>
+              <th><%= t 'foods.name' %></th>
+              <th><%= t 'foods.category' %></th>
+              <th><%= t 'foods.number' %></th>
+              <th><%= t 'foods.price' %></th>
+              <th><%= t 'foods.country' %></th>
+              <th><%= t 'helpers.submit.operation' %></th>
             </tr>
             <tbody id="foods">
             <% @foods.each do |food| %>
@@ -50,9 +50,9 @@
                   <td><%= food.price %></td>
                   <td><%= food.country %></td>
                   <td>
-                    <%= link_to 'SHOW', food, :class => 'btn btn-sm btn-success' %>
-                    <%= link_to 'EDIT', edit_food_path(food), :class => 'btn btn-sm btn-warning' %>
-                    <%= link_to 'DELETE', food, :method => 'delete', :class => 'btn btn-sm btn-danger' %>
+                    <%= link_to t('helpers.submit.show'), food, :class => 'btn btn-sm btn-success' %>
+                    <%= link_to t('helpers.submit.edit'), edit_food_path(food), :class => 'btn btn-sm btn-warning' %>
+                    <%= link_to t('helpers.submit.destroy'), food, :method => 'delete', :class => 'btn btn-sm btn-danger' %>
                   </td>
                 </tr>
             <% end %>

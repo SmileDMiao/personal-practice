@@ -14,7 +14,7 @@
 
   <div class="box box-default">
     <div class="box-header with-border">
-      <h3 class="box-title">查看</h3>
+      <h3 class="box-title"><%= t 'helpers.submit.show' %></h3>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -35,25 +35,25 @@
 
       <table class="table table-hover">
         <tr>
-          <td>name</td>
+          <td><%= t 'foods.name' %></td>
           <td><%= @food.name %></td>
-          <td>category</td>
+          <td><%= t 'foods.category' %></td>
           <td><%= @food.category %></td>
         </tr>
         <tr>
-          <td>color</td>
+          <td><%= t 'foods.color' %></td>
           <td><span class="label" style="background-color: <%= @food.color %>"><%= @food.color %></span></td>
-          <td>country</td>
+          <td><%= t 'foods.country' %></td>
           <td><%= @food.country %></td>
         </tr>
         <tr>
-          <td>number</td>
+          <td><%= t 'foods.number' %></td>
           <td><%= @food.number %></td>
-          <td>price</td>
+          <td><%= t 'foods.price' %></td>
           <td><%= @food.price %></td>
         </tr>
         <tr>
-          <td>description</td>
+          <td><%= t 'foods.description' %></td>
           <td></td>
           <td></td>
           <td></td>

@@ -1,1 +1,13 @@
 en:
+  foods:
+    model: Food
+    name: name
+    type: type
+    category: category
+    color: color
+    odor: odor
+    price: price
+    number: number
+    flag: flag
+    description: description
+    country: country

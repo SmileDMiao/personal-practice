@@ -100,9 +100,13 @@ zh-CN:
     select:
       prompt: 请选择
     submit:
-      create: 新增%{model}
-      submit: 储存%{model}
-      update: 更新%{model}
+      create: 新建
+      submit: 保存
+      update: 更新
+      show: 查看
+      edit: 编辑
+      destroy: 删除
+      operation: 操作
   number:
     currency:
       format:

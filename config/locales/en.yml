@@ -100,9 +100,13 @@ en:
     select:
       prompt: Please select
     submit:
-      create: Create %{model}
-      submit: Save %{model}
-      update: Update %{model}
+      create: Create
+      submit: Save
+      update: Update
+      show: show
+      edit: edit
+      destroy: destroy
+      operation: operation
   number:
     currency:
       format:
