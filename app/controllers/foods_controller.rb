@@ -43,10 +43,21 @@ class FoodsController < ApplicationController
   end
 
   def edit
-
+    @food = Food.find(params[:id])
   end
 
   def update
+    @food = Food.find(params[:id])
+
+    respond_to do |format|
+      if @food.update_attributes(permit_params)
+        format.html { redirect_to foods_url, notice: 'Post was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @food.errors, status: :unprocessable_entity }
+      end
+    end
 
   end
 
@@ -59,6 +70,7 @@ class FoodsController < ApplicationController
       format.json { head :ok }
     end
   end
+
 
   private
   #strong_parameters-详情查看github官方文档

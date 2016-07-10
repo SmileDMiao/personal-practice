@@ -5,8 +5,8 @@
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tables</a></li>
-    <li class="active">Simple</li>
+    <li><a href="#">Foods</a></li>
+    <li class="active">Index</li>
   </ol>
 </section>
 
@@ -49,7 +49,11 @@
                   <td><%= food.number %></td>
                   <td><%= food.price %></td>
                   <td><%= food.country %></td>
-                  <td><%= link_to 'DELETE', food, :method => 'delete', :class => 'btn btn-sm btn-danger' %></td>
+                  <td>
+                    <%= link_to 'SHOW', food, :class => 'btn btn-sm btn-success' %>
+                    <%= link_to 'EDIT', edit_food_path(food), :class => 'btn btn-sm btn-warning' %>
+                    <%= link_to 'DELETE', food, :method => 'delete', :class => 'btn btn-sm btn-danger' %>
+                  </td>
                 </tr>
             <% end %>
             </table>
