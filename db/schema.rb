@@ -36,8 +36,9 @@ ActiveRecord::Schema.define(version: 20160707134531) do
     t.string   "company",         limit: 255
     t.string   "github",          limit: 255
     t.string   "twitter",         limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "language",        limit: 255, default: "zh-CN"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
 end

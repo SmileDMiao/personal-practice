@@ -20,7 +20,9 @@ class UsersController < ApplicationController
   end
 
   def sign_up
+
     user = User.find_by_email(params[:email])
+    binding.pry
     if user && user.authenticate(params[:password])
       user.auth_token = user.generate_token
       user.save

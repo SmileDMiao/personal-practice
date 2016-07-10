@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :company
       t.string :github
       t.string :twitter
+      t.string :language, :default => 'zh-CN'
       t.timestamps null: false
     end
     change_column :users, :id, :string, :limit => 32

@@ -3,9 +3,15 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  #用户必须登录之后才可以访问系统,过滤调登录的两个action（避免在登录页面循环）
+  #check_login用户必须登录之后才可以访问系统,过滤调登录的两个action（避免在登录页面循环）
   #用 before_filter 怎么实现?
-  before_action :check_login, except: [:login,:sign_up]
+  #set_locale设置语言
+  before_action :check_login, except: [:login,:sign_up,:register,:create]
+
+  # before_action :set_locale
+  def set_locale
+    I18n.locale = user_locale
+  end
 
   def check_login
     unless current_user
@@ -15,9 +21,17 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def user_locale
+    params[:locale] || cookies[:locale] || http_head_locale || I18n.default_locale
+  end
+
+  def http_head_locale
+    http_accept_language.language_region_compatible_from(I18n.available_locales)
+  end
+
   #获取当前用户的方法
   def current_user
-    @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+    @current_user ||= User.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
   end
 
   helper_method :current_user
