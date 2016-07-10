@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       flash.notice = "登录成功！"
       redirect_to :root
     else
-      flash.notice = "用户名密码错误！"
+      flash.alert = "用户名密码错误！"
       redirect_to :login
     end
   end
@@ -42,9 +42,18 @@ class UsersController < ApplicationController
     redirect_to :root
   end
 
-  def profile
+  def show
+    @user = User.find_by_id(params[:id])
+  end
+
+  def edit
+    @user = User.find_by_id(params[:id])
+  end
+
+  def update
 
   end
+
 
   private
   def permit_params

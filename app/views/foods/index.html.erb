@@ -19,12 +19,14 @@
           <h3 class="box-title"><a href="/foods/new">New Food</a></h3>
 
           <div class="box-tools">
+            <%= form_tag foods_path, :remote => true, :method => 'get'  do %>
             <div class="input-group input-group-sm" style="width: 150px;">
               <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
               <div class="input-group-btn">
                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
               </div>
+              <% end %>
             </div>
           </div>
         </div>
@@ -34,18 +36,20 @@
             <tr>
               <th>name</th>
               <th>category</th>
-              <th>color</th>
-              <th>odor</th>
               <th>number</th>
+              <th>price</th>
+              <th>country</th>
+              <th>operation</th>
             </tr>
             <tbody id="foods">
             <% @foods.each do |food| %>
                 <tr>
-                  <td><%= food.name %></td>
+                  <td><span class="label" style="background-color: <%= food.color %>"><%= food.name %></span></td>
                   <td><%= food.category %></td>
-                  <td><%= food.color %></td>
-                  <td><span class="label label-success"><%= food.odor %></span></td>
                   <td><%= food.number %></td>
+                  <td><%= food.price %></td>
+                  <td><%= food.country %></td>
+                  <td><%= link_to 'DELETE', food, :method => 'delete', :class => 'btn btn-sm btn-danger' %></td>
                 </tr>
             <% end %>
             </table>

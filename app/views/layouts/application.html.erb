@@ -111,7 +111,7 @@
               <li class="user-header">
                 <img src="/assets/dist/admin.jpg" class="img-circle" alt="User Image">
                 <p>
-                  Alexander Pierce - Web Developer
+                  <%= current_user.full_name %>
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -130,7 +130,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="profile" class="btn btn-default btn-flat">Profile</a>
+                  <%= link_to 'Profile', user_path(current_user), :class => 'btn btn-default btn-flat' %>
                 </div>
                 <div class="pull-right">
                   <%= link_to 'Sign out', logout_path, method: 'delete',:class => 'btn btn-default btn-flat' %>

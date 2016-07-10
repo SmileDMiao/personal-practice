@@ -3,7 +3,7 @@ class FoodsController < ApplicationController
   def index
     #params[:page]分页参数(可定制),10records per page
     @foods = Food.page(params[:page]).per(10)
-
+    @foods = Food.where(:name => params[:table_search]).page(params[:page]).per(10) if params[:table_search]
     respond_to do |format|
       format.html # index.html.erb
       format.js
@@ -51,7 +51,13 @@ class FoodsController < ApplicationController
   end
 
   def destroy
+    @food = Food.find(params[:id])
+    @food.destroy
 
+    respond_to do |format|
+      format.html { redirect_to foods_url }
+      format.json { head :ok }
+    end
   end
 
   private
