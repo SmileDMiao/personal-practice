@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'foods/new_simple', to: 'foods#new_simple'
   resources :foods
 
+  get '/language/:locale', to: 'users#language', as: :change_locale
   get 'register', to: 'users#register'
   get 'login', to: 'users#login'
   post 'sign_up', to: 'users#sign_up'

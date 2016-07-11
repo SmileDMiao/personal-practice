@@ -1,15 +1,19 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  # helper_method声明一个controller的action为一个helper方法
+  # check_login用户必须登录之后才可以访问系统,过滤调登录的两个action（避免在登录页面循环）
+  # 用 before_filter 怎么实现?
+  # set_locale设置语言
   protect_from_forgery with: :exception
 
-  #check_login用户必须登录之后才可以访问系统,过滤调登录的两个action（避免在登录页面循环）
-  #用 before_filter 怎么实现?
-  #set_locale设置语言
-  before_action :check_login, except: [:login,:sign_up,:register,:create]
+  helper_method :current_user
 
-  # before_action :set_locale
+  before_action :check_login, except: [:login,:sign_up,:register,:create]
+  before_action :set_locale
+
   def set_locale
+    user_locale = cookies[:locale] || current_user.language || http_head_locale || I18n.default_locale
     I18n.locale = user_locale
   end
 
@@ -21,10 +25,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def user_locale
-    params[:locale] || cookies[:locale] || http_head_locale || I18n.default_locale
-  end
-
+  #检测出用户浏览器中设置的语言偏好
   def http_head_locale
     http_accept_language.language_region_compatible_from(I18n.available_locales)
   end
@@ -33,7 +34,5 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
   end
-
-  helper_method :current_user
 
 end

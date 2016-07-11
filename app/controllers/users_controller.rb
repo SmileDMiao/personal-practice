@@ -20,9 +20,7 @@ class UsersController < ApplicationController
   end
 
   def sign_up
-
     user = User.find_by_email(params[:email])
-    binding.pry
     if user && user.authenticate(params[:password])
       user.auth_token = user.generate_token
       user.save
@@ -54,6 +52,17 @@ class UsersController < ApplicationController
 
   def update
 
+  end
+
+  #切换语言
+  def language
+    locale = params[:locale].to_s.strip.to_sym
+    cookies[:locale] = locale
+    if request.env['HTTP_REFERER'].present?
+      redirect_to :back
+    else
+      redirect_to :root
+    end
   end
 
 

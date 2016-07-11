@@ -305,8 +305,8 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <a href="http://almsaeedstudio.com">简体中文</a>&nbsp;
-      <a href="http://almsaeedstudio.com">English</a>&nbsp;
+      <%= link_to '简体中文', change_locale_path(locale: "zh-CN") %>&nbsp;
+      <%= link_to 'English', change_locale_path(locale: "en") %>&nbsp;
       <b>smiledmiao</b> 2016
     </div>
     <strong>adminlte &copy; demo on rails by assets pipeline</strong>

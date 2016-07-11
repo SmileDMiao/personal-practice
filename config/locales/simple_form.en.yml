@@ -1,3 +1,5 @@
+#控制台中测试方法
+#rails c ; I18n.default_locale;I18n.t '';I18n.t('')
 en:
   simple_form:
     "yes": 'Yes'
