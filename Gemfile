@@ -27,8 +27,8 @@ gem 'redcarpet'
 
 # 上传组件
 gem 'carrierwave'
-# gem 'carrierwave-upyun'
-# gem 'mini_magick'
+gem 'mini_magick'
+gem 'jquery-fileupload-rails'
 
 # 验证
 gem 'client_side_validations'

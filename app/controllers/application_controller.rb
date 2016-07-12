@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_locale
-    user_locale = cookies[:locale] || current_user.language || http_head_locale || I18n.default_locale
+    #另一种写法(ruby2.3) current_user&.language
+    user_locale = cookies[:locale] || current_user.try(:language) || http_head_locale || I18n.default_locale
     I18n.locale = user_locale
   end
 

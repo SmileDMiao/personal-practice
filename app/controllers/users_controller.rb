@@ -39,6 +39,7 @@ class UsersController < ApplicationController
 
   def logout
     cookies.delete(:auth_token)
+    flash.notice = "退出登录！"
     redirect_to :root
   end
 
@@ -51,7 +52,16 @@ class UsersController < ApplicationController
   end
 
   def update
-
+    @user = User.find(params[:id])
+    respond_to do |format|
+      if @user.update_attributes(permit_params)
+        format.html { redirect_to @user, notice: 'Post was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   #切换语言

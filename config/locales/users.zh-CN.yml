@@ -1,1 +1,10 @@
 zh-CN:
+  users:
+    full_name: 姓名
+    email: 邮箱
+    city: 城市
+    company: 公司
+    github: github
+    twitter: twitter
+    language: 语言
+    avatar: 头像
