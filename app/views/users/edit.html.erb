@@ -80,7 +80,7 @@
               <div class="form-group">
                 <%= f.label t('users.language'), :class => 'col-sm-2 control-label' %>
                 <div class="col-sm-8">
-                  <%= f.text_field :language, :class => 'form-control' %>
+                  <%= f.select :language, [['简体中文','zh-CN'],['English','en']], {}, :class => 'form-control select2' %>
                 </div>
               </div>
               <div class="form-group">

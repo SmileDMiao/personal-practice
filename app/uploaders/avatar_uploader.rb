@@ -10,19 +10,19 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   process resize_to_fit: [200, 200]
 
-
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
+
+  #缓存文件存放位置
+  def cache_dir
+    '/tmp/personal_practice-cache'
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
-
-  def sanitize_regexp
-    /[^0-9\.\-\+_]/
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -47,14 +47,19 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    if original_filename
+      # current_path 是 Carrierwave 上传过程临时创建的一个文件，有时间标记
+      # 例如: /home/miao/hand/source/personal/personal-practice/public/uploads/tmp/1468375087-5913-0005-2058/__-___.jpg
+      @name ||= Digest::MD5.hexdigest(current_path)
+      "#{@name}.#{file.extension}"
+    end
+  end
 
 end

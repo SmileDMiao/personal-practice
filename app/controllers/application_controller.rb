@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # helper_method声明一个controller的action为一个helper方法
   # check_login用户必须登录之后才可以访问系统,过滤调登录的两个action（避免在登录页面循环）
-  # 用 before_filter 怎么实现?
   # set_locale设置语言
   protect_from_forgery with: :exception
 
@@ -14,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     #另一种写法(ruby2.3) current_user&.language
-    user_locale = cookies[:locale] || current_user.try(:language) || http_head_locale || I18n.default_locale
+    user_locale = cookies[:locale] || current_user.try(:language).to_sym || http_head_locale || I18n.default_locale
     I18n.locale = user_locale
   end
 
