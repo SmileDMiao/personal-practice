@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.avatar_name = params[:user][:avatar]&.original_filename
+    @user.avatar_name = params[:user][:avatar].try(:original_filename)
     respond_to do |format|
       if @user.update_attributes(permit_params)
         format.html { redirect_to @user, notice: 'Post was successfully updated.' }
