@@ -52,11 +52,11 @@ ActiveRecord::Schema.define(version: 20160713014713) do
     t.string   "company",         limit: 255
     t.string   "github",          limit: 255
     t.string   "twitter",         limit: 255
+    t.string   "avatar_name",     limit: 255
+    t.string   "avatar",          limit: 255
     t.string   "language",        limit: 255, default: "zh-CN"
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
-    t.string   "avatar",          limit: 255
-    t.string   "avatar_name",     limit: 255
   end
 
 end

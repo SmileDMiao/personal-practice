@@ -9,6 +9,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :company
       t.string :github
       t.string :twitter
+      t.string :avatar_name
+      t.string :avatar
       t.string :language, :default => 'zh-CN'
       t.timestamps null: false
     end

@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'users#logout'
   resources :users
 
+  resources :articles
+
 end

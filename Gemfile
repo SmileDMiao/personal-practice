@@ -11,6 +11,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# 浏览器语言偏好设置
 gem 'http_accept_language'
 
 # uuid
@@ -22,8 +23,10 @@ gem 'simple_form'
 # 加密
 gem 'bcrypt'
 
-# markdown
+# markdown emoji 代码高亮
 gem 'redcarpet'
+gem 'twemoji'
+gem 'rouge'
 
 # 上传组件
 gem 'carrierwave'
