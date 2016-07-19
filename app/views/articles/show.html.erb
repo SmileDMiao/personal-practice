@@ -1,0 +1,52 @@
+<section class="content-header">
+  <h1>
+    CRUD DEMO
+    <small>Preview</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Index</a></li>
+    <li class="active">CRUD Demo</li>
+  </ol>
+</section>
+
+<section class="content">
+
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title"><%= t 'helpers.submit.show' %></h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+      </div>
+    </div>
+
+    <div class="box-body">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <%= @article.title %>
+            <small class="pull-right">time-cont-view</small>
+          </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+              <div class="tab-pane" id="tab_2" style="height: 414px">
+                <%= markdown @article.body  %>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+<script>
+
+</script>

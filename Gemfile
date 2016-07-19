@@ -26,7 +26,7 @@ gem 'bcrypt'
 # markdown emoji 代码高亮
 gem 'redcarpet'
 gem 'twemoji'
-gem 'rouge'
+gem 'coderay'
 
 # 上传组件
 gem 'carrierwave'

@@ -25,7 +25,7 @@
     <div class="box-body">
       <!--错误信息-->
       <%= render "shared/error_messages", target: @article %>
-      <!-- form_for 水平排列表单-->
+
       <%= form_for @article, html: { class: "form" } do |f| %>
 
           <div class="form-group">
@@ -63,24 +63,13 @@
           <div class="form-group">
             <%= f.submit t('helpers.submit.submit'), class: "btn btn-primary col-xs-2" %>
           </div>
+
       <% end %>
 
-
     </div>
-
   </div>
-
 
 </section>
 <script>
-    //富文本编辑器-bootstrap
-    $(".textarea").wysihtml5();
-
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-        checkboxClass: 'icheckbox_flat-green',
-        radioClass: 'iradio_flat-green'
-    });
-
-    $(".my-colorpicker").colorpicker();
 
 </script>

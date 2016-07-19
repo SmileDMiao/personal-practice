@@ -1,5 +1,5 @@
+
 module ApplicationHelper
-  EMPTY_STRING = ''.freeze-
 
   #简单加密
   def smile
@@ -18,14 +18,30 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
-  def icon_tag(name, opts = {})
-    label = EMPTY_STRING
-    if opts[:label]
-      label = %(<span>#{opts[:label]}</span>)
+  # markdown语法支持
+  class CodeRayify < Redcarpet::Render::HTML
+    def block_code(code, language)
+      language ||= :plaintext
+      CodeRay.scan(code, language).div
     end
-    raw "<i class='fa fa-#{name}'></i> #{label}"
   end
 
-
+  def markdown(text)
+    render_options = {
+        filter_html:     true,
+        hard_wrap:       true,
+        link_attributes: { rel: 'nofollow' }
+    }
+    renderer = CodeRayify.new(render_options)
+    extensions = {
+        autolink:           true,
+        fenced_code_blocks: true,
+        lax_spacing:        true,
+        no_intra_emphasis:  true,
+        strikethrough:      true,
+        superscript:        true
+    }
+    Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
+  end
 
 end

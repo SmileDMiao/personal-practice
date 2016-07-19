@@ -7,5 +7,6 @@ class CreateArticle < ActiveRecord::Migration
       t.integer :likes_count
       t.timestamps null: false
     end
+    change_column :articles, :id, :string, :limit => 32
   end
 end
