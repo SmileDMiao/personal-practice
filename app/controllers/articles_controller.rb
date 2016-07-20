@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article = Article.new(user_id: current_user.id)
   end
 
   def create

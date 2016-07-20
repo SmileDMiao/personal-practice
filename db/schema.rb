@@ -15,11 +15,12 @@ ActiveRecord::Schema.define(version: 20160713014713) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",         limit: 255
-    t.text     "body",          limit: 65535
+    t.text     "body",          limit: 4294967295
     t.integer  "replies_count", limit: 4
     t.integer  "likes_count",   limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "user_id",       limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "foods", force: :cascade do |t|
