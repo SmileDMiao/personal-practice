@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713014713) do
+ActiveRecord::Schema.define(version: 20160720133705) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",         limit: 255
@@ -19,22 +19,23 @@ ActiveRecord::Schema.define(version: 20160713014713) do
     t.integer  "replies_count", limit: 4
     t.integer  "likes_count",   limit: 4
     t.string   "user_id",       limit: 255
+    t.string   "node_id",       limit: 255
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
 
   create_table "foods", force: :cascade do |t|
     t.string   "name",        limit: 20
-    t.string   "category",    limit: 20
+    t.string   "type",        limit: 20
     t.string   "color",       limit: 20
     t.string   "odor",        limit: 20
-    t.text     "description", limit: 255
+    t.text     "description", limit: 65535
     t.integer  "number",      limit: 4
-    t.decimal  "price",                   precision: 5, scale: 2
+    t.decimal  "price",                     precision: 5, scale: 2
     t.string   "country",     limit: 20
-    t.string   "rate_flag",   limit: 10,                          default: "N"
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.string   "rate_flag",   limit: 10,                            default: "N"
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
   end
 
   create_table "user_photos", force: :cascade do |t|
@@ -53,11 +54,11 @@ ActiveRecord::Schema.define(version: 20160713014713) do
     t.string   "company",         limit: 255
     t.string   "github",          limit: 255
     t.string   "twitter",         limit: 255
-    t.string   "avatar_name",     limit: 255
-    t.string   "avatar",          limit: 255
     t.string   "language",        limit: 255, default: "zh-CN"
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
+    t.string   "avatar",          limit: 255
+    t.string   "avatar_name",     limit: 255
   end
 
 end

@@ -31,4 +31,8 @@ Rails.application.routes.draw do
 
   resources :articles
 
+  namespace :admin do
+    root to: 'home#index', as: 'root'
+  end
+
 end

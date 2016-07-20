@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(permit_params)
+    @article.user_id = current_user.id
 
     respond_to do |format|
       if @article.save
