@@ -13,21 +13,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap/bootstrap
-//= require jquery-ui/jquery-ui
-//= require chartjs/Chart
-//= require select/select2.full
-//= require input_mask/jquery.inputmask
-//= require input_mask/jquery.inputmask.date.extensions
-//= require input_mask/jquery.inputmask.extensions
-//= require date_picker/moment
-//= require date_picker/daterangepicker
-//= require date_picker/bootstrap-datetimepicker
-//= require date_picker/bootstrap-timepicker
-//= require color_picker/bootstrap-colorpicker
-//= require icheck/icheck
-//= require editor/bootstrap3-wysihtml5.all
-//= require bootstrap/bootstrap-slider
 //= require dist/app.js
 //= require rails.validations
 //= require_tree .

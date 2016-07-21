@@ -72,6 +72,10 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
+    font-awesome-rails (4.6.2.0)
+      railties (>= 3.2, < 5.1)
+    font-ionicons-rails (2.0.1.5)
+      railties (>= 3.2, < 6.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hitimes (1.2.2)
@@ -215,6 +219,8 @@ DEPENDENCIES
   client_side_validations
   coderay
   coffee-rails (~> 4.1.0)
+  font-awesome-rails
+  font-ionicons-rails
   http_accept_language
   jbuilder (~> 2.0)
   jquery-fileupload-rails

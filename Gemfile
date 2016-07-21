@@ -45,6 +45,9 @@ gem 'sidekiq'
 # Permission
 gem 'cancancan'
 
+gem 'font-awesome-rails'
+gem 'font-ionicons-rails'
+
 group :development, :test do
   gem 'byebug'
   gem 'pry'

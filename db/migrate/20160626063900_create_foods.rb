@@ -9,7 +9,6 @@ class CreateFoods < ActiveRecord::Migration
       t.integer :number
       t.decimal :price, :precision => 5, :scale => 2
       t.string :country, :limit => 20
-      t.string :rate_flag, :limit => 10, :default => "N"
       t.timestamps null: false
     end
     change_column :foods, :id, :string, :limit => 32
