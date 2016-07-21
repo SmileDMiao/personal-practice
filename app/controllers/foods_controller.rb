@@ -1,4 +1,5 @@
 class FoodsController < ApplicationController
+  layout 'admin'
 
   def index
     #params[:page]分页参数(可定制),10records per page

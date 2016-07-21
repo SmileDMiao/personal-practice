@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
   #检测出用户浏览器中设置的语言偏好
   def http_head_locale
     http_accept_language.language_region_compatible_from(I18n.available_locales)
