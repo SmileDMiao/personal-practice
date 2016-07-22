@@ -3,7 +3,7 @@ class CreateNode < ActiveRecord::Migration
     create_table :nodes do |t|
       t.string :name
       t.string :summary
-      t.integer :section_id, :null => false
+      t.string :section_id, :limit => 32, :null => false
       t.integer :sort, :default => 0, :null => false
       t.integer :topics_count, :default => 0, :null => false
       t.timestamps null: false

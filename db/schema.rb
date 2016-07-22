@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20160722044930) do
   create_table "nodes", force: :cascade do |t|
     t.string   "name",         limit: 255
     t.string   "summary",      limit: 255
-    t.integer  "section_id",   limit: 4,               null: false
+    t.string   "section_id",   limit: 32,              null: false
     t.integer  "sort",         limit: 4,   default: 0, null: false
     t.integer  "topics_count", limit: 4,   default: 0, null: false
     t.datetime "created_at",                           null: false

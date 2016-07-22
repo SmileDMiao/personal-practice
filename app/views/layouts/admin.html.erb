@@ -164,7 +164,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i>
+            <%= fa_icon 'dashboard' %> <span>用户管理</span> <%= fa_icon 'angle-left', :class => 'pull-right' %>
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
@@ -172,11 +172,18 @@
           </ul>
         </li>
 
-        <li>
-          <a href="/widgets">
-            <i class="fa fa-th"></i> <span>Widgets</span>
-            <small class="label pull-right bg-green">new</small>
+        <li class="treeview">
+          <a href="#">
+            <%= fa_icon 'th' %></i> <span>分类导航</span> <%= fa_icon 'angle-left', :class => 'pull-right' %>
           </a>
+          <ul class="treeview-menu">
+            <li class="active">
+              <%= link_to (fa_icon 'circle-o',:text => '分类管理'), admin_sections_path %>
+            </li>
+            <li>
+              <%= link_to (fa_icon 'circle-o',:text => '节点管理'),admin_nodes_path %>
+            </li>
+          </ul>
         </li>
 
         <li class="treeview">
@@ -238,7 +245,9 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<%= foods_path %>"><i class="fa fa-circle-o"></i>Food</a></li>
+                <li>
+                  <%= link_to (fa_icon 'circle-o',:text => 'Food'), foods_path %>
+                </li>
               </ul>
             </li>
       </ul>

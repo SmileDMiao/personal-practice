@@ -1,0 +1,36 @@
+<section class="content-header">
+  <h1>
+    Sections
+  </h1>
+</section>
+
+<section class="content">
+
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">新建</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+      </div>
+    </div>
+
+    <div class="box-body">
+      <%= simple_form_for([:admin,@section]) do |f| %>
+          <%= render 'shared/error_messages', target: @section %>
+          <%= f.input :name %>
+          <%= f.input :sort %>
+          <div class="form-group">
+            <%= f.submit t('helpers.submit.submit'), class: 'btn btn-primary' %>
+            <%= link_to 'Back', admin_sections_path, class: 'btn btn-default' %>
+          </div>
+      <% end %>
+    </div>
+
+  </div>
+
+</section>
+<script>
+
+</script>
