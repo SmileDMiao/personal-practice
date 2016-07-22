@@ -1,0 +1,65 @@
+<section class="content-header">
+  <h1>
+    所有用户
+  </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title"><a href="/foods/new"><%= t 'helpers.submit.create' %></a></h3>
+
+          <div class="box-tools">
+            <%= form_tag foods_path, :remote => true, :method => 'get'  do %>
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <tr>
+              <th><%= t 'foods.name' %></th>
+              <th><%= t 'foods.category' %></th>
+              <th><%= t 'foods.number' %></th>
+              <th><%= t 'foods.price' %></th>
+              <th><%= t 'foods.country' %></th>
+              <th><%= t 'helpers.submit.operation' %></th>
+            </tr>
+            <tbody id="foods">
+            <% @foods.each do |food| %>
+                <tr>
+                  <td><span class="label" style="background-color: <%= food.color %>"><%= food.name %></span></td>
+                  <td><%= food.category %></td>
+                  <td><%= food.number %></td>
+                  <td><%= food.price %></td>
+                  <td><%= food.country %></td>
+                  <td>
+                    <%= link_to t('helpers.submit.show'), food, :class => 'btn btn-sm btn-success' %>
+                    <%= link_to t('helpers.submit.edit'), edit_food_path(food), :class => 'btn btn-sm btn-warning' %>
+                    <%= link_to t('helpers.submit.destroy'), food, :method => 'delete', :class => 'btn btn-sm btn-danger' %>
+                  </td>
+                </tr>
+            <% end %>
+            </table>
+          </table>
+        </div>
+        <div class="box-footer clearfix" id="paginator">
+          <!-- kaminari的bootstrap主题-->
+          <%= paginate @foods,:remote=>true,:theme => 'bootstrap3' %>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
