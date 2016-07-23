@@ -2,7 +2,7 @@ module Admin
   class SectionsController < Admin::ApplicationController
 
     def index
-      @sections = Section.page(params[:page]).per(10)
+      @sections = Section.all
     end
 
     def new

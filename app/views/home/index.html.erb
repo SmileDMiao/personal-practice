@@ -57,13 +57,10 @@
       </div>
 
       <div class="box box-default">
+
         <div class="box-header with-border">
           <h3 class="box-title"><%= '所有文章' %></h3>
-
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-          </div>
+          <%= render 'shared/box_tools' %>
         </div>
 
         <div class="box-body">
@@ -81,6 +78,23 @@
 
         </div>
       </div>
+
+      <div class="box box-default">
+        <div class="box-header with-border">
+        <h3 class="box-title"><%= '分类节点导航' %></h3>
+        <%= render 'shared/box_tools' %>
+        </div>
+
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <%= render 'shared/index_sections' %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </section>
 
 

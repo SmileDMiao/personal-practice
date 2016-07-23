@@ -15,17 +15,6 @@
             <%= link_to t('helpers.submit.create'), new_admin_section_path%>
           </h3>
 
-          <div class="box-tools">
-            <%= form_tag admin_sections_path, :remote => true, :method => 'get'  do %>
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-            <% end %>
-          </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
@@ -36,7 +25,7 @@
               <th>创建时间</th>
               <th>操作</th>
             </tr>
-            <tbody id="foods">
+            <tbody>
             <% @sections.each do |section| %>
                 <tr>
                   <td><%= section.name %></td>
@@ -50,10 +39,6 @@
             <% end %>
             </table>
           </table>
-        </div>
-
-        <div class="box-footer clearfix" id="paginator">
-          <%= paginate @sections,:remote=>true,:theme => 'bootstrap3' %>
         </div>
 
       </div>

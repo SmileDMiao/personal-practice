@@ -1,0 +1,10 @@
+<tr>
+  <td><%= node.section.name %></td>
+  <td><%= node.name %></td>
+  <td><%= node.summary %></td>
+  <td><%= node.created_at %></td>
+  <td>
+    <%= link_to t('helpers.submit.edit'), edit_admin_node_path(node), :class => 'btn btn-sm btn-warning' %>
+    <%= link_to t('helpers.submit.destroy'), admin_node_path(node), 'data-confirm' => 'Are you sure?',:method => 'delete', :class => 'btn btn-sm btn-danger' %>
+  </td>
+</tr>

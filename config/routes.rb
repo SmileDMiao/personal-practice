@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   delete 'logout', to: 'users#logout'
   resources :users
 
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 
   namespace :admin do
     root to: 'home#index', as: 'root'

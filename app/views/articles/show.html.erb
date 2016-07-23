@@ -1,35 +1,30 @@
-<section class="content-header">
-  <h1>
-    CRUD DEMO
-    <small>Preview</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Index</a></li>
-    <li class="active">CRUD Demo</li>
-  </ol>
-</section>
-
 <section class="content">
 
   <div class="box box-default">
     <div class="box-header with-border">
       <h3 class="box-title"><%= t 'helpers.submit.show' %></h3>
-
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-      </div>
+      <%= render 'shared/box_tools' %>
     </div>
 
     <div class="box-body">
 
       <div class="row">
         <div class="col-xs-12">
-          <h2 class="page-header">
-            <%= @article.title %>
-            <small class="pull-right">time-cont-view</small>
-          </h2>
+            <div class="page-header media">
+              <div class="media-body">
+                <h3 class="media-heading"><%= @article.title %></h3>
+                <div class="info small">
+                  A
+                  ·
+                  B
+                  ·
+                  C
+                </div>
+              </div>
+              <div class="avatar media-right">
+                <%= image_tag @article.user.avatar.url, :class => 'avatar'%>
+              </div>
+            </div>
         </div>
       </div>
 
@@ -39,6 +34,31 @@
               <div class="tab-pane">
                 <%= markdown @article.body  %>
               </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+            <div id="reply" class="panel panel-default">
+              <div class="panel-heading">回帖</div>
+              <div class="panel-body">
+                <%#= form_for(Comment.new, remote: true, url: topic_replies_path(@topic)) do |f| %>
+                <div class="form-group">
+                  <%= text_area :body, class: "topic-editor form-control", rows: "4", tabindex: "1" %>
+                </div>
+                <div class="submit-buttons">
+                  <button type="submit" id="reply-button" class="btn btn-primary" tabindex="2", data-disable-with='<%= t("topics.submit_reply") %>'><%= t("topics.submit_reply")%></button>
+                  <span class="help-inline" style="padding-left: 5px;" title="或者 Ctrl + Enter"><kbd>Command</kbd> + <kbd>Enter</kbd></span>
+
+                  <div class="pull-right"><a href="/markdown" target="_blank">排版说明</a></div>
+                </div>
+
+                <%# end %>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>

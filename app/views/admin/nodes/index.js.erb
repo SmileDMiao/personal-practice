@@ -1,0 +1,2 @@
+$('#nodes').html('<%= escape_javascript render(@nodes) %>');
+$('#paginator').html('<%= escape_javascript(paginate(@nodes, :remote => true,:theme => 'bootstrap3').to_s) %>');

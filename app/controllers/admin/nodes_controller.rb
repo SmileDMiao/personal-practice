@@ -2,7 +2,11 @@ module Admin
   class NodesController < Admin::ApplicationController
 
     def index
-      @nodes = Node.page(params[:page]).per(10)
+      @nodes = Node.page(params[:page]).per(10).order(:section_id)
+      respond_to do |format|
+        format.html # index.html.erb
+        format.js
+      end
     end
 
     def new

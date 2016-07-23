@@ -1,4 +1,3 @@
-
 module ApplicationHelper
 
   #简单加密
