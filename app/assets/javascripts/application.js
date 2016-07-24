@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require dist/app.js
 //= require rails.validations
+//= require social-share-button
 //= require_tree .

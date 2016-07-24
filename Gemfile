@@ -36,6 +36,9 @@ gem 'jquery-fileupload-rails'
 # 验证
 gem 'client_side_validations'
 
+# 分享功能
+gem 'social-share-button'
+
 # 分页
 gem 'kaminari'
 

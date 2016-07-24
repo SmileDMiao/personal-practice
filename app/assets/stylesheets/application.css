@@ -12,7 +12,10 @@
  *
 
  *= require bootstrap/bootstrap
- *= require_directory ./dist
+ *= require dist/AdminLTE.min
+ *= require dist/_all-skins
+ *= require dist/custom_style
+ *= require social-share-button
  *= require ionicons
  *= require font-awesome
  *= require_tree .

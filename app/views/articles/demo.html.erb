@@ -1,0 +1,47 @@
+<section class="content">
+
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title"><%= t 'helpers.submit.show' %></h3>
+      <%= render 'shared/box_tools' %>
+    </div>
+
+    <div class="box-body">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="page-header media">
+            <div class="media-body">
+              <h3 class="media-heading"><%= @article.title %></h3>
+              <div class="info small">
+                A
+                ·
+                B
+                ·
+                C
+              </div>
+            </div>
+            <div class="media-right">
+              <%= image_tag @article.user.avatar.url, :class => 'avatar'%>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+            <div class="tab-pane">
+              <%= markdown @article.body  %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+<script>
+
+</script>

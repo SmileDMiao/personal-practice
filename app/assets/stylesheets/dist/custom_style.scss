@@ -1,3 +1,4 @@
+//头像
 .avatar{
     width:50px;
     height:50px;
@@ -5,6 +6,7 @@
     overflow:hidden;
 }
 
+//节点导航
 .node-list{
     .node{
         margin-bottom: 10px;
@@ -22,3 +24,44 @@
         }
     }
 }
+
+//文章边栏
+#article-sidebar {
+  position: fixed;
+  display: none;
+  width: 260px;
+
+  @media (min-width: 960px) {
+    display: block;
+    width: 242px;
+  }
+
+  @media (min-width: 1200px) {
+    display: block;
+    width: 292px;
+  }
+
+  .group {
+    text-align: center; margin-bottom: 20px;
+  }
+
+  .buttons {
+    margin-top: 20px;
+    .likes {
+      a { display: block; width: 90px; margin: 0 auto; border-radius: 5px; padding: 10px 0;}
+      a:link, a:hover, a:visited { text-decoration: none; color: #333; }
+      a:hover { background: rgba(0, 0, 0, 0.03); }
+      i.fa { display: block; font-size: 40px;  margin-bottom: 10px; color: #666; }
+      a.active {
+        i.fa { color: #e76f3c; }
+      }
+    }
+  }
+  .reply-buttons {
+    text-align:center;
+    .total { margin-bottom: 10px; }
+  }
+  a.btn-move-page { color: #666; }
+}
+
+.article-sidebar.col-md-3 { padding-left: 0; }
