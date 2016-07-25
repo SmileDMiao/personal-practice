@@ -98,6 +98,7 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    letter_avatar (0.3.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     macaddr (1.7.1)
@@ -229,6 +230,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   kaminari
+  letter_avatar
   mini_magick
   mysql2 (>= 0.3.13, < 0.5)
   pry

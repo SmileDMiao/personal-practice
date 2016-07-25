@@ -33,6 +33,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'jquery-fileupload-rails'
 
+# 头像
+gem 'letter_avatar'
+
 # 验证
 gem 'client_side_validations'
 

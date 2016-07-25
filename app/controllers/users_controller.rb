@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(permit_params)
+    @user.avatar = @user.large_avatar_url
     if @user.save
       cookies.permanent[:auth_token] = @user.auth_token
       redirect_to :root
