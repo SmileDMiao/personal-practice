@@ -1,0 +1,102 @@
+<div class="sidebar col-md-4" id='sidebar'>
+  <div class="panel profile panel-default">
+    <div class="panel-body">
+      <div class="media">
+        <div class="media-left">
+          <div class='image'><%= image_tag(@user.avatar.url, :class => 'avatar') %></div>
+        </div>
+        <div class="media-body">
+          <div class="item">
+            <%= @user.full_name %>
+            <span class="opts pull-right">
+              <% if false %>
+                <%= link_to icon_tag("pencil", label: "修改"), edit_admin_user_path(@user.id) %>
+              <% end %>
+            </span>
+          </div>
+          <div class="item number">
+            第 12 位 会员 | <span title="注册日期"><%= @user.created_at.to_date %></span>
+          </div>
+          <% if !@user.company.blank? %>
+              <div class="item company">
+                <%= @user.company %>
+                <% if @user.city.present? %> @ <span title="所在地">AA<%#= location_name_tag(@user.location) %></span><% end %>
+              </div>
+          <% end %>
+          <div class="item counts">
+            <span>12</span> 篇帖子 • <span>21</span> 条回帖
+          </div>
+          <div class="item social">
+
+            <% if !@user.twitter.blank? %>
+                <%= link_to raw('<i class="fa fa-twitter"></i>'), @user.twitter_url, class: "twitter", rel: "nofollow" %>
+            <% end %>
+
+            <% if !@user.github.blank? %>
+                <%= link_to(raw('<i class="fa fa-github"></i>'), @user.github_url, target: '_blank', rel: 'nofollow') %>
+            <% end %>
+
+            <% if !@user.email.blank? %>
+                <a href="mailto: <%= @user.email %>"><i class="fa fa-envelope-o"></i></a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="follow-info row">
+        <div class="col-sm-4 followers">
+          <%= link_to 3, "#", class: "counter" %>
+          <%= link_to "关注者", "#", class: "text" %>
+        </div>
+        <div class="col-sm-4 following">
+          <%= link_to 4, "#", class: "counter" %>
+          <%= link_to "正在关注", "#", class: "text" %>
+        </div>
+        <div class="col-sm-4 stars">
+          <%= link_to 5, "#", class: "counter" %>
+          <%= link_to "收藏", "#", class: "text" %>
+        </div>
+      </div>
+      <% if false %>
+          <div class="buttons row">
+            <div class="col-sm-6">
+              <%= follow_user_tag(@user) %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= block_user_tag(@user) %>
+            </div>
+          </div>
+      <% end %>
+
+      <% if false %>
+          <div class="tagline row">
+            <%= @user.tagline %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="panel panel-default" id="user_github_repos">
+    <% if false %>
+        <div class="panel-heading">GitHub Public Repos</div>
+        <ul class="list-group">
+          <% user.github_repositories.each do |item| %>
+              <li class="list-group-item">
+                <div class="title">
+                  <%= link_to truncate(item[:name], length: 25), item[:url], target: "_blank", rel: "nofollow" %>
+                  <span class="watchers" title="<%= item[:watchers] %> Watchers"><%= item[:watchers] %></span>
+                </div>
+                <p class="desc">
+                  <%= truncate(item[:description], length: 100)  %>
+              </li>
+          <% end %>
+        </ul>
+        <div class="panel-footer more">
+          <%= link_to "More on GitHub", user.github_url, target: "_blank", rel: "nofollow" %>
+        </div>
+    <% else %>
+        <div class="panel-body">
+          未设置 GitHub 信息.
+        </div>
+    <% end %>
+  </div>
+</div>

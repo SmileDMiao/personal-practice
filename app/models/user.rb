@@ -30,4 +30,14 @@ class User < ActiveRecord::Base
       self.letter_avatar_url(192)
   end
 
+  def github_url
+    return '' if github.blank?
+    "https://github.com/#{github.split('/').last}"
+  end
+
+  def twitter_url
+    return '' if twitter.blank?
+    "https://twitter.com/#{twitter}"
+  end
+
 end
