@@ -1,0 +1,24 @@
+<div class="modal" id="node-selector" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>选择话题节点</strong>
+      </div>
+      <div class="modal-body">
+        <%= render '/shared/index_sections' %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+  $("#node-selector .nodes .name a").click(function(){
+      $("#node-selector").modal('hide')
+      var node_id = $(this).data('id')
+      var node_name = $(this).text()
+      $('.form input[name="topic[node_id]"]').val(node_id)
+      $('#node-selector-button').html(node_name)
+  })
+
+</script>

@@ -1,3 +1,4 @@
+<section class="content">
 <div class="row">
   <div class="col-md-9">
     <div class="topic-detail panel panel-default">
@@ -9,6 +10,15 @@
         </article>
       </div>
 
+    </div>
+
+    <div id="replies" class="panel panel-default" data-last-floor="<%#= @replies.count(:all) %>">
+      <div class="total panel-heading">
+        共收到 <b><%= 12 %></b> 条回复
+      </div>
+      <div class="items panel-body">
+        <%= render partial: "/comments/comment", collection: @comments %>
+      </div>
     </div>
 
     <div id="reply" class="panel panel-default">
@@ -26,3 +36,4 @@
     <%= render 'article_sidebar' %>
   </div>
 </div>
+</section>
