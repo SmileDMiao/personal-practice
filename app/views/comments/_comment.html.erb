@@ -1,9 +1,11 @@
-<div class="" data-id="<%= comment.id %>" id="reply<%= 1 %>">
-    <div class="avatar"><%#= user_avatar_tag(reply.user, :md) %></div>
+<div class="reply" data-id="<%= comment.id %>" id="reply<%= 1 %>">
+    <div>
+      <%= image_tag comment.user.avatar.url, :class => 'avatar' %>
+    </div>
     <div class="infos">
       <div class="info">
         <span class="name">
-          <%= image_tag current_user.avatar.url %>
+          AAA
         </span> ·
         <span class="time">
           <a class="reply-floor" href="#reply">#</a> · <%= 123 %>
@@ -11,6 +13,7 @@
         <span class="opts pull-right">
           <% if true %>
             <span class="hideable">
+              ASD
             <%#= link_to('', edit_topic_reply_path(@topic,reply), class: "edit fa fa-pencil", 'data-uid' => reply.user_id, title: "修改回帖")%>
             <%#= link_to('', "#", 'data-floor' => floor, 'data-login' => reply.user_login,
                 title: t("topics.reply_this_floor"), class: "btn-reply fa fa-mail-reply" )

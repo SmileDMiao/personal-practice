@@ -49,7 +49,6 @@ module ApplicationHelper
     yield(list)
     items = []
     list.each do |link|
-      binding.pry
       item_class = EMPTY_STRING
       urls = link.match(/href=(["'])(.*?)(\1)/) || []
       url = urls.length > 2 ? urls[2] : nil

@@ -64,3 +64,21 @@
     <a class="update" href="#"><i class="fa fa-bell-o"></i> <b>有新回复！</b>点击这里立即载入</a>
   </div>
 </div>
+
+<script>
+
+  $('.btn-move-page').click(function(e){
+      var moveType, opts, target;
+      target = $(e.currentTarget);
+      moveType = target.data('type');
+      opts = {
+          scrollTop: 0
+      };
+      if (moveType === 'bottom') {
+          opts.scrollTop = $('body').height();
+      }
+      $("body, html").animate(opts, 300);
+      return false;
+
+  })
+</script>

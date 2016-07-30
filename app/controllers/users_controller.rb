@@ -17,7 +17,11 @@ class UsersController < ApplicationController
   end
 
   def login
-    render layout: false
+    if current_user
+      redirect_to root_url
+    else
+      render layout: false
+    end
   end
 
   def sign_up
