@@ -9,6 +9,11 @@ class CreateUsers < ActiveRecord::Migration
       t.string :company
       t.string :github
       t.string :twitter
+      t.integer :article_count, default: 0, null: false
+      t.integer :comment_count, default: 0,     null: false
+      t.integer :favorite_article_ids, default: [], array: true
+      t.integer :following_ids, default: [], array: true
+      t.integer :follower_ids, default: [], array: true
       t.string :avatar_name
       t.string :avatar
       t.string :language, :default => 'zh-CN'

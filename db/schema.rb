@@ -13,27 +13,31 @@
 
 ActiveRecord::Schema.define(version: 20160722092645) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "articles", force: :cascade do |t|
-    t.string   "title",         limit: 255
-    t.text     "body",          limit: 4294967295
-    t.integer  "replies_count", limit: 4
-    t.integer  "likes_count",   limit: 4
-    t.string   "user_id",       limit: 255
-    t.string   "node_id",       limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.string   "title"
+    t.text     "body"
+    t.integer  "replies_count"
+    t.integer  "likes_count",    default: 0
+    t.string   "user_id"
+    t.string   "node_id"
+    t.integer  "comment_count",  default: 0,  null: false
+    t.integer  "liked_user_ids", default: [],              array: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text     "body",        limit: 65535,             null: false
-    t.string   "topic_id",    limit: 255,               null: false
-    t.string   "user_id",     limit: 255,               null: false
-    t.integer  "likes_count", limit: 4,     default: 0
-    t.string   "action",      limit: 255
-    t.string   "target_type", limit: 255
-    t.string   "target_id",   limit: 255
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.text     "body",                            null: false
+    t.string   "article_id",                      null: false
+    t.string   "user_id",                         null: false
+    t.integer  "likes_count",        default: 0
+    t.integer  "liked_user_ids",     default: [],              array: true
+    t.integer  "mentioned_user_ids", default: [],              array: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "foods", force: :cascade do |t|
@@ -41,53 +45,50 @@ ActiveRecord::Schema.define(version: 20160722092645) do
     t.string   "category",    limit: 20
     t.string   "color",       limit: 20
     t.string   "odor",        limit: 20
-    t.text     "description", limit: 255
-    t.integer  "number",      limit: 4
-    t.decimal  "price",                   precision: 5, scale: 2
+    t.text     "description"
+    t.integer  "number"
+    t.decimal  "price",                  precision: 5, scale: 2
     t.string   "country",     limit: 20
-    t.string   "rate_flag",   limit: 10,                          default: "N"
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
   end
 
   create_table "nodes", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.string   "summary",      limit: 255
-    t.string   "section_id",   limit: 32,              null: false
-    t.integer  "sort",         limit: 4,   default: 0, null: false
-    t.integer  "topics_count", limit: 4,   default: 0, null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.string   "name"
+    t.string   "summary"
+    t.string   "section_id",   limit: 32,             null: false
+    t.integer  "sort",                    default: 0, null: false
+    t.integer  "topics_count",            default: 0, null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "sections", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "sort",       limit: 4,   default: 0, null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
-  create_table "user_photos", force: :cascade do |t|
-    t.string   "user_id",    limit: 255
-    t.string   "file_name",  limit: 255
+    t.string   "name"
+    t.integer  "sort",       default: 0, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "full_name",       limit: 255
-    t.string   "email",           limit: 255
-    t.string   "password_digest", limit: 255
-    t.string   "auth_token",      limit: 255
-    t.string   "city",            limit: 255
-    t.string   "company",         limit: 255
-    t.string   "github",          limit: 255
-    t.string   "twitter",         limit: 255
-    t.string   "avatar_name",     limit: 255
-    t.string   "avatar",          limit: 255
-    t.string   "language",        limit: 255, default: "zh-CN"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.string   "full_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "auth_token"
+    t.string   "city"
+    t.string   "company"
+    t.string   "github"
+    t.string   "twitter"
+    t.integer  "article_count",        default: 0,       null: false
+    t.integer  "comment_count",        default: 0,       null: false
+    t.integer  "favorite_article_ids", default: [],                   array: true
+    t.integer  "following_ids",        default: [],                   array: true
+    t.integer  "follower_ids",         default: [],                   array: true
+    t.string   "avatar_name"
+    t.string   "avatar"
+    t.string   "language",             default: "zh-CN"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
 end
