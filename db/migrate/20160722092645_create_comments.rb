@@ -5,9 +5,9 @@ class CreateComments < ActiveRecord::Migration
       t.string :article_id, null: false
       t.string :user_id, null: false
       t.integer :likes_count ,        default: 0
-      t.integer :liked_user_ids, default: [], array: true
+      t.string :liked_user_ids, default: [], array: true
       t.integer :likes_count, default: 0
-      t.integer :mentioned_user_ids, default: [], array: true
+      t.string :mentioned_user_ids, default: [], array: true
       t.timestamps null: false
     end
     change_column :comments, :id, :string, :limit => 32

@@ -14,7 +14,7 @@
 
     <div id="replies" class="panel panel-default" data-last-floor="<%#= @replies.count(:all) %>">
       <div class="total panel-heading">
-        共收到 <b><%= 12 %></b> 条回复
+        共收到 <b><%= @article.comments.count %></b> 条回复
       </div>
       <div class="items panel-body">
         <%= render partial: "/comments/comment", collection: @comments %>

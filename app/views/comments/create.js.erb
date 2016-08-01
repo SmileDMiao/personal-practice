@@ -1,2 +1,3 @@
 var dom = $('<%= j(render('comment', comment: @comment)) %>');
 $("#replies .items").append(dom);
+$("textarea.article-editor").val('');

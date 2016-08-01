@@ -9,7 +9,7 @@ class CreateArticle < ActiveRecord::Migration
       t.string :node_id
       t.integer :comment_count, default: 0, null: false
       t.integer :likes_count, default: 0
-      t.integer :liked_user_ids, default: [], array: true
+      t.string :liked_user_ids, default: [], array: true
       t.timestamps null: false
     end
     change_column :articles, :id, :string, :limit => 32

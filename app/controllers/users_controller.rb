@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     @user.avatar_name = params[:user][:avatar].try(:original_filename)
     respond_to do |format|
       if @user.update_attributes(permit_params)
-        format.html { redirect_to @user, notice: 'Post was successfully updated.' }
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

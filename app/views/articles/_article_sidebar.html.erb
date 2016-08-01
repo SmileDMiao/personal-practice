@@ -4,7 +4,8 @@
       <a href="#" class="btn btn-block btn-sm btn-move-page" data-type="top"><i class="fa fa-arrow-up"></i></a>
       <div class="buttons">
         <div class="group likes opts">
-          <%= link_to((fa_icon 'heart-o',:text => '12个赞'), '#', title: '赞', 'data-count' => 12,
+          <%= like_able_tag(@article) %>
+          <%#= link_to((fa_icon 'heart-o',:text => '12个赞'), '#', title: '赞', 'data-count' => 12,
                       'data-state' => '', 'data-type' => 123213, 'data-id' => 123123,
                       class: "likeable ") %>
         </div>
@@ -60,9 +61,6 @@
     </div>
   </div>
 
-  <div class="notify-updated">
-    <a class="update" href="#"><i class="fa fa-bell-o"></i> <b>有新回复！</b>点击这里立即载入</a>
-  </div>
 </div>
 
 <script>

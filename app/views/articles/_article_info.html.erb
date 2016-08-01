@@ -3,11 +3,11 @@
     <h3 class="media-heading"><%= @article.title %></h3>
     <div class="info">
       <div class="info small">
-        A
-        ·
-        B
-        ·
-        C
+        <%= @article.node.name %>
+        •
+        <%= @article.user.full_name %>
+        •
+        <%= time_ago_now(@article.created_at) %>
       </div>
     </div>
   </div>

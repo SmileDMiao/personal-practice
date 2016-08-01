@@ -5,16 +5,15 @@
     <div class="infos">
       <div class="info">
         <span class="name">
-          AAA
-        </span> ·
+          <%= comment.user.full_name %>
+        </span>
+        ·
         <span class="time">
-          <a class="reply-floor" href="#reply">#</a> · <%= 123 %>
+          <a class="reply-floor" href="#reply">第N楼</a> · <%= time_ago_now(comment.created_at) %>
         </span>
         <span class="opts pull-right">
           <% if true %>
             <span class="hideable">
-              ASD
-            <%#= link_to('', edit_topic_reply_path(@topic,reply), class: "edit fa fa-pencil", 'data-uid' => reply.user_id, title: "修改回帖")%>
             <%#= link_to('', "#", 'data-floor' => floor, 'data-login' => reply.user_login,
                 title: t("topics.reply_this_floor"), class: "btn-reply fa fa-mail-reply" )
             %>

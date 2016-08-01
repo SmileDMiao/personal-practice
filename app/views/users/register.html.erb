@@ -36,7 +36,7 @@
           <span class="fa fa-lock form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <%= check_box_tag :remember_me,1,false, {:class=>"flat-red"} %> <a href="#">agree items</a>
+          <%= check_box_tag :remember_me,1,false %> <a href="#">agree items</a>
         </div>
 
         <%= f.submit '注册', :class => 'btn btn-primary btn-block btn-flat' %>
@@ -50,15 +50,6 @@
   </div>
 
 </div>
-<script>
-    $(function () {
 
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-            checkboxClass: 'icheckbox_flat-blue',
-            radioClass: 'iradio_flat-blue'
-        });
-
-    });
-</script>
 </body>
 </html>

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates :email, email: true
   validates_uniqueness_of :full_name, :email
 
-  before_save do
+  before_create do
     self.auth_token = generate_token
     self.avatar_name = self.full_name
   end

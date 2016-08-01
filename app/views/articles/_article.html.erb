@@ -12,11 +12,11 @@
       •
         <%= article.user.full_name %>
       •
-
+        <%= time_ago_now(article.created_at) %>
       </span>
     </div>
   </div>
   <div class="count media-right">
-        <%= link_to(8, class: "state-false") %>
+        <%= link_to(article.comments.count, class: 'state-false') %>
   </div>
 </div>

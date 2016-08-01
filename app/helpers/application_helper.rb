@@ -44,6 +44,12 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
 
+  #多久时间之前
+  def time_ago_now(time)
+    time = time.iso8601
+    '于' + distance_of_time_in_words_to_now(time) + '前发布'
+  end
+
   def render_list(opts = {})
     list = []
     yield(list)
