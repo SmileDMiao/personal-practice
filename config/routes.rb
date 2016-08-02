@@ -13,6 +13,12 @@ Rails.application.routes.draw do
   resources :users
 
   resources :articles do
+    member do
+      post :like
+      delete :destroy_like
+      post :favorite
+      delete :destroy_favorite
+    end
     resources :comments
   end
 

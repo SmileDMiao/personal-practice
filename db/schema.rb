@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722092645) do
+ActiveRecord::Schema.define(version: 20160801084556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160722092645) do
     t.string   "user_id"
     t.string   "node_id"
     t.integer  "comment_count",  default: 0,  null: false
-    t.integer  "liked_user_ids", default: [],              array: true
+    t.string   "liked_user_ids", default: [],              array: true
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 20160722092645) do
     t.string   "article_id",                      null: false
     t.string   "user_id",                         null: false
     t.integer  "likes_count",        default: 0
-    t.integer  "liked_user_ids",     default: [],              array: true
-    t.integer  "mentioned_user_ids", default: [],              array: true
+    t.string   "liked_user_ids",     default: [],              array: true
+    t.string   "mentioned_user_ids", default: [],              array: true
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(version: 20160722092645) do
     t.string   "twitter"
     t.integer  "article_count",        default: 0,       null: false
     t.integer  "comment_count",        default: 0,       null: false
-    t.integer  "favorite_article_ids", default: [],                   array: true
-    t.integer  "following_ids",        default: [],                   array: true
-    t.integer  "follower_ids",         default: [],                   array: true
+    t.string   "favorite_article_ids", default: [],                   array: true
+    t.string   "following_ids",        default: [],                   array: true
+    t.string   "follower_ids",         default: [],                   array: true
     t.string   "avatar_name"
     t.string   "avatar"
     t.string   "language",             default: "zh-CN"

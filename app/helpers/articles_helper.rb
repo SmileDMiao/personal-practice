@@ -1,7 +1,6 @@
 module ArticlesHelper
 
   def like_able_tag(article)
-
     label = "#{article.likes_count} 个赞"
     title, state, icon_name =
         if article.liked_by_user?(current_user)
@@ -16,5 +15,18 @@ module ArticlesHelper
     link_to(like_label, '#', title: title, 'data-count' => article.likes_count,
             'data-state' => state, 'data-type' => article.class, 'data-id' => article.id,
             class: "likeable #{state}")
+  end
+
+  def article_favorite_tag(article)
+    link_title = '收藏'
+    class_name = 'btn btn-default'
+    if current_user.favorite_article_ids.include?(article.id)
+      class_name = 'active btn btn-default'
+      link_title = '取消收藏'
+    end
+
+    icon = raw(content_tag('i', '', class: 'fa fa-bookmark'))
+
+    link_to(raw("#{icon} 收藏"), '#', title: link_title, class: "bookmark #{class_name}", 'data-id' => article.id)
   end
 end

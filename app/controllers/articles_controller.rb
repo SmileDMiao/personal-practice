@@ -33,6 +33,32 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def like
+    @article = Article.find(params[:id])
+    @article.liked_user_ids << current_user.id
+    @article.likes_count = @article.liked_user_ids.length
+    @article.save
+    render plain: @article.likes_count
+  end
+
+  def destroy_like
+    @article = Article.find(params[:id])
+    @article.liked_user_ids.delete(current_user.id)
+    @article.likes_count = @article.liked_user_ids.length
+    @article.save
+    render plain: @article.likes_count
+  end
+
+  def favorite
+    current_user.favorite_article(params[:id])
+    render plain: '1'
+  end
+
+  def destroy_favorite
+    current_user.unfavorite_article(params[:id])
+    render plain: '1'
+  end
+
 
   private
   def permit_params

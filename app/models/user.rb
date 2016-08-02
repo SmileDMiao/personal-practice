@@ -41,4 +41,14 @@ class User < ActiveRecord::Base
     "https://twitter.com/#{twitter}"
   end
 
+  def favorite_article(article_id)
+    favorite_article_ids << article_id
+    save
+  end
+
+  def unfavorite_article(article_id)
+    favorite_article_ids.delete(article_id)
+    save
+  end
+
 end

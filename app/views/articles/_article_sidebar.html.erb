@@ -5,14 +5,11 @@
       <div class="buttons">
         <div class="group likes opts">
           <%= like_able_tag(@article) %>
-          <%#= link_to((fa_icon 'heart-o',:text => '12个赞'), '#', title: '赞', 'data-count' => 12,
-                      'data-state' => '', 'data-type' => 123213, 'data-id' => 123123,
-                      class: "likeable ") %>
         </div>
         <div class="group">
           <div class="btn-group" role="group">
+            <%= article_favorite_tag(@article) %>
             <%= link_to((fa_icon 'bookmark',:text => '收藏'), '#', class: 'btn btn-default')%>
-            <%= link_to((fa_icon 'bookmark',:text => '收藏'), '#', title: 123, class: "btn btn-default") %>
           </div>
         </div>
       </div>
@@ -23,40 +20,11 @@
       <hr />
       <div class="reply-buttons">
         <div class="total">
-          共收到3 <b><%#= @topic.replies_count %></b> 条回复
+          共收到 <b><%= @article.comments.count %></b> 条回复
         </div>
         <a href="#reply" class="btn btn-success btn-block btn-focus-reply">参与回复</a>
       </div>
       <hr />
-      <div class="group opts">
-        <% if false %>
-            <% if !@topic.suggested_at.blank? %>
-                <%= link_to raw("<i class='fa fa-thumb-tack'></i> 取消"), unsuggest_admin_topic_path(@topic), 'data-confirm' => '确定要取消置顶么?', method: :post %>
-            <% else %>
-                <%= link_to raw("<i class='fa fa-thumb-tack'></i> 置顶"), suggest_admin_topic_path(@topic), 'data-confirm' => '确定要置顶么?', method: :post %>
-            <% end %>
-            <% if !@topic.excellent? %>
-                <%= link_to raw("<i class='fa fa-diamond'></i> 加精"), action_topic_path(@topic, type: 'excellent'), title: "设为精华帖" , method: "post", data: { confirm: "确定要设置成精华帖么？" } %>
-            <% end %>
-            <% if @topic.node_id != Node.no_point_id %>
-                <%= link_to raw("<i class='fa fa-ban'></i> 屏蔽"), action_topic_path(@topic, type: 'ban'), method: 'post', title: "屏蔽此贴，移动到 NoPoint 节点" %>
-            <% end %>
-        <% end %>
-
-        <% if false %>
-            <% if can?(:close, @topic) %>
-                <% if !@topic.closed? %>
-                    <%= link_to raw("<i class='fa fa-lock'></i> 关闭"), action_topic_path(@topic, type: 'close'), method: 'post', title: "关闭话题，不再接受回帖" %>
-                <% else %>
-                    <%= link_to raw("<i class='fa fa-unlock-alt'></i> 开启"), action_topic_path(@topic, type: 'open'), method: 'post', title: "重新开启话题" %>
-                <% end %>
-            <% end %>
-            <%= link_to "", edit_topic_path(@topic), class: "fa fa-pencil", title: "修改本帖" %>
-            <% if can?(:destroy, @topic) %>
-                <%= link_to "", topic_path(@topic.id), method: :delete, 'data-confirm' => t("common.confirm_delete"), class: "fa fa-trash", title: "删除本帖" %>
-            <% end %>
-        <% end %>
-      </div>
       <a href="#" class="btn btn-block btn-move-page" data-type="bottom"><i class="fa fa-arrow-down"></i></a>
     </div>
   </div>
@@ -64,7 +32,7 @@
 </div>
 
 <script>
-
+  //移动到页面的底部
   $('.btn-move-page').click(function(e){
       var moveType, opts, target;
       target = $(e.currentTarget);
@@ -77,6 +45,58 @@
       }
       $("body, html").animate(opts, 300);
       return false;
+  });
 
+  $('a.likeable').click(function(){
+      var article_id, likes_count;
+      article_id = $(this).data("id");
+      likes_count = parseInt($(this).data("count"));
+      if ($(this).data("state") !== "active") {
+          $.ajax({
+              url: "<%= like_article_path %>",
+              type: "POST",
+              data: {
+                  id: article_id
+              }
+          });
+          likes_count += 1;
+          $(this).data('count', likes_count);
+          $(this).data('state','active')
+          $(this).attr('class','likeable active')
+          $("i.fa",$(this)).attr("class", "fa fa-heart");
+          $('span', $(this)).text(likes_count + " 个赞")
+      } else {
+          $.ajax({
+              url: "/articles/" + article_id + '/destroy_like',
+              type: "DELETE"
+          });
+
+          likes_count -= 1;
+          $(this).data('count', likes_count);
+          $(this).data('state','')
+          $(this).attr('class','likeable')
+          $("i.fa",$(this)).attr("class", "fa fa-heart-o");
+          $('span', $(this)).text(likes_count + " 个赞")
+      }
+      return false;
+
+  });
+
+  $('a.bookmark').click(function(){
+      var link, article_id;
+      article_id = $(this).data("id");
+      link = $(".bookmark[data-id='" + article_id + "']");
+      if (link.hasClass("active")) {
+          $.ajax({
+              url: "/articles/" + article_id + "/destroy_favorite",
+              type: "DELETE"
+          });
+          link.attr("title", "收藏").removeClass("active");
+      } else {
+          $.post("/articles/" + article_id + "/favorite");
+          link.attr("title", "取消收藏").addClass("active");
+      }
+      return false;
   })
+
 </script>
