@@ -4,19 +4,15 @@
   </h1>
 </section>
 
-<!-- Main content -->
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-
           <h3 class="box-title">
             <%= link_to t('helpers.submit.create'), new_admin_node_path%>
           </h3>
-
         </div>
-        <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tr>
@@ -42,13 +38,10 @@
             </table>
           </table>
         </div>
-
         <div class="box-footer clearfix" id="paginator">
           <%= paginate @nodes,:remote=>true,:theme => 'bootstrap3' %>
         </div>
-
       </div>
-
     </div>
   </div>
 </section>

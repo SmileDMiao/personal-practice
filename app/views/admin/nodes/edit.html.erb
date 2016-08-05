@@ -5,13 +5,11 @@
 </section>
 
 <section class="content">
-
   <div class="box box-default">
     <div class="box-header with-border">
       <h3 class="box-title">编辑</h3>
       <%= render 'shared/box_tools' %>
     </div>
-
     <div class="box-body">
       <%= simple_form_for([:admin,@node]) do |f| %>
           <%= render 'shared/error_messages', target: @node %>
@@ -26,12 +24,6 @@
             </div>
           </fieldset>
       <% end %>
-
     </div>
-
   </div>
-
 </section>
-<script>
-
-</script>

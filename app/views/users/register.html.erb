@@ -17,7 +17,6 @@
   </div>
 
   <div class="register-box-body">
-
     <%= form_for @user do|f| %>
         <div class="form-group has-feedback">
           <%= f.text_field :full_name,{:class => "form-control", :placeholder => "Full name"} %>
@@ -38,18 +37,10 @@
         <div class="form-group has-feedback">
           <%= check_box_tag :remember_me,1,false %> <a href="#">agree items</a>
         </div>
-
         <%= f.submit '注册', :class => 'btn btn-primary btn-block btn-flat' %>
-
         <a href="login" class="text-center">I already have a membership</a>
-
     <% end %>
-
-
-
   </div>
-
 </div>
-
 </body>
 </html>

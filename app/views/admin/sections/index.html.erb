@@ -4,19 +4,15 @@
   </h1>
 </section>
 
-<!-- Main content -->
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-
           <h3 class="box-title">
             <%= link_to t('helpers.submit.create'), new_admin_section_path%>
           </h3>
-
         </div>
-        <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tr>
@@ -30,7 +26,7 @@
                 <tr>
                   <td><%= section.name %></td>
                   <td><%= section.sort %></td>
-                  <td><%= section.created_at %></td>
+                  <td><%= section.created_at.to_date %></td>
                   <td>
                     <%= link_to t('helpers.submit.edit'), edit_admin_section_path(section), :class => 'btn btn-sm btn-warning' %>
                     <%= link_to t('helpers.submit.destroy'), admin_section_path(section), 'data-confirm' => 'Are you sure?',:method => 'delete', :class => 'btn btn-sm btn-danger' %>
@@ -40,9 +36,7 @@
             </table>
           </table>
         </div>
-
       </div>
-
     </div>
   </div>
 </section>

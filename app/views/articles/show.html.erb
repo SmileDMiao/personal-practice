@@ -3,13 +3,11 @@
   <div class="col-md-9">
     <div class="topic-detail panel panel-default">
       <%= render partial: 'article_info', locals: { :@article => @article } %>
-
       <div class="panel-body markdown">
         <article>
           <%= markdown @article.body  %>
         </article>
       </div>
-
     </div>
 
     <div id="replies" class="panel panel-default" data-last-floor="<%#= @replies.count(:all) %>">
@@ -27,8 +25,6 @@
         <%= render 'comment_form' %>
       </div>
     </div>
-
-
 
   </div>
 

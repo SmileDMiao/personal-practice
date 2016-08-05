@@ -45,6 +45,9 @@ gem 'social-share-button'
 # 分页
 gem 'kaminari'
 
+# 搜索
+gem 'pg_search'
+
 # 后台队列
 gem 'sidekiq'
 

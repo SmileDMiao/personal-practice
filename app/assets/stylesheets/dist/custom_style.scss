@@ -33,6 +33,7 @@
 }
 
 //文章边栏
+.article-sidebar.col-md-3 { padding-left: 0; }
 #article-sidebar {
   position: fixed;
   display: none;
@@ -71,8 +72,6 @@
   a.btn-move-page { color: #fff; }
   a.btn-move-page {background-color: #dd4b39}
 }
-
-.article-sidebar.col-md-3 { padding-left: 0; }
 
 //文章显示
 .topic {

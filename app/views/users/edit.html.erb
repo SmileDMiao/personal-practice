@@ -9,21 +9,17 @@
   </ol>
 </section>
 
-<!-- Main content -->
 <section class="content">
-
   <div class="row">
     <div class="col-md-3">
       <%= render 'sidebar' %>
     </div>
-
     <div class="col-md-9">
       <div class="box box-primary">
         <div class="box-header with-border">
           <h3 class="box-title"><%= t 'helpers.submit.edit' %></h3>
           <%= render 'shared/box_tools' %>
         </div>
-
         <div class="box-body">
           <%= form_for @user, :html=>{:class=>"form-horizontal"} do |f| %>
               <div class="form-group">
@@ -87,11 +83,7 @@
               </div>
           <% end %>
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </section>
