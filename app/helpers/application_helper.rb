@@ -1,6 +1,5 @@
 module ApplicationHelper
 
-  EMPTY_STRING = ''.freeze
   #简单加密
   def smile
     SecureRandom.urlsafe_base64
@@ -55,7 +54,7 @@ module ApplicationHelper
     yield(list)
     items = []
     list.each do |link|
-      item_class = EMPTY_STRING
+      item_class = ""
       urls = link.match(/href=(["'])(.*?)(\1)/) || []
       url = urls.length > 2 ? urls[2] : nil
       if url && current_page?(url) || (@current && @current.include?(url))
@@ -65,6 +64,5 @@ module ApplicationHelper
     end
     content_tag('ul', raw(items.join(EMPTY_STRING)), opts)
   end
-
 
 end
