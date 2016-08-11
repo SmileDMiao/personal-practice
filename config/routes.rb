@@ -10,7 +10,15 @@ Rails.application.routes.draw do
   get 'login', to: 'users#login'
   post 'sign_up', to: 'users#sign_up'
   delete 'logout', to: 'users#logout'
-  resources :users
+  resources :users do
+    member do
+      get :articles
+      get :comments
+      get :favorites
+      get :followers
+      get :following
+    end
+  end
 
   resources :articles do
     member do

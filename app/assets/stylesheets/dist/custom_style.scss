@@ -1,3 +1,4 @@
+@import "vars";
 //头像
 .avatar{
     width:50px;
@@ -7,8 +8,8 @@
 }
 
 .avatar-lg{
-  width:90px;
-  height:90px;
+  width:96px;
+  height:96px;
   border-radius:50%;
   overflow:hidden;
 }
@@ -266,4 +267,90 @@
       padding-left: 57px;
     }
   }
+}
+
+.sidebar {
+  padding-right: 0;
+  .profile {
+    .avatar {
+      .level { margin-top: 6px; text-align: center; }
+    }
+    .item { margin-bottom: 5px; }
+    .item a { color: #666; }
+    .number { color: #999; }
+    .counts {
+      color: #999;
+      span { color: #666; }
+    }
+    .follow-info {
+      border-top: 1px solid #f0f0f0;
+      text-align: center; margin-top: 15px; padding-top: 15px;
+      a { display:block; text-decoration: none; }
+      a.counter {
+        font-size: 32px; color: $blue;
+        &:hover { color: $blueLight; }
+      }
+      a.text {
+        color: #999;
+      }
+    }
+    .buttons {
+      border-top: 1px solid #f0f0f0;
+      margin-top: 15px; padding-top: 15px;
+    }
+    .social {
+      font-size: 18px;
+      a { color: #999; margin-right: 8px; }
+      a:hover { color: #666; }
+    }
+    .tagline {
+      border-top: 1px solid #f0f0f0;
+      margin-top: 10px;
+      color: #999;
+      line-height: 100%;
+      padding: 10px; padding-bottom: 0;
+    }
+  }
+
+  .user-teams {
+    .media-object { display: inline-block; margin:4px 2px; }
+  }
+}
+
+//github repo display style
+#user_github_repos {
+  .more { text-align:right; }
+  ul { margin:0; }
+  li {
+    .title {
+      position:relative; margin-bottom: 5px;
+      a { color:#333; font-weight:bold; }
+      .watchers { position:absolute; top:2px; right:0; color: #999; }
+    }
+    .desc { font-size:12px; color:#888; padding: 0; margin: 0; }
+  }
+}
+
+//bootstrap tabs
+.subnav {
+  margin-bottom:-18px;
+  .nav-tabs {
+    border-bottom:0px;
+    padding-left:20px;
+  }
+  .nav-tabs > li > a:hover {
+    border-color:transparent;
+    background:none;
+    text-decoration:underline;
+  }
+  .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+    color: #555555;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    cursor: default;
+  }
+}
+.nav-tabs {
+  li:first-child { margin-left: 15px; }
 }

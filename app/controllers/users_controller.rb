@@ -81,6 +81,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def articles
+    @user = User.find(params[:id])
+    @articles = @user.articles.page(params[:page]).per(10).order(:created_at)
+    fresh_when([@articles])
+  end
+
 
   private
   def permit_params
