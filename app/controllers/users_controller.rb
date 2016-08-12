@@ -81,6 +81,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #用户文章
   def articles
     @user = User.find(params[:id])
     @articles = @user.articles.page(params[:page]).per(10).order(:created_at)

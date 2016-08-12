@@ -62,7 +62,7 @@ module ApplicationHelper
       end
       items << content_tag('li', raw(link), class: item_class)
     end
-    content_tag('ul', raw(items.join(EMPTY_STRING)), opts)
+    content_tag('ul', raw(items.join("")), opts)
   end
 
 end

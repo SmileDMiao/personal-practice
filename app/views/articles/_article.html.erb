@@ -1,22 +1,22 @@
 <div class="topic media">
   <div class="media-left">
-    <%= image_tag article.user.avatar.url, :class => 'avatar'%>
+    <%= image_tag article.user.avatar.url, :class => 'avatar' %>
   </div>
   <div class="infos media-body">
     <div class="title media-heading">
-      <%= link_to article.title,  article_path(article) %>
+      <%= link_to article.title, article_path(article) %>
     </div>
     <div class="info">
-      <%= article.node.name %>
+      <%= link_to article.node.name,node_articles_path(article.node) %>
       <span class="hidden-mobile">
       •
-        <%= article.user.full_name %>
+        <%= user_name_tag(article.user) %>
       •
         <%= time_ago_now(article.created_at) %>
       </span>
     </div>
   </div>
   <div class="count media-right">
-        <%= link_to(article.comments.count, class: 'state-false') %>
+    <%= link_to(article.comments.count, class: 'state-false') %>
   </div>
 </div>

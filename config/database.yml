@@ -17,5 +17,5 @@ test:
 production:
   <<: *default
   database: blog
-  username: root
+  username: postgres
   password: <%= ENV['ADMINLTE_DATABASE_PASSWORD'] %>

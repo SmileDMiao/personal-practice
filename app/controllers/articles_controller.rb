@@ -59,6 +59,13 @@ class ArticlesController < ApplicationController
     render plain: '1'
   end
 
+  def node
+    @node = Node.find(params[:id])
+    @articles = @node.articles
+    @articles = @articles.includes(:user).page(params[:page]).per(25).order(created_at: :desc)
+    render action: 'index'
+  end
+
 
   private
   def permit_params

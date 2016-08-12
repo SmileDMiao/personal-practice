@@ -8,7 +8,7 @@
 
     <div class="box-body">
       <!--错误信息-->
-      <%= render "shared/error_messages", target: @article %>
+      <%= render 'shared/error_messages', target: @article %>
 
       <%= form_for @article, html: { class: "form" } do |f| %>
           <div class="form-group">

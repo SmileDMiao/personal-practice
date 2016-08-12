@@ -1,0 +1,24 @@
+<section class="content">
+<div class="row">
+  <div class="col-md-9">
+    <div class="topics panel panel-default">
+      <div class="topic-list-heading panel-heading clearfix">
+        <%= render 'articles/node_info', node: @node %>
+      </div>
+
+      <div class="panel-body item-list">
+        <%= render partial: '/articles/article', collection: @articles %>
+      </div>
+
+      <div class="panel-footer clearfix">
+          <%= paginate @articles,:remote=>true,:theme => 'bootstrap3' %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sidebar col-md-3">
+    <%= render 'articles/sidebar_for_article_index' %>
+  </div>
+</div>
+</section>

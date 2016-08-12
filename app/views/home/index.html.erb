@@ -66,9 +66,9 @@
                 <div id="articles">
                   <%= render partial: 'articles/article', collection: @articles %>
                 </div>
-                <div id="paginator">
-                  <%= paginate @articles,:remote=>true,:theme => 'bootstrap3' %>
-                </div>
+              <div id="paginator">
+                <%= paginate @articles, :remote => true, :theme => 'bootstrap3' %>
+              </div>
             </div>
           </div>
         </div>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'articles/node:id' => 'articles#node', as: 'node_articles'
   resources :articles do
     member do
       post :like

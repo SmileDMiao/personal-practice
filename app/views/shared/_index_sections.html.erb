@@ -4,7 +4,7 @@
         <label class="media-left"><%= section.name %></label>
             <span class="nodes media-body">
               <% section.nodes.each do |node| %>
-                <span class="name"><%= link_to(node.name, "#", title: node.name, data: { id: node.id })%></span>
+                <span class="name"><%= link_to(node.name, node_articles_path(node), title: node.name, data: { id: node.id })%></span>
               <% end %>
             </span>
       </div>

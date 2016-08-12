@@ -1,9 +1,36 @@
 <section class="content">
-<div class="row">
-  <%= render "sidebar", user: @user %>
-  <div class="col-md-8">
-    <%= render "menu" %>
+  <div class="row">
+    <%= render "sidebar", user: @user %>
+    <div class="col-md-8">
+      <%= render "menu" %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <table class="node-topics table">
+            <tr class="head">
+              <td class="node">Node</td>
+              <td class="title">title</td>
+              <td class="replies">comment</td>
+            </tr>
+            <% @articles.each do |topic| %>
+              <tr class="topic <%= cycle("odd","") %>">
+                <td class="node">123</td>
+                <td class="title">456</td>
+                <td class="replies">789</td>
+              </tr>
+            <% end %>
+          </table>
 
+        </div>
+        <!--<div class="panel-footer clearfix">-->
+          <!--<%#= will_paginate @topics %>-->
+        <!--</div>-->
+        <div class="box-footer clearfix" id="paginator">
+          <!-- kaminari的bootstrap主题-->
+          <%= paginate @articles,:remote=>true,:theme => 'bootstrap3' %>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 </section>
+
+
