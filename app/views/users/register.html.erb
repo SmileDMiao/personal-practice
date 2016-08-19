@@ -16,6 +16,7 @@
     <b>Malzahar</b>
   </div>
 
+  <%= render 'shared/error_messages', target: @user %>
   <div class="register-box-body">
     <%= form_for @user do|f| %>
         <div class="form-group has-feedback">

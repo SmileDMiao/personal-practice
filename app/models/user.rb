@@ -101,4 +101,24 @@ class User < ActiveRecord::Base
     save
   end
 
+  def followed?(user)
+    following_ids.include?(user.id)
+  end
+
+  #follow用户
+  def follow_user(user)
+    following_ids << user.id
+    save
+    user.follower_ids << id
+    user.save
+  end
+
+  #取消follow用户
+  def unfollow_user(user)
+    following_ids.delete(user.id)
+    save
+    user.follower_ids.delete(id)
+    user.save
+  end
+
 end

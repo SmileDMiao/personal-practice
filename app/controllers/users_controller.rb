@@ -84,8 +84,25 @@ class UsersController < ApplicationController
   #用户文章
   def articles
     @user = User.find(params[:id])
-    @articles = @user.articles.page(params[:page]).per(10).order(:created_at)
+    @articles = @user.articles.page(params[:page]).per(10).order(created_at: :desc)
     fresh_when([@articles])
+  end
+
+  def comments
+    @user = User.find(params[:id])
+    @comments = @user.comments.page(params[:page]).per(10).order(created_at: :desc)
+  end
+
+  def follow
+    @user = User.find(params[:id])
+    current_user.follow_user(@user)
+    render json: { code: 0, data: { followers_count: @user.follower_ids.length } }
+  end
+
+  def unfollow
+    @user = User.find(params[:id])
+    current_user.unfollow_user(@user)
+    render json: { code: 0, data: { followers_count: @user.follower_ids.length } }
   end
 
 

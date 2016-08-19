@@ -354,3 +354,36 @@
 .nav-tabs {
   li:first-child { margin-left: 15px; }
 }
+
+//user article list
+.node-topics {
+  margin-bottom:0px;
+  .head { display:none; }
+}
+
+.node-topics {
+  border-bottom:1px solid #ddd;
+  tbody > tr > td { padding: 8px; color: #666; }
+  td.title {
+    a:link,
+    a:visited { font-size: 15px; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    em { font-style:normal; font-size:12px; color:#bbb; }
+    i.icon { margin-bottom: -1px; }
+  }
+  td.node {
+    a { color: #666; }
+  }
+  tr.head {
+    td { border-top:none; padding-top:14px; color:#CCC; font-weight:bold; font-size:12px; }
+  }
+  tr.odd {
+    td { background: #fafafa; }
+  }
+  tr.topic {
+    td.author {
+      width:80px;
+      a { color:#666; font-weight:bold; }
+    }
+  }
+}

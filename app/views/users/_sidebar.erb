@@ -9,9 +9,7 @@
           <div class="item">
             <%= @user.full_name %>
             <span class="opts pull-right">
-              <% if false %>
-                <%= link_to icon_tag("pencil", label: "修改"), edit_admin_user_path(@user.id) %>
-              <% end %>
+              <%= link_to fa_icon('pencil', :text => '修改'), edit_admin_user_path(@user.id) %>
             </span>
           </div>
           <div class="item number">
@@ -21,53 +19,85 @@
             <span><%= @user.articles.count %></span> 篇帖子 • <span><%= @user.comments.count %></span> 条回帖
           </div>
           <div class="item social">
-
             <% if !@user.twitter.blank? %>
-                <%= link_to raw('<i class="fa fa-twitter"></i>'), @user.twitter_url, target: '_blank',class: "twitter", rel: "nofollow" %>
+              <%= link_to fa_icon('twitter'), @user.twitter_url, target: '_blank', class: "twitter", rel: "nofollow" %>
             <% end %>
-
             <% if !@user.github.blank? %>
-                <%= link_to(raw('<i class="fa fa-github"></i>'), @user.github_url, target: '_blank', rel: 'nofollow') %>
+              <%= link_to(fa_icon('github'), @user.github_url, target: '_blank', rel: 'nofollow') %>
             <% end %>
-
             <% if !@user.email.blank? %>
-                <a href="mailto: <%= @user.email %>"><i class="fa fa-envelope-o"></i></a>
+              <a href="mailto: <%= @user.email %>"><%= fa_icon 'envelope-o' %></a>
             <% end %>
           </div>
         </div>
       </div>
       <div class="follow-info row">
         <div class="col-sm-4 followers">
-          <%= link_to 3, "#", class: "counter" %>
+          <%= link_to @user.follower_ids.length, "#", class: "counter" %>
           <%= link_to "关注者", "#", class: "text" %>
         </div>
         <div class="col-sm-4 following">
-          <%= link_to 4, "#", class: "counter" %>
+          <%= link_to @user.following_ids.length, "#", class: "counter" %>
           <%= link_to "正在关注", "#", class: "text" %>
         </div>
         <div class="col-sm-4 stars">
-          <%= link_to 5, "#", class: "counter" %>
+          <%= link_to @user.favorite_article_ids.length, "#", class: "counter" %>
           <%= link_to "收藏", "#", class: "text" %>
         </div>
       </div>
-      <% if false %>
-          <div class="buttons row">
-            <div class="col-sm-6">
-              <%= follow_user_tag(@user) %>
-            </div>
+      <div class="buttons row">
+        <div class="col-sm-6">
+          <%= follow_user_tag(@user) %>
+        </div>
 
-            <div class="col-sm-6">
-              <%= block_user_tag(@user) %>
-            </div>
-          </div>
-      <% end %>
+        <div class="col-sm-6">
+          <%= block_user_tag(@user) %>
+        </div>
+      </div>
 
       <% if false %>
-          <div class="tagline row">
-            <%= @user.tagline %>
-          </div>
+        <div class="tagline row">
+          <%= @user.tagline %>
+        </div>
       <% end %>
     </div>
   </div>
   <%= render '/users/repos', user: @user %>
 </div>
+<script>
+
+  $('.button-follow-user').click(function(){
+    btn = $(this);
+    full_name = btn.data("id");
+    span = btn.find("span");
+    followerCounter = $(".follow-info .followers .counter");
+
+    if (btn.hasClass("active")) {
+      $.ajax({
+        url: "<%= unfollow_user_path %>",
+        type: "POST",
+        success: function(res) {
+          if (res.code === 0) {
+            btn.removeClass('active');
+            span.text("关注");
+            return followerCounter.text(res.data.followers_count);
+          }
+        }
+      });
+    } else {
+      $.ajax({
+        url: "<%= follow_user_path %>",
+        type: 'POST',
+        success: function(res) {
+          if (res.code === 0) {
+            btn.addClass('active');
+            span.text("取消关注");
+            return followerCounter.text(res.data.followers_count);
+          }
+        }
+      });
+    }
+    return false;
+  })
+
+</script>
