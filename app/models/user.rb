@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   def letter_avatar_url(size)
     letter_avatar_address = LetterAvatar.generate(self.full_name, size)
-    avatar_address = '/home/miao/hand/source/personal/personal-practice/' + letter_avatar_address
+    avatar_address = Rails.root + letter_avatar_address
     File.open(avatar_address)
   end
 
