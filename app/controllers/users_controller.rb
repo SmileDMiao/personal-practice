@@ -85,12 +85,24 @@ class UsersController < ApplicationController
   def articles
     @user = User.find(params[:id])
     @articles = @user.articles.page(params[:page]).per(10).order(created_at: :desc)
-    fresh_when([@articles])
+    fresh_when([@articles,@user])
   end
 
   def comments
     @user = User.find(params[:id])
     @comments = @user.comments.page(params[:page]).per(10).order(created_at: :desc)
+  end
+
+  def favorites
+
+  end
+
+  def following
+
+  end
+
+  def followers
+
   end
 
   def follow

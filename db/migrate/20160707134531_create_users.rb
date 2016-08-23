@@ -14,6 +14,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :favorite_article_ids, default: [], array: true
       t.string :following_ids, default: [], array: true
       t.string :follower_ids, default: [], array: true
+      t.string :tagline
       t.string :avatar_name
       t.string :avatar
       t.string :language, :default => 'zh-CN'

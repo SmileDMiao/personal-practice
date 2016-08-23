@@ -33,6 +33,7 @@
       </div>
       <div class="follow-info row">
         <div class="col-sm-4 followers">
+          <%= binding.pry %>
           <%= link_to @user.follower_ids.length, "#", class: "counter" %>
           <%= link_to "关注者", "#", class: "text" %>
         </div>

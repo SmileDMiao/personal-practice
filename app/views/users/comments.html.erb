@@ -3,7 +3,7 @@
   <div class="col-md-8">
     <%= render "menu" %>
     <div class="panel panel-default">
-      <%= render "comments", replies: @comments %>
+      <%= render "comments", comments: @comments %>
       <div class="box-footer clearfix" id="paginator">
         <!-- kaminari的bootstrap主题-->
         <%= paginate @comments,:remote=>true,:theme => 'bootstrap3' %>

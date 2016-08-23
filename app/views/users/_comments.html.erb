@@ -1,16 +1,13 @@
 <ul class="list-group recent-replies">
-  <% replies.each do |reply| %>
-    <% cache(['users', reply]) do %>
-      <% next if reply.topic.blank? %>
-      <li class="list-group-item">
-        <div class="title">
-          <%= link_to(reply.topic.title, topic_path(reply.topic_id)) %>
-          <span class="info">at <%= timeago(reply.created_at) %></span>
-        </div>
-        <div class="body markdown">
-          <%= raw reply.body_html %>
-        </div>
-      </li>
-    <% end %>
+  <% comments.each do |comment| %>
+    <li class="list-group-item">
+      <div class="title">
+        <%= link_to(comment.article.title, "#") %>
+        <span class="info">at <%= time_ago_now(comment.created_at) %></span>
+      </div>
+      <div class="body markdown">
+        <%= markdown comment.body %>
+      </div>
+    </li>
   <% end %>
 </ul>
