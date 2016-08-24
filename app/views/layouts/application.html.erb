@@ -82,7 +82,8 @@
                 <li class="user-header">
                   <%= image_tag current_user.avatar.url, :class => 'img-circle', :alt => 'User Image' %>
                   <p>
-                    人得靠自己
+                    <%= current_user.tagline %>
+                    
                     <small><%= current_user.created_at %></small>
                   </p>
                 </li>

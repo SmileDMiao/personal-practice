@@ -3,6 +3,8 @@ class CreateArticle < ActiveRecord::Migration
     create_table :articles do |t|
       t.string :title
       t.text :body
+      t.integer :replies_count
+      t.integer :likes_count
       t.string :user_id
       t.string :node_id
       t.integer :comment_count, default: 0, null: false

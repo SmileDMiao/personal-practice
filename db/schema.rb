@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805014450) do
+ActiveRecord::Schema.define(version: 20160823124147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "zhparser"
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -100,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160805014450) do
     t.string   "language",             default: "zh-CN"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.string   "tagline"
   end
 
 end
