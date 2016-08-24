@@ -1,4 +1,9 @@
-<div class="reply" data-id="<%= comment.id %>" id="reply<%= 1 %>">
+<%
+   #这里的comment_counter 哪来的？
+   #counter cache
+   floor = comment_counter + 1
+%>
+<div class="reply" data-id="<%= comment.id %>" id="reply<%= floor %>">
     <div>
       <%= image_tag comment.user.avatar.url, :class => 'avatar' %>
     </div>
@@ -9,7 +14,7 @@
         </span>
         ·
         <span class="time">
-          <a class="reply-floor" href="#reply">第N楼</a> · <%= time_ago_now(comment.created_at) %>
+          <a class="reply-floor" href="#reply">第<%= floor %>楼</a> · <%= time_ago_now(comment.created_at) %>
         </span>
         <span class="opts pull-right">
           <% if true %>
@@ -27,3 +32,4 @@
       </div>
     </div>
 </div>
+<% floor += 1 %>
