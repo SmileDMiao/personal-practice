@@ -1,13 +1,28 @@
-<div class="row">
-  <%= render "sidebar", user: @user %>
-  <div class="col-md-8">
-    <%= render "menu" %>
-    <div class="panel panel-default">
-      <%= render "comments", comments: @comments %>
-      <div class="box-footer clearfix" id="paginator">
-        <!-- kaminari的bootstrap主题-->
-        <%= paginate @comments,:remote=>true,:theme => 'bootstrap3' %>
+<section class="content">
+  <div class="row">
+    <%= render "sidebar", user: @user %>
+    <div class="col-md-8">
+      <%= render "menu" %>
+      <div class="panel panel-default">
+        <%#= render "comments", comments: @comments %>
+        <ul class="list-group recent-replies">
+          <% @comments.each do |comment| %>
+            <li class="list-group-item">
+              <div class="title">
+                <%= link_to(comment.article.title, article_path(comment.article_id)) %>
+                <span class="info">at <%= time_ago_now(comment.created_at) %></span>
+              </div>
+              <div class="body markdown">
+                <%= markdown comment.body %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+        <div class="box-footer clearfix" id="paginator">
+          <!-- kaminari的bootstrap主题-->
+          <%= paginate @comments, :theme => 'bootstrap3' %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

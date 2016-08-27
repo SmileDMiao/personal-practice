@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+  # has_many :notifications, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
   #这个方法是rails自带的，密码字段必须是password_digest，在页面上必须是password + password_confirmation
@@ -119,6 +120,14 @@ class User < ActiveRecord::Base
     save
     user.follower_ids.delete(id)
     user.save
+  end
+
+  def following
+    User.where(id: self.following_ids)
+  end
+
+  def followers
+    User.where(id: self.follower_ids)
   end
 
 end

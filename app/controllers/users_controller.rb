@@ -50,6 +50,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    fresh_when([@user])
   end
 
   def edit
@@ -89,18 +90,26 @@ class UsersController < ApplicationController
   def comments
     @user = User.find(params[:id])
     @comments = @user.comments.page(params[:page]).per(10).order(created_at: :desc)
+    fresh_when([@comments,@user])
   end
 
   def favorites
-
+    @user = User.find(params[:id])
+    @article_ids = @user.favorite_article_ids
+    @articles = Article.where(id: @article_ids).page(params[:page]).per(40)
+    fresh_when([@articles])
   end
 
   def following
-
+    @user = User.find(params[:id])
+    @users = @user.following.page(params[:page]).per(60)
+    render template: '/users/followers'
   end
 
   def followers
-
+    @user = User.find(params[:id])
+    @users = @user.followers.page(params[:page]).per(60)
+    fresh_when([@users])
   end
 
   def follow
