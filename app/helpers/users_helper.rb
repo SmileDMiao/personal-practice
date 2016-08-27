@@ -45,7 +45,7 @@ module UsersHelper
     opts[:class] ||= 'btn btn-primary btn-block'
     class_names = "button-follow-user #{opts[:class]}"
     icon = '<i class="fa fa-user"></i>'
-    login = user.full_name
+    login = user.id
     if followed
       link_to raw("#{icon} <span>取消关注</span>"), '#', 'data-id' => login, class: "#{class_names} active"
     else

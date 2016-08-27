@@ -12,6 +12,22 @@ class CommentsController < ApplicationController
     end
   end
 
+  def like
+    @comment = Comment.find(params[:id])
+    @comment.liked_user_ids << current_user.id
+    @comment.likes_count = @comment.liked_user_ids.length
+    @comment.save
+    render plain: @comment.likes_count
+  end
+
+  def destroy_like
+    @comment = Comment.find(params[:id])
+    @comment.liked_user_ids.delete(current_user.id)
+    @comment.likes_count = @comment.liked_user_ids.length
+    @comment.save
+    render plain: @comment.likes_count
+  end
+
 
   private
   def permit_params

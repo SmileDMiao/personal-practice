@@ -32,7 +32,10 @@ Rails.application.routes.draw do
       post :favorite
       delete :destroy_favorite
     end
-    resources :comments
+    resources :comments do
+      post :like
+      delete :destroy_like
+    end
   end
 
   namespace :admin do

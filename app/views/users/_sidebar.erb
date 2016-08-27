@@ -72,14 +72,15 @@
 <script>
 
   $('.button-follow-user').click(function () {
+    var btn, user_id, span, followerCounter
     btn = $(this);
-    full_name = btn.data("id");
+    user_id = btn.data("id");
     span = btn.find("span");
     followerCounter = $(".follow-info .followers .counter");
 
     if (btn.hasClass("active")) {
       $.ajax({
-        url: "<%= unfollow_user_path %>",
+        url: "/users/" + user_id + "/unfollow",
         type: "POST",
         success: function (res) {
           if (res.code === 0) {
@@ -91,7 +92,7 @@
       });
     } else {
       $.ajax({
-        url: "<%= follow_user_path %>",
+        url: "/users/" + user_id + "/follow",
         type: 'POST',
         success: function (res) {
           if (res.code === 0) {

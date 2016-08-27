@@ -53,7 +53,7 @@
       likes_count = parseInt($(this).data("count"));
       if ($(this).data("state") !== "active") {
           $.ajax({
-              url: "<%= like_article_path %>",
+              url: "/articles/" + article_id + "/like",
               type: "POST",
               data: {
                   id: article_id

@@ -18,7 +18,7 @@ module CommentsHelper
 
     link_to(like_label, '#', title: title, 'data-count' => comment.likes_count,
             'data-state' => state, 'data-type' => comment.class, 'data-id' => comment.id,
-            class: "likeable #{state}")
+            class: "comment_like #{state}")
   end
 
 end

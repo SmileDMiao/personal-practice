@@ -32,31 +32,35 @@
 
   $('.button-follow-user').click(function () {
     btn = $(this);
-    full_name = btn.data("id");
+    user_id = btn.data("id");
     span = btn.find("span");
     followerCounter = $(".follow-info .followers .counter");
 
     if (btn.hasClass("active")) {
       $.ajax({
-        url: "<%= unfollow_user_path %>",
+        url: "/users/" + user_id + "/unfollow",
         type: "POST",
         success: function (res) {
           if (res.code === 0) {
             btn.removeClass('active');
             span.text("关注");
-            return followerCounter.text(res.data.followers_count);
+            if(<%= @user.id == current_user.id %>){
+              return followerCounter.text(res.data.followers_count);
+            }
           }
         }
       });
     } else {
       $.ajax({
-        url: "<%= follow_user_path %>",
+        url: "/users/" + user_id + "/follow",
         type: 'POST',
         success: function (res) {
           if (res.code === 0) {
             btn.addClass('active');
             span.text("取消关注");
-            return followerCounter.text(res.data.followers_count);
+            if(<%= @user.id == current_user.id %>){
+              return followerCounter.text(res.data.followers_count);
+            }
           }
         }
       });

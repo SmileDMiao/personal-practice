@@ -110,9 +110,11 @@ class User < ActiveRecord::Base
 
   #follow用户
   def follow_user(user)
-    following_ids << user.id
+    self.following_ids << user.id
+    self.following_ids = self.following_ids.uniq
     save
     user.follower_ids << id
+    user.follower_ids = user.follower_ids.uniq
     user.save
   end
 
