@@ -58,7 +58,7 @@
                     <li>
                       <a href="#">
                         <div class="pull-left">
-                          <%= image_tag current_user.avatar.url, :class => 'img-circle', :alt => 'User Image' %>
+                          <%= user_avatar_tag(current_user, 'img-circle',{:link => false}) %>
                         </div>
                         <h4>
                           Support Team
@@ -75,12 +75,12 @@
 
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= image_tag current_user.avatar.url, :class => 'avatar user-image', :alt => 'User Image' %>
+                <%= user_avatar_tag(current_user, 'avatar user-image',{:link => false}) %>
                 <span class="hidden-xs"><%= current_user.full_name %></span>
               </a>
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <%= image_tag current_user.avatar.url, :class => 'img-circle', :alt => 'User Image' %>
+                  <%= user_avatar_tag(current_user, 'img-circle',{:link => false}) %>
                   <p>
                     <%= current_user.tagline %>
                     

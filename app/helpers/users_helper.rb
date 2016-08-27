@@ -7,6 +7,20 @@ module UsersHelper
     link_to(name, user_path(user))
   end
 
+  #用户头像链接,user:用户,img_class:class,opts:选项
+  def user_avatar_tag(user, img_class, opts = {})
+    image_url = user.avatar.url
+    image = image_tag(image_url, class: img_class)
+
+    options = {}
+
+    if opts[:link] != false
+      link_to(raw(image), user_path(user), options)
+    else
+      raw image
+    end
+  end
+
   #是否屏蔽该用户
   def block_user_tag(user)
     return '' if current_user.blank?

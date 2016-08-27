@@ -9,7 +9,9 @@
           <div class="item">
             <%= @user.full_name %>
             <span class="opts pull-right">
-              <%= link_to fa_icon('pencil', :text => '修改'), edit_admin_user_path(@user.id) %>
+              <% if current_user == @user %>
+                <%= link_to fa_icon('pencil', :text => '修改'), edit_user_path(@user.id) %>
+              <% end %>
             </span>
           </div>
           <div class="item number">
@@ -33,29 +35,32 @@
       </div>
       <div class="follow-info row">
         <div class="col-sm-4 followers">
-          <%= link_to @user.follower_ids.length, "#", class: "counter" %>
-          <%= link_to "关注者", "#", class: "text" %>
+          <%= link_to @user.follower_ids.length, followers_user_path(@user), class: 'counter' %>
+          <%= link_to '关注者', followers_user_path(@user), class: 'text' %>
         </div>
         <div class="col-sm-4 following">
-          <%= link_to @user.following_ids.length, "#", class: "counter" %>
-          <%= link_to "正在关注", "#", class: "text" %>
+          <%= link_to @user.following_ids.length, following_user_path(@user), class: 'counter' %>
+          <%= link_to '正在关注', following_user_path(@user), class: 'text' %>
         </div>
         <div class="col-sm-4 stars">
-          <%= link_to @user.favorite_article_ids.length, "#", class: "counter" %>
-          <%= link_to "收藏", "#", class: "text" %>
-        </div>
-      </div>
-      <div class="buttons row">
-        <div class="col-sm-6">
-          <%= follow_user_tag(@user) %>
-        </div>
-
-        <div class="col-sm-6">
-          <%= block_user_tag(@user) %>
+          <%= link_to @user.favorite_article_ids.length, favorites_user_path(@user), class: 'counter' %>
+          <%= link_to '收藏', favorites_user_path(@user), class: 'text' %>
         </div>
       </div>
 
-      <% if false %>
+      <% if !owner? @user %>
+        <div class="buttons row">
+          <div class="col-sm-6">
+            <%= follow_user_tag(@user) %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= block_user_tag(@user) %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if !@user.tagline.blank? %>
         <div class="tagline row">
           <%= @user.tagline %>
         </div>
@@ -66,7 +71,7 @@
 </div>
 <script>
 
-  $('.button-follow-user').click(function(){
+  $('.button-follow-user').click(function () {
     btn = $(this);
     full_name = btn.data("id");
     span = btn.find("span");
@@ -76,7 +81,7 @@
       $.ajax({
         url: "<%= unfollow_user_path %>",
         type: "POST",
-        success: function(res) {
+        success: function (res) {
           if (res.code === 0) {
             btn.removeClass('active');
             span.text("关注");
@@ -88,7 +93,7 @@
       $.ajax({
         url: "<%= follow_user_path %>",
         type: 'POST',
-        success: function(res) {
+        success: function (res) {
           if (res.code === 0) {
             btn.addClass('active');
             span.text("取消关注");

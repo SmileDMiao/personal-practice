@@ -65,4 +65,13 @@ module ApplicationHelper
     content_tag('ul', raw(items.join("")), opts)
   end
 
+  def owner?(item)
+    return false if item.blank? || current_user.blank?
+    if item.is_a?(User)
+      item.id == current_user.id
+    else
+      # item.user_id == current_user.id
+    end
+  end
+
 end

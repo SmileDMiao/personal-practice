@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20160823124147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "zhparser"
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -89,17 +90,17 @@ ActiveRecord::Schema.define(version: 20160823124147) do
     t.string   "company"
     t.string   "github"
     t.string   "twitter"
-    t.integer  "article_count",        default: 0,       null: false
-    t.integer  "comment_count",        default: 0,       null: false
-    t.string   "favorite_article_ids", default: [],                   array: true
-    t.string   "following_ids",        default: [],                   array: true
-    t.string   "follower_ids",         default: [],                   array: true
+    t.integer  "article_count",                   default: 0,       null: false
+    t.integer  "comment_count",                   default: 0,       null: false
+    t.string   "favorite_article_ids",            default: [],                   array: true
+    t.string   "following_ids",                   default: [],                   array: true
+    t.string   "follower_ids",                    default: [],                   array: true
     t.string   "avatar_name"
     t.string   "avatar"
-    t.string   "language",             default: "zh-CN"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "tagline"
+    t.string   "language",                        default: "zh-CN"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.string   "tagline",              limit: 30
   end
 
 end

@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  attr_accessor :new_password, :confirm_password
   # has_many :notifications, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader

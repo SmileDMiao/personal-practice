@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       cookies.permanent[:auth_token] = @user.auth_token
       redirect_to :root
     else
-      render :register,layout: false
+      render :register, layout: false
     end
   end
 
@@ -29,11 +29,11 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       user.auth_token = user.generate_token
       user.save
-        if params[:remember_me]
-          cookies.permanent[:auth_token] = user.auth_token
-        else
-          cookies[:auth_token] = user.auth_token
-        end
+      if params[:remember_me]
+        cookies.permanent[:auth_token] = user.auth_token
+      else
+        cookies[:auth_token] = user.auth_token
+      end
       flash.notice = "登录成功！"
       redirect_to :root
     else
@@ -69,6 +69,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_password
+    @user = User.find(params[:id])
+    user = params[:user]
+    if @user.authenticate(user[:password]) && user[:new_password] == user[:confirm_password]
+      #更新密码操作
+      @user.update(password_digest: BCrypt::Password.create(user[:new_password]))
+      @user.save
+      redirect_to @user, notice: 'User was successfully updated.'
+    else
+      @user.errors.add(:password, :invalid)
+      render action: 'edit'
+    end
+  end
+
   #切换语言
   def language
     locale = params[:locale].to_s.strip.to_sym
@@ -84,13 +98,13 @@ class UsersController < ApplicationController
   def articles
     @user = User.find(params[:id])
     @articles = @user.articles.page(params[:page]).per(10).order(created_at: :desc)
-    fresh_when([@articles,@user])
+    fresh_when([@articles, @user])
   end
 
   def comments
     @user = User.find(params[:id])
     @comments = @user.comments.page(params[:page]).per(10).order(created_at: :desc)
-    fresh_when([@comments,@user])
+    fresh_when([@comments, @user])
   end
 
   def favorites
@@ -115,13 +129,13 @@ class UsersController < ApplicationController
   def follow
     @user = User.find(params[:id])
     current_user.follow_user(@user)
-    render json: { code: 0, data: { followers_count: @user.follower_ids.length } }
+    render json: {code: 0, data: {followers_count: @user.follower_ids.length}}
   end
 
   def unfollow
     @user = User.find(params[:id])
     current_user.unfollow_user(@user)
-    render json: { code: 0, data: { followers_count: @user.follower_ids.length } }
+    render json: {code: 0, data: {followers_count: @user.follower_ids.length}}
   end
 
 

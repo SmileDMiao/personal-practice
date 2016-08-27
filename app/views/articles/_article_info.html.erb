@@ -3,15 +3,15 @@
     <h3 class="media-heading"><%= @article.title %></h3>
     <div class="info">
       <div class="info small">
-        <%= @article.node.name %>
+        <%= render_node_name(@article.node.name,@article.node.id) %>
         •
-        <%= @article.user.full_name %>
+        <%= user_name_tag(@article.user) %>
         •
         <%= time_ago_now(@article.created_at) %>
       </div>
     </div>
   </div>
   <div class="media-right">
-    <%= image_tag @article.user.avatar.url, :class => 'avatar'%>
+    <%= user_avatar_tag(@article.user, :avatar) %>
   </div>
 </div>

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'users#logout'
   resources :users do
     member do
+      patch :change_password
       get :articles
       get :comments
       get :favorites
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
       get :following
       post :follow
       post :unfollow
+
     end
   end
 

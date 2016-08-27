@@ -1,29 +1,27 @@
 <%
-   #这里的comment_counter 哪来的？
-   #counter cache
    floor = comment_counter + 1
 %>
 <div class="reply" data-id="<%= comment.id %>" id="reply<%= floor %>">
     <div>
-      <%= image_tag comment.user.avatar.url, :class => 'avatar' %>
+      <%= user_avatar_tag(comment.user, :avatar) %>
     </div>
     <div class="infos">
       <div class="info">
         <span class="name">
-          <%= comment.user.full_name %>
+          <%= user_name_tag(comment.user) %>
         </span>
         ·
         <span class="time">
-          <a class="reply-floor" href="#reply">第<%= floor %>楼</a> · <%= time_ago_now(comment.created_at) %>
+          <a class="reply-floor" href="#reply<%= floor %>">第<%= floor %>楼</a> · <%= time_ago_now(comment.created_at) %>
         </span>
         <span class="opts pull-right">
           <% if true %>
             <span class="hideable">
-            <%#= link_to('', "#", 'data-floor' => floor, 'data-login' => reply.user_login,
-                title: t("topics.reply_this_floor"), class: "btn-reply fa fa-mail-reply" )
+            <%= link_to('', "#", 'data-floor' => floor, 'data-login' => comment.user.full_name,
+                title: '回复此楼', class: 'btn-reply fa fa-mail-reply')
             %>
             </span>
-            <%#= likeable_tag(reply, cache: true) %>123
+            <%= comment_like_tag(comment) %>
           <% end %>
         </span>
       </div>
@@ -32,4 +30,3 @@
       </div>
     </div>
 </div>
-<% floor += 1 %>
