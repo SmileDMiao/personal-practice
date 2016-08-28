@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160828083001) do
+ActiveRecord::Schema.define(version: 20160828091918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +21,14 @@ ActiveRecord::Schema.define(version: 20160828083001) do
     t.string   "title"
     t.text     "body"
     t.integer  "replies_count"
-    t.integer  "likes_count",    default: 0
+    t.integer  "likes_count",        default: 0
     t.string   "user_id"
     t.string   "node_id"
-    t.integer  "comment_count",  default: 0,  null: false
-    t.string   "liked_user_ids", default: [],              array: true
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "comment_count",      default: 0,  null: false
+    t.string   "liked_user_ids",     default: [],              array: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "mentioned_user_ids", default: [],              array: true
   end
 
   create_table "comments", force: :cascade do |t|

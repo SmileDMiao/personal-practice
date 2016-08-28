@@ -61,6 +61,9 @@ gem 'font-ionicons-rails'
 # @功能
 gem 'jquery-atwho-rails'
 
+# 批量插入数据
+gem 'bulk_insert'
+
 group :development, :test do
   gem 'byebug'
   gem 'pry'
