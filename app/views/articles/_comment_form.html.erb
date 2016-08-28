@@ -1,3 +1,7 @@
+<%
+   user_ids = current_user.follower_ids + current_user.following_ids
+   users = User.where(:id => user_ids).collect{|i|i.full_name}.to_s.html_safe
+%>
 <%= form_for(Comment.new, remote: true, url: article_comments_url(@article)) do |f| %>
     <div class="form-group">
       <%= f.text_area :body, class: 'article-editor form-control', rows: '4', tabindex: '1' %>
@@ -11,11 +15,13 @@
 <% end %>
 
 <script>
-
+    //ctrl + enter 提交
     $("textarea.article-editor").keydown(function(e) {
-        if ((e.ctrlKey||e.metaKey) && e.keyCode == 13) {
-            $("form#new_comment").submit()
-        }
+      if ((e.ctrlKey||e.metaKey) && e.keyCode == 13) {
+        $("form#new_comment").submit()
+      }
     });
-
+    //@用户
+     data = <%= users %>;
+    $('textarea.article-editor').atwho({at:"@", 'data':data});
 </script>

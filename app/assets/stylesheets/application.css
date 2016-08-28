@@ -18,6 +18,7 @@
  *= require social-share-button
  *= require ionicons
  *= require font-awesome
+ *= require jquery.atwho
  *= require_tree .
  *= require_self
  */

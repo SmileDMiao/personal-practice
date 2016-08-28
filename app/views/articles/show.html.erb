@@ -33,3 +33,60 @@
   </div>
 </div>
 </section>
+
+<script>
+  //评论喜欢
+  $('a.comment_like').click(function(){
+    var comment_id, likes_count;
+    comment_id = $(this).data("id");
+    likes_count = parseInt($(this).data("count"));
+    if ($(this).data("state") !== "active") {
+      $.ajax({
+        url: "/articles/" + "<%= @article.id %>" + "/comments/" + comment_id + "/like",
+        type: "POST",
+        data: {
+          id: comment_id
+        }
+      });
+      likes_count += 1;
+      $(this).data('count', likes_count);
+      $(this).data('state','active')
+      $(this).attr('class','comment_like active')
+      $("i.fa",$(this)).attr("class", "fa fa-heart");
+      $('span', $(this)).text(likes_count + " 个赞")
+    } else {
+      $.ajax({
+        url: "/articles/" + "<%= @article.id %>" + "/comments/" + comment_id + "/destroy_like",
+        type: "DELETE",
+        data: {
+          id: comment_id
+        }
+      });
+
+      likes_count -= 1;
+      $(this).data('count', likes_count);
+      $(this).data('state','')
+      $(this).attr('class','comment_like')
+      $("i.fa",$(this)).attr("class", "fa fa-heart-o");
+      $('span', $(this)).text(likes_count + " 个赞")
+    }
+    return false;
+  });
+
+  //回复此楼
+  $(".btn-reply").click(function(){
+    var comment, floor, comment_body, full_name, new_text
+    comment = $(this)
+    floor = comment.data("floor")
+    full_name = comment.data("login")
+    comment_body = $("#comment_body")
+    new_text = "#" + floor + "楼" + "@" + full_name + " "
+    if(comment_body.val().trim().length == 0){
+      new_text += ''
+    }
+    else{
+      new_text = "\n" + new_text
+    }
+    comment_body.focus().val(comment_body.val() + new_text);
+  })
+</script>

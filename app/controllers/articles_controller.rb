@@ -33,6 +33,20 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    @article.update_attributes(permit_params)
+    if @article.save
+      redirect_to(article_path(@article.id), notice: t('article.update_topic_success'))
+    else
+      render action: 'edit'
+    end
+  end
+
   def like
     @article = Article.find(params[:id])
     @article.liked_user_ids << current_user.id

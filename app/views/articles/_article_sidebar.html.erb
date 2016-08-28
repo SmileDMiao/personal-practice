@@ -25,6 +25,12 @@
         <a href="#reply" class="btn btn-success btn-block btn-focus-reply">参与回复</a>
       </div>
       <hr />
+      <div class="group opts">
+        <% if owner?(@article) %>
+          <%= link_to "", edit_article_path(@article), class: 'fa fa-pencil', title: '修改本帖' %>
+          <%= link_to "", article_path(@article.id), method: :delete, 'data-confirm' => '确认删除', class: 'fa fa-trash', title: '删除本帖', remote: true %>
+        <% end %>
+      </div>
       <a href="#" class="btn btn-block btn-move-page" data-type="bottom"><i class="fa fa-arrow-down"></i></a>
     </div>
   </div>

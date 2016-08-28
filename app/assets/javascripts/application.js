@@ -16,4 +16,5 @@
 //= require dist/app.js
 //= require rails.validations
 //= require social-share-button
+//= require jquery.atwho
 //= require_tree .

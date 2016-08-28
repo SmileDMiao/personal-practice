@@ -54,8 +54,12 @@ gem 'sidekiq'
 # Permission
 gem 'cancancan'
 
+# 图标
 gem 'font-awesome-rails'
 gem 'font-ionicons-rails'
+
+# @功能
+gem 'jquery-atwho-rails'
 
 group :development, :test do
   gem 'byebug'

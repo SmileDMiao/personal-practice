@@ -70,7 +70,7 @@ module ApplicationHelper
     if item.is_a?(User)
       item.id == current_user.id
     else
-      # item.user_id == current_user.id
+      item.user_id == current_user.id
     end
   end
 

@@ -1,0 +1,55 @@
+<section class="content">
+  <%= render 'node_selector' %>
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">编辑文章</h3>
+      <%= render 'shared/box_tools' %>
+    </div>
+
+    <div class="box-body">
+      <!--错误信息-->
+      <%= render 'shared/error_messages', target: @article %>
+
+      <%= form_for @article, html: { class: 'form' } do |f| %>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default" id="node-selector-button"
+                      data-toggle="modal" data-target="#node-selector"><%= @article.node.try(:name) || '选择节点...' %></button>
+            </div>
+            <%= f.hidden_field :node_id %>
+            <%= f.text_field :title, class: "form-control", placeholder: "在这里填写标题" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_1" data-toggle="tab">编辑</a></li>
+                <li><a href="#tab_2" data-toggle="tab">预览</a></li>
+                <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+              </ul>
+
+              <div class="tab-content">
+                <div class="tab-pane active" id="tab_1">
+                  <div class="form-group">
+                    <%= f.text_area :body, class: "topic-editor form-control closewarning", rows: 20 %>
+                  </div>
+                </div>
+
+                <div class="tab-pane" id="tab_2" style="height: 414px">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit t('helpers.submit.submit'), class: "btn btn-primary col-xs-2" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</section>
