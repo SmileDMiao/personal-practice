@@ -1,0 +1,12 @@
+<%
+   article = Article.find(notification.second_target_id)
+   comment = Comment.find(notification.target_id)
+%>
+
+<div class="media-heading">
+  在帖子
+  <%= topic_title_tag(article) %> 回复了：
+</div>
+<div class="media-content summary markdown">
+  <%= markdown comment.body %>
+</div>

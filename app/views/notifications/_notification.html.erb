@@ -1,0 +1,13 @@
+<div id="notification-<%= notification.id %>"
+     data-id="<%= notification.id %>"
+     class="media notification notification-<%= notification.notify_type %>">
+  <div class="media-left">
+    <%= link_to image_tag(User.find(notification.actor_id).avatar.url), user_path(notification.actor_id), title: User.find(notification.actor_id).full_name, class: 'user-avatar' %>
+  </div>
+  <div class="media-body">
+    <%= render partial: "#{notification.notify_type}", locals: { notification: notification } %>
+  </div>
+  <div class="media-right">
+    <%= notification.created_at.to_formatted_s(:time) %>
+  </div>
+</div>

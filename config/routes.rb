@@ -20,7 +20,6 @@ Rails.application.routes.draw do
       get :following
       post :follow
       post :unfollow
-
     end
   end
 
@@ -38,12 +37,14 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'notifications/index' => 'notifications#index'
+  delete 'notifications/clean' => 'notifications#clean'
+
   namespace :admin do
     root to: 'home#index', as: 'root'
     resources :users
     resources :sections
     resources :nodes
-
   end
 
 end

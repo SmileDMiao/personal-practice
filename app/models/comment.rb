@@ -28,18 +28,20 @@ class Comment < ActiveRecord::Base
       Notification.create notify_type: 'article_comment',
                           actor_id: comment.user_id,
                           user_id: article.user_id,
-                          target: comment,
-                          second_target: article
+                          target_id: comment.id,
+                          target_type: 'COMMENT',
+                          second_target_type: 'ARTICLE',
+                          second_target_id: article.id
       notified_user_ids << article.user_id
     end
 
-    follower_ids = article.follower_ids + (comment.user.try(:follower_ids) || [])
+    follower_ids = comment.user.try(:follower_ids) || []
     follower_ids.uniq!
 
     # 给关注者发通知
     default_note = {
         notify_type: 'article_comment',
-        target_type: 'Comment', target_id: reply.id,
+        target_type: 'Comment', target_id: comment.id,
         second_target_type: 'Article', second_target_id: article.id,
         actor_id: comment.user_id
     }

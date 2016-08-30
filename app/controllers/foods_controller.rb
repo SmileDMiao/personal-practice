@@ -26,10 +26,8 @@ class FoodsController < ApplicationController
     respond_to do |format|
       if @food.save
         format.html { redirect_to @food, notice: 'Product was successfully created.' }
-        format.json { render json: @food, status: :created, location: @food }
       else
         format.html { render action: "new" }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -68,7 +66,6 @@ class FoodsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to foods_url }
-      format.json { head :ok }
     end
   end
 

@@ -27,6 +27,8 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @comments = @article.comments
 
+    check_current_user_status_for_article
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @article }
@@ -84,6 +86,12 @@ class ArticlesController < ApplicationController
   private
   def permit_params
     params.require(:article).permit!
+  end
+
+  def check_current_user_status_for_article
+    return false unless current_user
+    # 通知处理
+    current_user.read_article(@article, comment_ids: @comments.collect(&:id))
   end
 
 end

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   attr_accessor :new_password, :confirm_password
   # has_many :notifications, dependent: :destroy
@@ -132,6 +133,20 @@ class User < ActiveRecord::Base
 
   def followers
     User.where(id: self.follower_ids)
+  end
+
+  def read_article(article, opts = {})
+    return if article.blank?
+
+    #pluck: select id form comments
+    opts[:comment_ids] ||= article.comment.pluck(:id)
+
+    range_sql = "
+      (target_type = 'Topic' AND target_id = ?) or
+      (target_type = 'Reply' AND target_id in (?))
+    "
+    # notifications.where(range_sql, article.id, opts[:comment_ids]).update_all(read_at: Time.now)
+    notifications.where(range_sql, article.id, opts[:comment_ids]).destroy_all
   end
 
 end
