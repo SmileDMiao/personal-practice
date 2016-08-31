@@ -48,8 +48,9 @@ gem 'kaminari'
 # 搜索
 gem 'pg_search'
 
-# 后台队列
+# 后台队列,sinatra web ui
 gem 'sidekiq'
+gem 'sinatra'
 
 # Permission
 gem 'cancancan'
@@ -63,6 +64,9 @@ gem 'jquery-atwho-rails'
 
 # 批量插入数据
 gem 'bulk_insert'
+
+# Excel
+gem 'spreadsheet'
 
 group :development, :test do
   gem 'byebug'

@@ -12,6 +12,31 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @article = Article.find(params[:article_id])
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:article_id])
+    @comment = Comment.find(params[:id])
+    if @comment.update_attributes(permit_params)
+      redirect_to(article_path(@comment.article_id), notice: '回帖更新成功。')
+    else
+      render action: 'edit'
+    end
+  end
+
+  def destroy
+    @article = Article.find(params[:article_id])
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
+      redirect_to(article_path(@comment.article_id), notice: '回帖删除成功。')
+    else
+      redirect_to(article_path(@comment.article_id), alert: '程序异常，删除失败。')
+    end
+  end
+
   def like
     @comment = Comment.find(params[:id])
     @comment.liked_user_ids << current_user.id

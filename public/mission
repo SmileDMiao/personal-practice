@@ -7,11 +7,16 @@ develop
 #用户查看页面的用户的关注与取消关注
 #回复的点击回复与赞
 
-提醒功能添加
-回复@功能
-全文搜索（pg&elasticsearch
+function
+权限功能
+管理员功能
+#提醒功能添加
+#回复@功能
+全文搜索 pg&elasticsearch
 账户邮件激活
 忘记密码
+redis自动输入完成
+自动化部署
 
 task
 导出所有的表结构到excel中(rails and ruby )

@@ -47,4 +47,7 @@ Rails.application.routes.draw do
     resources :nodes
   end
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
 end

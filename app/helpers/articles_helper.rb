@@ -30,7 +30,7 @@ module ArticlesHelper
     link_to(raw("#{icon} 收藏"), '#', title: link_title, class: "bookmark #{class_name}", 'data-id' => article.id)
   end
 
-  def topic_title_tag(article, opts = {})
+  def article_title_tag(article, opts = {})
     return '文章已经被删除' if article.blank?
       path = article_path(article)
     link_to(article.title, path, title: article.title)

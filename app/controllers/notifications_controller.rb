@@ -13,7 +13,6 @@ class NotificationsController < ApplicationController
   end
 
   def clean
-    binding.pry
     Notification.where(user_id: current_user.id).delete_all
     redirect_to '/notifications/index'
   end
