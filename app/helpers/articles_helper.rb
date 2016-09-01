@@ -1,5 +1,6 @@
 module ArticlesHelper
 
+  #文章赞
   def like_able_tag(article)
     label = "#{article.likes_count} 个赞"
     title, state, icon_name =
@@ -17,6 +18,7 @@ module ArticlesHelper
             class: "likeable #{state}")
   end
 
+  #文章收藏
   def article_favorite_tag(article)
     link_title = '收藏'
     class_name = 'btn btn-default'
@@ -30,6 +32,7 @@ module ArticlesHelper
     link_to(raw("#{icon} 收藏"), '#', title: link_title, class: "bookmark #{class_name}", 'data-id' => article.id)
   end
 
+  #文章链接
   def article_title_tag(article, opts = {})
     return '文章已经被删除' if article.blank?
       path = article_path(article)

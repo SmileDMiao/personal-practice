@@ -49,6 +49,7 @@ module ApplicationHelper
     '于' + distance_of_time_in_words_to_now(time) + '前发布'
   end
 
+  #用户菜单render
   def render_list(opts = {})
     list = []
     yield(list)
@@ -65,6 +66,7 @@ module ApplicationHelper
     content_tag('ul', raw(items.join("")), opts)
   end
 
+  #是否当前用户，是否文章作者
   def owner?(item)
     return false if item.blank? || current_user.blank?
     if item.is_a?(User)

@@ -51,10 +51,8 @@ class FoodsController < ApplicationController
     respond_to do |format|
       if @food.update_attributes(permit_params)
         format.html { redirect_to foods_url, notice: 'Post was successfully updated.' }
-        format.json { head :ok }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
+        format.html { render action: 'edit' }
       end
     end
 
@@ -71,7 +69,7 @@ class FoodsController < ApplicationController
 
 
   private
-  #strong_parameters-详情查看github官方文档
+  #strong_parameters-详情查看官方文档
   def permit_params
     #一开始我使用type而不是category，但是保存失败，type属于rails的关键字，请避免使用
     params.require(:food).permit!

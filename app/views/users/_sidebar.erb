@@ -87,7 +87,7 @@
             btn.removeClass('active');
             span.text("关注");
             return followerCounter.text(res.data.followers_count);
-          }
+          };
         }
       });
     } else {
@@ -99,11 +99,11 @@
             btn.addClass('active');
             span.text("取消关注");
             return followerCounter.text(res.data.followers_count);
-          }
+          };
         }
       });
     }
     return false;
-  })
+  });
 
 </script>

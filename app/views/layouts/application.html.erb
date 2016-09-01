@@ -6,7 +6,7 @@
   <title>Personal Practice</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <title>AdminLte</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -33,14 +33,13 @@
           </ul>
         </div>
 
-
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav navbar-right">
 
             <li class="nav-search hidden-xs hidden-sm">
               <form class="navbar-form form-search active" action="/search" method="GET">
                 <div class="form-group">
-                  <input class="form-control" name="q" type="text" value="" placeholder="搜索本站内容" />
+                  <input class="form-control" name="q" type="text" value="" placeholder="搜索本站内容"/>
                 </div>
                 <i class="fa btn-search fa-search"></i>
               </form>
@@ -58,7 +57,7 @@
                     <li>
                       <a href="#">
                         <div class="pull-left">
-                          <%= user_avatar_tag(current_user, 'img-circle',{:link => false}) %>
+                          <%= user_avatar_tag(current_user, 'img-circle', {:link => false}) %>
                         </div>
                         <h4>
                           Support Team
@@ -75,15 +74,14 @@
 
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= user_avatar_tag(current_user, 'avatar user-image',{:link => false}) %>
+                <%= user_avatar_tag(current_user, 'avatar user-image', {:link => false}) %>
                 <span class="hidden-xs"><%= current_user.full_name %></span>
               </a>
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <%= user_avatar_tag(current_user, 'img-circle',{:link => false}) %>
+                  <%= user_avatar_tag(current_user, 'img-circle', {:link => false}) %>
                   <p>
                     <%= current_user.tagline %>
-                    
                     <small><%= current_user.created_at %></small>
                   </p>
                 </li>
@@ -93,7 +91,7 @@
                       <a href="#">Followers</a>
                     </div>
                     <div class="col-xs-4 text-center">
-                      <%= link_to '发布',new_article_path %>
+                      <%= link_to '发布', new_article_path %>
                     </div>
                     <div class="col-xs-4 text-center">
                       <a href="#">Friends</a>
@@ -105,7 +103,7 @@
                     <%= link_to 'Profile', user_path(current_user), :class => 'btn btn-default btn-flat' %>
                   </div>
                   <div class="pull-right">
-                    <%= link_to 'Sign out', logout_path, method: 'delete',:class => 'btn btn-default btn-flat' %>
+                    <%= link_to 'Sign out', logout_path, method: 'delete', :class => 'btn btn-default btn-flat' %>
                   </div>
                 </li>
               </ul>
@@ -122,8 +120,9 @@
     <div class="container">
       <div class="row">
         <%= notice_message %>
-        <%= yield  %>
-
+        <section class="content">
+          <%= yield %>
+        </section>
       </div>
     </div>
   </div>

@@ -10,14 +10,14 @@
         <span class="name">
           <%= user_name_tag(comment.user) %>
         </span>
-      ·
+        ·
         <span class="time">
           <a class="reply-floor" href="#reply<%= floor %>">第<%= floor %>楼</a> · <%= time_ago_now(comment.created_at) %>
         </span>
         <span class="opts pull-right comment">
             <span class="hideable">
               <% if comment.user_id == current_user.id %>
-                <%= link_to('', edit_article_comment_path(@article, comment), class: 'fa fa-pencil', 'data-uid' => comment.user_id, title: '修改回帖') %>
+                <%= link_to('', edit_article_comment_path(comment.article, comment), class: 'fa fa-pencil', 'data-uid' => comment.user_id, title: '修改回帖') %>
               <% end %>
               <%= link_to('', '#comment_body', 'data-floor' => floor, 'data-login' => comment.user.full_name,
                           title: '回复此楼', class: 'btn-reply fa fa-mail-reply')

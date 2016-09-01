@@ -1,28 +1,26 @@
-<section class="content">
-  <div class="row">
-    <%= render 'sidebar', user: @user %>
-    <div class="col-md-8">
-      <%= render 'menu' %>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <table class="node-topics table">
-            <tr class="head">
-              <td class="opts"><%= t("common.node") %></td>
-              <td class="title"><%= t("common.title") %></td>
+<div class="row">
+  <%= render 'sidebar', user: @user %>
+  <div class="col-md-8">
+    <%= render 'menu' %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table class="node-topics table">
+          <tr class="head">
+            <td class="opts"><%= t("common.node") %></td>
+            <td class="title"><%= t("common.title") %></td>
+          </tr>
+          <% @articles.each do |item| %>
+            <% next if item.blank? %>
+            <tr class="topic <%= cycle('odd', "") %>">
+              <td class="node_name"><%= link_to item.node.name, node_articles_path(item.node_id) %></td>
+              <td class="title_name"><%= link_to item.title, article_path(item) %></td>
             </tr>
-            <% @articles.each do |item| %>
-              <% next if item.blank? %>
-              <tr class="topic <%= cycle('odd', "") %>">
-                <td class="node_name"><%= link_to item.node.name, node_articles_path(item.node_id) %></td>
-                <td class="title_name"><%= link_to item.title, article_path(item)%></td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-        <div class="panel-footer clearfix">
-          <%= paginate @articles,:remote=>true,:theme => 'bootstrap3' %>
-        </div>
+          <% end %>
+        </table>
+      </div>
+      <div class="panel-footer clearfix">
+        <%= paginate @articles, :remote => true, :theme => 'bootstrap3' %>
       </div>
     </div>
   </div>
-</section>
+</div>

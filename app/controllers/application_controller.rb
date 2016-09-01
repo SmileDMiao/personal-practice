@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_locale
-    #另一种写法(ruby2.3) current_user&.language
+    #另一种写法 current_user&.language
     user_locale = cookies[:locale] || http_head_locale || current_user.try(:language).to_sym || I18n.default_locale
     I18n.locale = user_locale
   end
@@ -21,6 +21,21 @@ class ApplicationController < ActionController::Base
     unless current_user
       redirect_to({:controller => 'users', :action => 'login'})
     end
+  end
+
+  def render_404
+    render_optional_error_file(404)
+  end
+
+  def render_403
+    render_optional_error_file(403)
+  end
+
+  def render_optional_error_file(status_code)
+    status = status_code.to_s
+    fname = %w(404 403 422 500).include?(status) ? status : 'unknown'
+    render template: "/errors/#{fname}", format: [:html],
+           handler: [:erb], status: status, layout: 'application'
   end
 
   private

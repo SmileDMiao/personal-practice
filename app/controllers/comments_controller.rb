@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
 
+  before_action :set_article, only: [:edit, :update, :destroy]
+  before_action :set_comment, only: [:edit, :update, :destroy, :like, :destroy_like]
+
   def create
     @comment = Comment.new(permit_params)
     @comment.article_id = params[:article_id]
@@ -13,13 +16,10 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:article_id])
-    @comment = Comment.find(params[:id])
+
   end
 
   def update
-    @article = Article.find(params[:article_id])
-    @comment = Comment.find(params[:id])
     if @comment.update_attributes(permit_params)
       redirect_to(article_path(@comment.article_id), notice: '回帖更新成功。')
     else
@@ -28,8 +28,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:article_id])
-    @comment = Comment.find(params[:id])
     if @comment.destroy
       redirect_to(article_path(@comment.article_id), notice: '回帖删除成功。')
     else
@@ -38,7 +36,6 @@ class CommentsController < ApplicationController
   end
 
   def like
-    @comment = Comment.find(params[:id])
     @comment.liked_user_ids << current_user.id
     @comment.likes_count = @comment.liked_user_ids.length
     @comment.save
@@ -46,7 +43,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy_like
-    @comment = Comment.find(params[:id])
     @comment.liked_user_ids.delete(current_user.id)
     @comment.likes_count = @comment.liked_user_ids.length
     @comment.save
@@ -57,6 +53,14 @@ class CommentsController < ApplicationController
   private
   def permit_params
     params.require(:comment).permit!
+  end
+
+  def set_article
+    @article = Article.find(params[:article_id])
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
   end
 
 end

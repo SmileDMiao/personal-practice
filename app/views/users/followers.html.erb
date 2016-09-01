@@ -1,36 +1,35 @@
-<section class="content">
-  <div class="row">
-    <%= render "sidebar", user: @user %>
-    <div class="col-md-8">
-      <%= render "menu" %>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <% @users.each do |user| %>
-              <div class="col-xs-6 col-sm-6 col-md-4">
-                <div class="media user-card">
-                  <div class="media-left"><%= image_tag user.avatar.url, :class => 'avatar' %></div>
-                  <div class="media-body">
-                    <div class="media-heading"><%= user_name_tag(user) %></div>
-                    <div class="infos">
-                      <div class="item opts"><%= follow_user_tag(user, class: "") %></div>
-                    </div>
+<div class="row">
+  <%= render "sidebar", user: @user %>
+  <div class="col-md-8">
+    <%= render "menu" %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <% @users.each do |user| %>
+            <div class="col-xs-6 col-sm-6 col-md-4">
+              <div class="media user-card">
+                <div class="media-left"><%= image_tag user.avatar.url, :class => 'avatar' %></div>
+                <div class="media-body">
+                  <div class="media-heading"><%= user_name_tag(user) %></div>
+                  <div class="infos">
+                    <div class="item opts"><%= follow_user_tag(user, class: "") %></div>
                   </div>
                 </div>
               </div>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
-        <div class="panel-footer clearfix">
-        </div>
+      </div>
+      <div class="panel-footer clearfix">
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <script>
 
   $('.button-follow-user').click(function () {
+    var btn, user_id, span, followerCounter
     btn = $(this);
     user_id = btn.data("id");
     span = btn.find("span");
@@ -44,10 +43,10 @@
           if (res.code === 0) {
             btn.removeClass('active');
             span.text("关注");
-            if(<%= @user.id == current_user.id %>){
+            if (<%= @user.id == current_user.id %>) {
               return followerCounter.text(res.data.followers_count);
-            }
-          }
+            };
+          };
         }
       });
     } else {
@@ -58,10 +57,10 @@
           if (res.code === 0) {
             btn.addClass('active');
             span.text("取消关注");
-            if(<%= @user.id == current_user.id %>){
+            if (<%= @user.id == current_user.id %>) {
               return followerCounter.text(res.data.followers_count);
-            }
-          }
+            };
+          };
         }
       });
     }

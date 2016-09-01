@@ -1,11 +1,10 @@
-<section class="content">
 <div class="row">
   <div class="col-md-9">
     <div class="topic-detail panel panel-default">
-      <%= render partial: 'article_info', locals: { :@article => @article } %>
+      <%= render partial: 'article_info', locals: {:@article => @article} %>
       <div class="panel-body markdown">
         <article>
-          <%= markdown @article.body  %>
+          <%= markdown @article.body %>
         </article>
       </div>
     </div>
@@ -32,11 +31,10 @@
     <%= render 'article_sidebar' %>
   </div>
 </div>
-</section>
 
 <script>
   //评论喜欢
-  $('a.comment_like').click(function(){
+  $('a.comment_like').click(function () {
     var comment_id, likes_count;
     comment_id = $(this).data("id");
     likes_count = parseInt($(this).data("count"));
@@ -50,9 +48,9 @@
       });
       likes_count += 1;
       $(this).data('count', likes_count);
-      $(this).data('state','active')
-      $(this).attr('class','comment_like active')
-      $("i.fa",$(this)).attr("class", "fa fa-heart");
+      $(this).data('state', 'active')
+      $(this).attr('class', 'comment_like active')
+      $("i.fa", $(this)).attr("class", "fa fa-heart");
       $('span', $(this)).text(likes_count + " 个赞")
     } else {
       $.ajax({
@@ -65,28 +63,28 @@
 
       likes_count -= 1;
       $(this).data('count', likes_count);
-      $(this).data('state','')
-      $(this).attr('class','comment_like')
-      $("i.fa",$(this)).attr("class", "fa fa-heart-o");
+      $(this).data('state', '')
+      $(this).attr('class', 'comment_like')
+      $("i.fa", $(this)).attr("class", "fa fa-heart-o");
       $('span', $(this)).text(likes_count + " 个赞")
     }
     return false;
   });
 
   //回复此楼
-  $(".btn-reply").click(function(){
+  $(".btn-reply").click(function () {
     var comment, floor, comment_body, full_name, new_text
     comment = $(this)
     floor = comment.data("floor")
     full_name = comment.data("login")
     comment_body = $("#comment_body")
     new_text = "#" + floor + "楼" + "@" + full_name + " "
-    if(comment_body.val().trim().length == 0){
+    if (comment_body.val().trim().length == 0) {
       new_text += ''
     }
-    else{
+    else {
       new_text = "\n" + new_text
     }
     comment_body.focus().val(comment_body.val() + new_text);
-  })
+  });
 </script>

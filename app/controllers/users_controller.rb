@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :set_user, except: [:register, :create, :login, :sign_up, :logout, :language]
+
   def register
     @user = User.new()
     render layout: false
@@ -50,16 +52,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_id(params[:id])
     # fresh_when([@user])
   end
 
   def edit
-    @user = User.find_by_id(params[:id])
+
   end
 
   def update
-    @user = User.find(params[:id])
     @user.avatar_name = params[:user][:avatar].try(:original_filename)
     respond_to do |format|
       if @user.update_attributes(permit_params)
@@ -70,8 +70,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+
+  end
+
   def change_password
-    @user = User.find(params[:id])
     user = params[:user]
     if @user.authenticate(user[:password]) && user[:new_password] == user[:confirm_password]
       #更新密码操作
@@ -97,44 +100,37 @@ class UsersController < ApplicationController
 
   #用户文章
   def articles
-    @user = User.find(params[:id])
     @articles = @user.articles.page(params[:page]).per(10).order(created_at: :desc)
     # fresh_when([@articles, @user])
   end
 
   def comments
-    @user = User.find(params[:id])
     @comments = @user.comments.page(params[:page]).per(10).order(created_at: :desc)
     # fresh_when([@comments, @user])
   end
 
   def favorites
-    @user = User.find(params[:id])
     @article_ids = @user.favorite_article_ids
     @articles = Article.where(id: @article_ids).page(params[:page]).per(40)
     # fresh_when([@articles])
   end
 
   def following
-    @user = User.find(params[:id])
     @users = @user.following.page(params[:page]).per(60)
     render template: '/users/followers'
   end
 
   def followers
-    @user = User.find(params[:id])
     @users = @user.followers.page(params[:page]).per(60)
     # fresh_when([@users])
   end
 
   def follow
-    @user = User.find(params[:id])
     current_user.follow_user(@user)
     render json: {code: 0, data: {followers_count: @user.follower_ids.length}}
   end
 
   def unfollow
-    @user = User.find(params[:id])
     current_user.unfollow_user(@user)
     render json: {code: 0, data: {followers_count: @user.follower_ids.length}}
   end
@@ -143,6 +139,14 @@ class UsersController < ApplicationController
   private
   def permit_params
     params.require(:user).permit!
+  end
+
+  def set_user
+    @user = User.find_by_id(params[:id])
+
+    if @user.blank?
+      render_404
+    end
   end
 
 end

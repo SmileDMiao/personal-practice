@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
 
+  before_action :set_article, only: [:show, :edit, :update, :like, :destroy_like]
+
   def index
 
   end
@@ -24,7 +26,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
     @comments = @article.comments
 
     check_current_user_status_for_article
@@ -36,11 +37,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+
   end
 
   def update
-    @article = Article.find(params[:id])
     @article.update_attributes(permit_params)
     if @article.save
       redirect_to(article_path(@article.id), notice: t('article.update_topic_success'))
@@ -49,8 +49,11 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+
+  end
+
   def like
-    @article = Article.find(params[:id])
     @article.liked_user_ids << current_user.id
     @article.likes_count = @article.liked_user_ids.length
     @article.save
@@ -58,7 +61,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy_like
-    @article = Article.find(params[:id])
     @article.liked_user_ids.delete(current_user.id)
     @article.likes_count = @article.liked_user_ids.length
     @article.save
@@ -86,6 +88,10 @@ class ArticlesController < ApplicationController
   private
   def permit_params
     params.require(:article).permit!
+  end
+
+  def set_article
+    @article ||= Article.find(params[:id])
   end
 
   def check_current_user_status_for_article

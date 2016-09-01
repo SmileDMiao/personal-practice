@@ -3,14 +3,14 @@
     <div class="panel-heading">GitHub Public Repos</div>
     <ul class="list-group">
       <% user.github_repositories.each do |item| %>
-      <li class="list-group-item">
-        <div class="title">
-          <%= link_to truncate(item[:name], length: 25), item[:url], target: "_blank", rel: "nofollow" %>
-          <span class="watchers" title="<%= item[:watchers] %> Watchers"><%= item[:watchers] %></span>
-        </div>
-        <p class="desc">
-          <%= truncate(item[:description], length: 100)  %>
-      </li>
+        <li class="list-group-item">
+          <div class="title">
+            <%= link_to truncate(item[:name], length: 25), item[:url], target: "_blank", rel: "nofollow" %>
+            <span class="watchers" title="<%= item[:watchers] %> Watchers"><%= item[:watchers] %></span>
+          </div>
+          <p class="desc">
+            <%= truncate(item[:description], length: 100) %>
+        </li>
       <% end %>
     </ul>
     <div class="panel-footer more">
