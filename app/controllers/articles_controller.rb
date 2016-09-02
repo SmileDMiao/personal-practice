@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :like, :destroy_like]
 
   def index
-    @articles = Article.page(params[:page]).per(20).order(:created_at)
+    @articles = Article.page(params[:page]).per(20).order(created_at: :desc)
   end
 
   def new
@@ -14,6 +14,11 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(permit_params)
     @article.user_id = current_user.id
+
+    full_name = @article.body.scan(/@([A-Za-z0-9\-\_\.]{3,20})/).flatten.map(&:downcase)
+    if full_name.any?
+      @article.mentioned_user_ids = User.where('lower(full_name) IN (?) AND id != (?)', full_name, @article.user_id).limit(5).pluck(:id)
+    end
 
     respond_to do |format|
       if @article.save
@@ -52,6 +57,15 @@ class ArticlesController < ApplicationController
 
   def destroy
 
+  end
+
+  %w(no_comment popular).each do |name|
+    define_method(name) do
+      @articles = Article.send(name.to_sym).includes(:user)
+      @articles = @articles.page(params[:page]).per(20)
+
+      render action: 'index'
+    end
   end
 
   def like

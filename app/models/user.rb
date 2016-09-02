@@ -11,9 +11,14 @@ class User < ActiveRecord::Base
   #这个方法是rails自带的，密码字段必须是password_digest，在页面上必须是password + password_confirmation
   has_secure_password
 
-  validates_presence_of :full_name, :email
-  validates :email, email: true
-  validates_uniqueness_of :full_name, :email
+  ALLOW_LOGIN_CHARS_REGEXP = /\A[A-Za-z0-9\-\_\.]+\z/
+  validates :full_name, format: { with: ALLOW_LOGIN_CHARS_REGEXP, message: '只允许数字、大小写字母和下划线' },
+                        length: { in: 3..20 },
+                        presence: true,
+                        uniqueness: { case_sensitive: false }
+  validates :email, email: true,
+                    presence: true,
+                    uniqueness: true
 
   before_create do
     self.auth_token = generate_token
@@ -117,6 +122,7 @@ class User < ActiveRecord::Base
     user.follower_ids << id
     user.follower_ids = user.follower_ids.uniq
     user.save
+    Notification.notify_follow(user.id, self.id)
   end
 
   #取消follow用户

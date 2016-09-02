@@ -5,6 +5,13 @@ class Comment < ActiveRecord::Base
 
   validates_presence_of :body
 
+  after_commit :update_parent_article, on: :create
+  after_destroy :update_parent_article
+
+  def update_parent_article
+    article.update_last_reply(self) if article.present?
+  end
+
   def liked_by_user?(user)
     return false if user.blank?
     liked_user_ids.include?(user.id)
@@ -53,6 +60,21 @@ class Comment < ActiveRecord::Base
         next if uid == comment.user_id
         logger.debug "Post Notification to: #{uid}"
         note = default_note.merge(user_id: uid)
+        worker.add(note)
+      end
+    end
+
+    Notification.bulk_insert(set_size: 100) do |worker|
+      notified_user_ids.each do |user_id|
+        note = {
+            notify_type: 'mention',
+            actor_id: self.user_id,
+            user_id: user_id,
+            target_type: self.class.name,
+            target_id: self.id,
+            second_target_type: 'Comment',
+            second_target_id: self.send(:topic_id)
+        }
         worker.add(note)
       end
     end

@@ -1,8 +1,6 @@
 develop:
 
 function:
-//首页显示星最多的前20
-//layout:提醒显示数目，显示下拉统计数据。
 权限功能
 cancancan:abilities in database
 管理员功能
@@ -13,12 +11,8 @@ redis自动输入完成
 自动化部署
 删除用户（假删除，用户不可登录，登录提示账户已删除，删除用户相关的信息）
 随机小贴士（收集信息）
-layout:文章显示所有文章.
 所有该做分页的做分页处理（起效果）
-几周年庆祝自动显示
-喜欢用户发送通知。
 rails-settings-cached:了解并使用
-用户名不能出现汉字(英文+数字)
 
 task:
 导出所有的表结构到excel中(rails and ruby )
@@ -27,3 +21,4 @@ ruby/python爬虫笑话?
 tips:
 pluck
 bulk insert
+stale

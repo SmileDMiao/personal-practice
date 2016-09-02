@@ -7,7 +7,8 @@ class Article < ActiveRecord::Base
   validates_presence_of :title, :body, :node_id
 
 
-  scope :popular,       -> { order(likes_count: :desc) }
+  scope :popular, -> { order(likes_count: :desc) }
+  scope :no_comment, -> { where(comment_count: 0).order(created_at: :desc) }
 
 
   def liked_by_user?(user)
@@ -17,6 +18,7 @@ class Article < ActiveRecord::Base
 
   #创建之后创建提醒信息
   after_commit :create_reply_notify, on: :create
+
   def create_reply_notify
     NotifyArticleJob.perform_later(id)
   end
@@ -31,7 +33,7 @@ class Article < ActiveRecord::Base
     notified_user_ids = article.mentioned_user_ids
 
     # 给关注者发通知
-    default_note = { notify_type: 'article', target_type: 'Article', target_id: article.id, actor_id: article.user_id }
+    default_note = {notify_type: 'article', target_type: 'Article', target_id: article.id, actor_id: article.user_id}
     Notification.bulk_insert do |worker|
       follower_ids.each do |uid|
         # 排除同一个回复过程中已经提醒过的人
@@ -43,7 +45,26 @@ class Article < ActiveRecord::Base
       end
     end
 
+    Notification.bulk_insert(set_size: 100) do |worker|
+      notified_user_ids.each do |user_id|
+        note = {
+            notify_type: 'mention',
+            actor_id: self.user_id,
+            user_id: user_id,
+            target_type: self.class.name,
+            target_id: self.id
+        }
+        worker.add(note)
+      end
+    end
+
     true
+  end
+
+  def update_last_reply(comment)
+    return false if comment.blank?
+    self.comment_count = comments.count
+    save
   end
 
   # 待重写

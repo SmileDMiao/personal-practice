@@ -31,6 +31,10 @@ Rails.application.routes.draw do
       post :favorite
       delete :destroy_favorite
     end
+    collection do
+      get :no_comment
+      get :popular
+    end
     resources :comments do
       post :like
       delete :destroy_like
