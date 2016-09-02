@@ -58,6 +58,12 @@ gem 'sinatra'
 # Permission
 gem 'cancancan'
 
+# Cache
+gem 'second_level_cache'
+
+# Setting
+gem 'rails-settings-cached'
+
 # 图标
 gem 'font-awesome-rails'
 gem 'font-ionicons-rails'

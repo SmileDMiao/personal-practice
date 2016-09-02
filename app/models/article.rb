@@ -4,11 +4,14 @@ class Article < ActiveRecord::Base
   belongs_to :node
   has_many :comments, dependent: :destroy
 
+  paginates_per 20
+
   validates_presence_of :title, :body, :node_id
 
 
   scope :popular, -> { order(likes_count: :desc) }
   scope :no_comment, -> { where(comment_count: 0).order(created_at: :desc) }
+  scope :time_desc, -> {order(created_at: :desc)}
 
 
   def liked_by_user?(user)
@@ -49,7 +52,7 @@ class Article < ActiveRecord::Base
       notified_user_ids.each do |user_id|
         note = {
             notify_type: 'mention',
-            actor_id: self.user_id,
+            actor_id: article.user_id,
             user_id: user_id,
             target_type: self.class.name,
             target_id: self.id

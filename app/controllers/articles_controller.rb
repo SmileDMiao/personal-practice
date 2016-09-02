@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :like, :destroy_like]
 
   def index
-    @articles = Article.page(params[:page]).per(20).order(created_at: :desc)
+    @articles = Article.time_desc.page(params[:page])
   end
 
   def new
@@ -23,10 +23,8 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Product was successfully created.' }
-        format.json { render json: @article, status: :created, location: @article }
       else
         format.html { render action: "new" }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -38,7 +36,6 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @article }
     end
   end
 
@@ -62,7 +59,7 @@ class ArticlesController < ApplicationController
   %w(no_comment popular).each do |name|
     define_method(name) do
       @articles = Article.send(name.to_sym).includes(:user)
-      @articles = @articles.page(params[:page]).per(20)
+      @articles = @articles.page(params[:page])
 
       render action: 'index'
     end
@@ -95,7 +92,7 @@ class ArticlesController < ApplicationController
   def node
     @node = Node.find(params[:id])
     @articles = @node.articles
-    @articles = @articles.includes(:user).page(params[:page]).per(25).order(created_at: :desc)
+    @articles = @articles.includes(:user).time_desc.page(params[:page])
     render action: 'index'
   end
 

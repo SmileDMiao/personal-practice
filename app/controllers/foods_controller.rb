@@ -3,12 +3,11 @@ class FoodsController < ApplicationController
 
   def index
     #params[:page]分页参数(可定制),10records per page
-    @foods = Food.page(params[:page]).per(10)
-    @foods = Food.where(:name => params[:table_search]).page(params[:page]).per(10) if params[:table_search]
+    @foods = Food.page(params[:page])
+    @foods = Food.search(params[:table_search]).page(params[:page]) if params[:table_search]
     respond_to do |format|
       format.html # index.html.erb
       format.js
-      format.json { render json: @foods }
     end
   end
 
@@ -37,7 +36,6 @@ class FoodsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @food }
     end
   end
 

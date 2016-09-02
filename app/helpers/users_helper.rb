@@ -21,21 +21,6 @@ module UsersHelper
     end
   end
 
-  #是否屏蔽该用户
-  def block_user_tag(user)
-    return '' if current_user.blank?
-    return '' if user.blank?
-    return '' if current_user.id == user.id
-    blocked = 1
-    class_names = 'button-block-user btn btn-default btn-block'
-    icon = '<i class="fa fa-eye-slash"></i>'
-    if blocked
-      link_to raw("#{icon} <span>取消屏蔽</span>"), '#', title: '忽略后，社区首页列表将不会显示此用户发布的内容。', 'data-id' => user.full_name, class: "#{class_names} active"
-    else
-      link_to raw("#{icon} <span>屏蔽</span>"), '#', title: '', 'data-id' => user.full_name, class: class_names
-    end
-  end
-
   #是否follow了这个用户
   def follow_user_tag(user, opts = {})
     return '' if current_user.blank?

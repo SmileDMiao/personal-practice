@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 
     full_name = @comment.body.scan(/@([A-Za-z0-9\-\_\.]{3,20})/).flatten.map(&:downcase)
     if full_name.any?
-      @comment.mentioned_user_ids = User.where('lower(full_name) IN (?) AND id != (?)', full_name, @article.user_id).limit(5).pluck(:id)
+      @comment.mentioned_user_ids = User.where('lower(full_name) IN (?) AND id != (?)', full_name, @comment.user_id).limit(5).pluck(:id)
     end
 
     if @comment.save

@@ -5,6 +5,8 @@ class Comment < ActiveRecord::Base
 
   validates_presence_of :body
 
+  scope :time_desc, -> {order(created_at: :desc)}
+
   after_commit :update_parent_article, on: :create
   after_destroy :update_parent_article
 
@@ -68,7 +70,7 @@ class Comment < ActiveRecord::Base
       notified_user_ids.each do |user_id|
         note = {
             notify_type: 'mention',
-            actor_id: self.user_id,
+            actor_id: comment.user_id,
             user_id: user_id,
             target_type: self.class.name,
             target_id: self.id,

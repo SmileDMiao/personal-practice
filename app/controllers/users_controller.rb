@@ -102,12 +102,12 @@ class UsersController < ApplicationController
 
   #用户文章
   def articles
-    @articles = @user.articles.page(params[:page]).per(10).order(created_at: :desc)
+    @articles = @user.articles.time_desc.page(params[:page]).per(10)
     # fresh_when([@articles, @user])
   end
 
   def comments
-    @comments = @user.comments.page(params[:page]).per(10).order(created_at: :desc)
+    @comments = @user.comments.time_desc.page(params[:page]).per(10)
     # fresh_when([@comments, @user])
   end
 

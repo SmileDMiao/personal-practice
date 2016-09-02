@@ -1,6 +1,6 @@
 class Notification < ActiveRecord::Base
 
-  scope :unread_count, ->(user) {where(:user_id => user.id)}
+  scope :unread_count, ->(user) { where(:user_id => user.id) }
 
   def self.notify_follow(user_id, follower_id)
     opts = {
@@ -9,7 +9,10 @@ class Notification < ActiveRecord::Base
         actor_id: follower_id
     }
     return if Notification.where(opts).count > 0
-    Notification.create opts
+    Notification.bulk_insert do |worker|
+      worker.add(opts)
+    end
+    # Notification.create opts
   end
 
 end
