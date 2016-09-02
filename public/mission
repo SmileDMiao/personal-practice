@@ -1,24 +1,26 @@
-develop
-#node显示页面添加
-#文章显示列表的node连接添加
-#用户之间的关注功能添加
-#第多少楼
-#用户查看页面的5个tab页的显示
-#用户查看页面的用户的关注与取消关注
-#回复的点击回复与赞
+develop:
 
-function
+function:
+//首页显示星最多的前20
+//layout:提醒显示数目，显示下拉统计数据。
 权限功能
+cancancan:abilities in database
 管理员功能
-#提醒功能添加
-#回复@功能
 全文搜索 pg&elasticsearch
 账户邮件激活
 忘记密码
 redis自动输入完成
 自动化部署
+删除用户（假删除，用户不可登录，登录提示账户已删除，删除用户相关的信息）
+随机小贴士（收集信息）
+layout:文章显示所有文章.
+所有该做分页的做分页处理（起效果）
+几周年庆祝自动显示
+喜欢用户发送通知。
+rails-settings-cached:了解并使用
+用户名不能出现汉字(英文+数字)
 
-task
+task:
 导出所有的表结构到excel中(rails and ruby )
 ruby/python爬虫笑话?
 

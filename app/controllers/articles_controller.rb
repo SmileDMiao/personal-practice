@@ -1,9 +1,10 @@
 class ArticlesController < ApplicationController
 
+  load_and_authorize_resource only: [:new, :edit, :create, :update, :destroy, :show, :favorite]
   before_action :set_article, only: [:show, :edit, :update, :like, :destroy_like]
 
   def index
-
+    @articles = Article.page(params[:page]).per(20).order(:created_at)
   end
 
   def new
@@ -43,7 +44,7 @@ class ArticlesController < ApplicationController
   def update
     @article.update_attributes(permit_params)
     if @article.save
-      redirect_to(article_path(@article.id), notice: t('article.update_topic_success'))
+      redirect_to(article_path(@article.id), notice: '更新文章成功')
     else
       render action: 'edit'
     end

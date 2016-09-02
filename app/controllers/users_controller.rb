@@ -56,7 +56,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-
+    if @user != current_user
+      render_403
+    end
   end
 
   def update

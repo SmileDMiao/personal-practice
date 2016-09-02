@@ -6,11 +6,16 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :title, :body, :node_id
 
+
+  scope :popular,       -> { order(likes_count: :desc) }
+
+
   def liked_by_user?(user)
     return false if user.blank?
     liked_user_ids.include?(user.id)
   end
 
+  #创建之后创建提醒信息
   after_commit :create_reply_notify, on: :create
   def create_reply_notify
     NotifyArticleJob.perform_later(id)

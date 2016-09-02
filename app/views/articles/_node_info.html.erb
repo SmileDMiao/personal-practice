@@ -1,8 +1,21 @@
-<div class="node-info">
-  <div class="name">
-    <strong><%= node.name %></strong> <span class="total">共有 <%= node.articles.count %> 个讨论主题</span>
+<% if !node.blank? %>
+  <div class="node-info">
+    <div class="name">
+      <strong><%= node.name %></strong> <span class="total">共有 <%= node.articles.count %> 个讨论主题</span>
+    </div>
+    <div class="summary">
+      <%= node.summary %>
+    </div>
   </div>
-  <div class="summary">
-    <%= node.summary %>
-  </div>
-</div>
+<% else %>
+  <!--<div class="filter pull-right">-->
+    <!--<span class="l">查看:</span>-->
+    <!--<a data-turbolinks-action="replace" href="<%#= topics_path %>"<%#= " class=active" if action_name == "index" %>>默认</a>-->
+    <!--/-->
+    <!--<a data-turbolinks-action="replace" href="<%#= popular_topics_path %>" class="popular<%#= " active" if action_name == "popular" %>"><i class="fa fa-diamond"></i>-->
+      <!--优质帖子</a> /-->
+    <!--<a data-turbolinks-action="replace" href="<%#= no_reply_topics_path %>" <%#= " class=active" if action_name == "no_reply" %>>无人问津</a>-->
+    <!--/-->
+    <!--<a data-turbolinks-action="replace" href="<%#= recent_topics_path %>" <%#= " class=active" if action_name == "recent" %>>最新创建</a>-->
+  <!--</div>-->
+<% end %>

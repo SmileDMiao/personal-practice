@@ -47,6 +47,9 @@ gem 'kaminari'
 
 # 搜索
 gem 'pg_search'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+gem 'redis-search'
 
 # 后台队列,sinatra web ui
 gem 'sidekiq'

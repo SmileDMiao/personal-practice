@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user
+  helper_method :unread_notify_count
 
   before_action :check_login, except: [:login,:sign_up,:register,:create]
   before_action :set_locale
@@ -31,11 +32,21 @@ class ApplicationController < ActionController::Base
     render_optional_error_file(403)
   end
 
+  #cancancan权限过滤
+  rescue_from CanCan::AccessDenied do |_exception|
+    redirect_to root_path, alert: '访问被拒绝，你可能没有权限.'
+  end
+
   def render_optional_error_file(status_code)
     status = status_code.to_s
     fname = %w(404 403 422 500).include?(status) ? status : 'unknown'
     render template: "/errors/#{fname}", format: [:html],
            handler: [:erb], status: status, layout: 'application'
+  end
+
+  def unread_notify_count
+    return 0 if current_user.blank?
+    @unread_notify_count ||= Notification.unread_count(current_user).count
   end
 
   private
