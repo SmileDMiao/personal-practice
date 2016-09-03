@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
-  load_and_authorize_resource only: [:new, :edit, :create, :update, :destroy, :show, :favorite]
-  before_action :set_article, only: [:show, :edit, :update, :like, :destroy_like]
+  # load_and_authorize_resource only: [:new, :edit, :create, :update, :destroy, :show, :favorite]
+  before_action :set_article, only: [:show, :edit, :update, :like, :destroy_like, :destroy]
 
   def index
     @articles = Article.time_desc.page(params[:page])
@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Product was successfully created.' }
+        format.html { redirect_to @article, notice: 'Article was successfully created.' }
       else
         format.html { render action: "new" }
       end
@@ -53,7 +53,8 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-
+    @article.destroy
+    redirect_to(articles_path, notice: '文章成功删除')
   end
 
   %w(no_comment popular).each do |name|

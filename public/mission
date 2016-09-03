@@ -9,9 +9,8 @@ cancancan:abilities in database
 忘记密码
 redis自动输入完成
 自动化部署
-删除用户（假删除，用户不可登录，登录提示账户已删除，删除用户相关的信息）
 随机小贴士（收集信息）
-rails-settings-cached:了解并使用
+sidekiq:监控
 
 task:
 导出所有的表结构到excel中(rails and ruby )

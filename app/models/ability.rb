@@ -5,8 +5,8 @@ class Ability
 
   def initialize(user)
 
-    can [:show, :like, :destroy_like], Article
-    can [:update], Article, user_id: user.id
+    # can [:show, :like, :destroy_like], Article
+    # can [:update], Article, user_id: user.id
     # can [:update], Article, user_id: current_user.id
     # Define abilities for the passed in user here. For example:
     #

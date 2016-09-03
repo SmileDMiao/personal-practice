@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       flash.notice = "登录成功！"
       redirect_to :root
     else
-      flash.alert = "用户名密码错误！"
+      flash.alert = "用户名或密码错误！"
       redirect_to :login
     end
   end

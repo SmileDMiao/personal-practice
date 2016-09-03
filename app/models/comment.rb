@@ -24,7 +24,7 @@ class Comment < ActiveRecord::Base
     NotifyCommentJob.perform_later(id)
   end
 
-  def self.notify_reply_created(comment_id)
+  def self.notify_comment_created(comment_id)
     comment = Comment.find_by_id(comment_id)
     return if comment.blank?
     article = Article.find_by_id(comment.article_id)
@@ -66,16 +66,16 @@ class Comment < ActiveRecord::Base
       end
     end
 
-    Notification.bulk_insert(set_size: 100) do |worker|
+    Notification.bulk_insert do |worker|
       notified_user_ids.each do |user_id|
         note = {
             notify_type: 'mention',
             actor_id: comment.user_id,
             user_id: user_id,
-            target_type: self.class.name,
-            target_id: self.id,
+            target_type: 'Comment',
+            target_id: comment_id,
             second_target_type: 'Comment',
-            second_target_id: self.send(:topic_id)
+            second_target_id: comment.article_id
         }
         worker.add(note)
       end
