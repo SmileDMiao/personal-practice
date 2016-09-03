@@ -1,7 +1,8 @@
 # config/app.yml for rails-settings-cached
 defaults: &defaults
-  foo: "Foo"
-  bar: 123
+  admin_emails: ['m8023zsm@live.com']
+  github_token: "91726ee4170d8e2679ec"
+  github_secret: "13c7e55e8e53c57a399181e96ea3a55a3fdd9c7c"
 
 development:
   <<: *defaults

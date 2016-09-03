@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 
+  load_and_authorize_resource :comment
   before_action :set_article, only: [:edit, :update, :destroy]
   before_action :set_comment, only: [:edit, :update, :destroy, :like, :destroy_like]
 

@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   def github_repo_api_url
     github_login = self.github
     resource_name = 'users'
-    "https://api.github.com/#{resource_name}/#{github_login}/repos?type=owner&sort=pushed&client_id=91726ee4170d8e2679ec&client_secret=13c7e55e8e53c57a399181e96ea3a55a3fdd9c7c"
+    "https://api.github.com/#{resource_name}/#{github_login}/repos?type=owner&sort=pushed&client_id=#{Setting.github_token}&client_secret=#{Setting.github_secret}"
   end
 
   #获取github项目列表并存入文件缓存
@@ -152,6 +152,10 @@ class User < ActiveRecord::Base
     "
     # notifications.where(range_sql, article.id, opts[:comment_ids]).update_all(read_at: Time.now)
     notifications.where(range_sql, article.id, opts[:comment_ids]).destroy_all
+  end
+
+  def admin?
+    Setting.admin_emails.include?(email)
   end
 
 end
