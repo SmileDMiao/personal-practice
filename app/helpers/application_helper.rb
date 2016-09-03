@@ -92,4 +92,10 @@ module ApplicationHelper
     raw html.join(' ')
   end
 
+  def random_tips
+    tips = Setting.tips
+    return '没有维护小贴士' if tips.blank?
+    tips.sample
+  end
+
 end

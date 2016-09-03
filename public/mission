@@ -9,7 +9,6 @@ cancancan:abilities in database
 忘记密码
 redis自动输入完成
 自动化部署
-随机小贴士（收集信息）
 sidekiq:监控
 
 task:

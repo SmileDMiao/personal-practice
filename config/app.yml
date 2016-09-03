@@ -3,6 +3,10 @@ defaults: &defaults
   admin_emails: ['m8023zsm@live.com']
   github_token: "91726ee4170d8e2679ec"
   github_secret: "13c7e55e8e53c57a399181e96ea3a55a3fdd9c7c"
+  tips: [
+  '你从树上下来吧，我们再也不改需求了',
+  '如果你不装比，我就原谅你'
+  ]
 
 development:
   <<: *defaults
