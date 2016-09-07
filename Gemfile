@@ -23,6 +23,9 @@ gem 'simple_form'
 # 加密
 gem 'bcrypt'
 
+# 异常提醒
+gem 'exception_notification'
+
 # markdown emoji 代码高亮
 gem 'redcarpet'
 gem 'twemoji'
@@ -84,6 +87,7 @@ end
 
 group :development do
   gem 'capistrano'
+  gem 'capistrano-sidekiq'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'better_errors'

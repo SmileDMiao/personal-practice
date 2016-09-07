@@ -1,6 +1,8 @@
 develop:
 
 function:
+sidekiq:监控
+
 权限功能
 cancancan:abilities in database
 管理员功能
@@ -9,7 +11,8 @@ cancancan:abilities in database
 忘记密码
 redis自动输入完成
 自动化部署
-sidekiq:监控
+缓存
+second_level_cache
 
 task:
 导出所有的表结构到excel中(rails and ruby )

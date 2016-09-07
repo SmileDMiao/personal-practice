@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:edit, :update, :destroy, :like, :destroy_like]
 
   def create
-    @comment = Comment.new(permit_params)
+    @comment = Comment.new(comment_params)
     @comment.article_id = params[:article_id]
     @comment.user_id = current_user.id
 
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update_attributes(permit_params)
+    if @comment.update_attributes(comment_params)
       redirect_to(article_path(@comment.article_id), notice: '回帖更新成功。')
     else
       render action: 'edit'
@@ -57,7 +57,7 @@ class CommentsController < ApplicationController
 
 
   private
-  def permit_params
+  def comment_params
     params.require(:comment).permit!
   end
 

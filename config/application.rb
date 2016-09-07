@@ -24,9 +24,13 @@ module AdminLte
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    #后台任务adapter:sidekiq(还是用sidekiq的写法好，支持特性多，不易出现问题)
     config.active_job.queue_adapter = :sidekiq
 
     #文件缓存
     $file_store = ActiveSupport::Cache::FileStore.new(Rails.root.join('tmp/cache'))
+
+    #异常提醒
+    config.eager_load_paths.push(*%W(#{config.root}/lib/exception_notification))
   end
 end

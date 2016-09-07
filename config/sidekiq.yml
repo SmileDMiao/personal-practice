@@ -1,0 +1,10 @@
+# Options here can still be overridden by cmd line args.
+# sidekiq -C sidekiq.yml
+---
+:concurrency: 5
+:timeout: 30
+:pidfile: tmp/pids/sidekiq.pid
+:logfile: log/sidekiq.log
+:queues:
+  - [notifications, 100]
+  - [default, 3]
