@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :like, :destroy_like, :destroy]
 
   def index
-    @articles = Article.time_desc.page(params[:page])
+    @articles = Article.time_desc.includes(:user,:node).page(params[:page])
   end
 
   def new
@@ -34,9 +34,11 @@ class ArticlesController < ApplicationController
 
     check_current_user_status_for_article
 
-    respond_to do |format|
-      format.html # show.html.erb
-    end
+    fresh_when([@comments,@article])
+
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    # end
   end
 
   def edit
