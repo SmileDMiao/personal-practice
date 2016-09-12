@@ -48,6 +48,9 @@ gem 'social-share-button'
 # 分页
 gem 'kaminari'
 
+# Dalli
+gem 'dalli'
+
 # 搜索
 gem 'pg_search'
 gem 'elasticsearch-model'
@@ -60,9 +63,6 @@ gem 'sinatra'
 
 # Permission
 gem 'cancancan'
-
-# Cache
-gem 'second_level_cache'
 
 # Setting
 gem 'rails-settings-cached'

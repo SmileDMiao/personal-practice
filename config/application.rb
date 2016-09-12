@@ -32,5 +32,15 @@ module AdminLte
 
     #异常提醒
     config.eager_load_paths.push(*%W(#{config.root}/lib/exception_notification))
+
+    #使用内存缓存
+    # config.cache_store = :memory_store
+
+    #使用文件缓存
+    # config.cache_store = :file_store, Rails.root.join('tmp')
+
+    #使用memcached缓存服务器
+    #namespace:缓存命名空间，expires_in:换粗 过期时间,compress:缓存过大时是否压缩,l_size:dalli connection pool
+    config.cache_store = [:mem_cache_store, '127.0.0.1', { :namespace => 'malzahar', :compress => true }]
   end
 end

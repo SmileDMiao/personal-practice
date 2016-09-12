@@ -10,7 +10,6 @@ cancancan:abilities in database
 redis自动输入完成
 自动化部署
 缓存
-second_level_cache
 
 task:
 ruby/python爬虫笑话?

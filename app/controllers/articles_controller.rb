@@ -35,10 +35,6 @@ class ArticlesController < ApplicationController
     check_current_user_status_for_article
 
     fresh_when([@comments,@article])
-
-    # respond_to do |format|
-    #   format.html # show.html.erb
-    # end
   end
 
   def edit

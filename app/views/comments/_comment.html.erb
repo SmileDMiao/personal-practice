@@ -1,12 +1,13 @@
-<%
-   floor = comment_counter + 1
-%>
-<div class="reply" data-id="<%= comment.id %>" id="reply<%= floor %>">
-  <div>
-    <%= user_avatar_tag(comment.user, :avatar) %>
-  </div>
-  <div class="infos">
-    <div class="info">
+<% cache([comment]) do %>
+  <%
+     floor = comment_counter + 1
+  %>
+  <div class="reply" data-id="<%= comment.id %>" id="reply<%= floor %>">
+    <div>
+      <%= user_avatar_tag(comment.user, :avatar) %>
+    </div>
+    <div class="infos">
+      <div class="info">
         <span class="name">
           <%= user_name_tag(comment.user) %>
         </span>
@@ -16,18 +17,17 @@
         </span>
         <span class="opts pull-right comment">
             <span class="hideable">
-              <% if comment.user_id == current_user.id %>
-                <%= link_to('', edit_article_comment_path(comment.article, comment), class: 'fa fa-pencil', 'data-uid' => comment.user_id, title: '修改回帖') %>
-              <% end %>
+              <%= link_to('', edit_article_comment_path(comment.article, comment), class: 'edit fa fa-pencil', 'data-uid' => comment.user_id, title: '修改回帖') %>
               <%= link_to('', '#comment_body', 'data-floor' => floor, 'data-login' => comment.user.full_name,
                           title: '回复此楼', class: 'btn-reply fa fa-mail-reply')
               %>
             </span>
           <%= comment_like_tag(comment) %>
         </span>
-    </div>
-    <div class="markdown<%= ' deleted' %>">
-      <%= markdown comment.body %>
+      </div>
+      <div class="markdown<%= ' deleted' %>">
+        <%= markdown comment.body %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

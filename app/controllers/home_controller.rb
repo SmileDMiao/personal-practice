@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
 
   def index
-    @articles = Article.popular.includes(:user,:node).page(params[:page]).per(10)
-    fresh_when(@articles)
+    @node_count = Node.all.count
+    @articles = Article.popular.includes(:user,:node).limit(20)
+    fresh_when([@articles,@node_count])
   end
 
 end

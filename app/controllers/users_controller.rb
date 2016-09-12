@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    # fresh_when([@user])
+    fresh_when([@user])
   end
 
   def edit
@@ -104,18 +104,18 @@ class UsersController < ApplicationController
   #用户文章
   def articles
     @articles = @user.articles.time_desc.page(params[:page]).per(10)
-    # fresh_when([@articles, @user])
+    fresh_when([@articles, @user])
   end
 
   def comments
     @comments = @user.comments.time_desc.page(params[:page]).per(10)
-    # fresh_when([@comments, @user])
+    fresh_when([@comments, @user])
   end
 
   def favorites
     @article_ids = @user.favorite_article_ids
     @articles = Article.where(id: @article_ids).page(params[:page]).per(40)
-    # fresh_when([@articles])
+    fresh_when([@articles])
   end
 
   def following
@@ -125,7 +125,7 @@ class UsersController < ApplicationController
 
   def followers
     @users = @user.followers.page(params[:page]).per(60)
-    # fresh_when([@users])
+    fresh_when([@users])
   end
 
   def follow

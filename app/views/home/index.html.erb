@@ -9,7 +9,7 @@
       <div class="icon">
         <i class="ion ion-bag"></i>
       </div>
-      <a href="/foods" class="small-box-footer">Show Demo <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="#" class="small-box-footer">Show Demo <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
 
@@ -23,7 +23,7 @@
       <div class="icon">
         <i class="ion ion-stats-bars"></i>
       </div>
-      <a href="<%= new_article_path %>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
 
@@ -67,9 +67,6 @@
       <div class="col-md-12">
         <div id="articles">
           <%= render partial: 'articles/article', collection: @articles %>
-        </div>
-        <div id="paginator">
-          <%= paginate @articles, :remote => true, :theme => 'bootstrap3' %>
         </div>
       </div>
     </div>

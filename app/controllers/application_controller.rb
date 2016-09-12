@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :unread_notify_count
 
+  etag { flash }
+
   before_action :check_login, except: [:login,:sign_up,:register,:create]
   before_action :set_locale
 
