@@ -1,3 +1,4 @@
+<!--如果考虑到多语言的情况，可以写一个helper，将环境语言写到cache_key中-->
 <% cache (['sections',@node_count]) do %>
   <div class="row node-list">
     <% Section.includes(:nodes).all.each do |section| %>

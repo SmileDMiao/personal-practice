@@ -14,6 +14,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require dist/app.js
+//= require dist/jquery.soulmate
 //= require rails.validations
 //= require social-share-button
 //= require jquery.atwho

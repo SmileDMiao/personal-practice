@@ -7,9 +7,11 @@ cancancan:abilities in database
 全文搜索 pg&elasticsearch
 账户邮件激活
 忘记密码
-redis自动输入完成
+rails model cache
+gem 'redis'
 自动化部署
-缓存
+mysql 慢查询(性能优化)
+custom error pages
 
 task:
 ruby/python爬虫笑话?
@@ -18,3 +20,13 @@ tips:
 pluck
 bulk insert
 stale
+partion
+index_by
+ruby 9*9算法
+raw html_safe sanitize
+ruby各种算法
+文件加密
+rails中的乐观锁和悲观锁
+activesupport::autoload
+activesupport::concern
+Rails中的三种数据预加载方式

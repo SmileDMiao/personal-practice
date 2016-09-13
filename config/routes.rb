@@ -54,4 +54,10 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
+  require 'soulmate/server'
+  mount Soulmate::Server, :at => '/sm'
+
+
+  get 'practices/soulmate' => 'practices#soulmate'
+
 end

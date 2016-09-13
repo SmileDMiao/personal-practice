@@ -55,7 +55,8 @@ gem 'dalli'
 gem 'pg_search'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
-gem 'redis-search'
+gem 'rack-contrib'
+gem 'soulmate'
 
 # 后台队列,sinatra web ui
 gem 'sidekiq'
