@@ -131,7 +131,8 @@
       return term;
     };
     select = function(term, data, type) {
-      return console.log("Selected " + term);
+//      return console.log("Selected " + term);
+      $("#search-input").val(term)
     };
     $('#search-input').soulmate({
       url: '/sm/search',

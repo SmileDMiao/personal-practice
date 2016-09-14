@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(permit_params)
+    @article = Article.new(article_params)
     @article.user_id = current_user.id
 
     full_name = @article.body.scan(/@([A-Za-z0-9\-\_\.]{3,20})/).flatten.map(&:downcase)
@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article.update_attributes(permit_params)
+    @article.update_attributes(article_params)
     if @article.save
       redirect_to(article_path(@article.id), notice: '更新文章成功')
     else
@@ -97,7 +97,7 @@ class ArticlesController < ApplicationController
 
 
   private
-  def permit_params
+  def article_params
     params.require(:article).permit!
   end
 

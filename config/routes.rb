@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/search' => 'search#index', as: 'search'
   get 'notifications/index' => 'notifications#index'
   delete 'notifications/clean' => 'notifications#clean'
 

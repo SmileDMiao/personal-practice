@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(permit_params)
+    @user = User.new(user_params)
     @user.avatar = @user.large_avatar_url
     if @user.save
       UserMailer.delay.welcome_email(@user)
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   def update
     @user.avatar_name = params[:user][:avatar].try(:original_filename)
     respond_to do |format|
-      if @user.update_attributes(permit_params)
+      if @user.update_attributes(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
       else
         format.html { render action: "edit" }
@@ -140,7 +140,7 @@ class UsersController < ApplicationController
 
 
   private
-  def permit_params
+  def user_params
     params.require(:user).permit!
   end
 

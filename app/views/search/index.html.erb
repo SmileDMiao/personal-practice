@@ -1,0 +1,12 @@
+<div class="search-results panel panel-default">
+  <div class="panel-heading clearfix">
+    关于 “<%= params[:search] %>” 的搜索结果, 共 <%= @result.size %> 条
+  </div>
+
+  <div class="panel-body">
+    <% @result.each do |item| %>
+      <%= render partial: item.searchable_type.downcase, locals: { item: item} %>
+    <% end %>
+  </div>
+
+</div>

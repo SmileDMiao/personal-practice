@@ -150,12 +150,14 @@ class User < ActiveRecord::Base
       (target_type = 'Topic' AND target_id = ?) or
       (target_type = 'Reply' AND target_id in (?))
     "
-    # notifications.where(range_sql, article.id, opts[:comment_ids]).update_all(read_at: Time.now)
     notifications.where(range_sql, article.id, opts[:comment_ids]).destroy_all
   end
 
   def admin?
     Setting.admin_emails.include?(email)
   end
+
+  include PgSearch
+  multisearchable :against => [:full_name]
 
 end

@@ -70,15 +70,18 @@ class Article < ActiveRecord::Base
     save
   end
 
-  # 待重写
-  # include PgSearch
-  # pg_search_scope :chinese_search,
-  #                 :against => [:title, :body],
-  #                 :using => {
-  #                     tsearch: {
-  #                         dictionary: 'testzhcfg',:prefix => true # 在数据库中设置好的“搜索配置”的名称
-  #                     }
-  #                 }
-  #pg_search_scope :search_by_title_or_body, :against => [:title, :body]
+  include PgSearch
+  # 单表搜索
+  pg_search_scope :chinese_search,
+                  :against => [:title, :body],
+                  :using => {
+                      tsearch: {
+                          dictionary: 'zhcnsearch',
+                          :prefix => true
+                      }
+                  }
+
+  # 多表搜索
+  multisearchable :against => [:title, :body]
 
 end
