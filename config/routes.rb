@@ -47,7 +47,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'home#index', as: 'root'
-    resources :users
     resources :sections
     resources :nodes
   end

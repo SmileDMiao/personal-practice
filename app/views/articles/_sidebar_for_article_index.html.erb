@@ -7,12 +7,13 @@
 </div>
 
 <%= render 'articles/sidebar_box_tips' %>
-
-<div class="panel panel-default">
-  <div class="panel-heading">统计信息</div>
-  <ul class="list-group">
-    <li class="list-group-item">社区会员: <%= User.unscoped.count %> 人</li>
-    <li class="list-group-item">帖子数: <%= Article.unscoped.count %> 个</li>
-    <li class="list-group-item">回帖数: <%= Comment.unscoped.count %> 条</li>
-  </ul>
-</div>
+<% cache(['sidebar_statistics', Time.now.strftime("%Y-%m-%d %H")]) do %>
+  <div class="panel panel-default">
+    <div class="panel-heading">统计信息</div>
+    <ul class="list-group">
+      <li class="list-group-item">社区会员: <%= User.unscoped.count %> 人</li>
+      <li class="list-group-item">帖子数: <%= Article.unscoped.count %> 个</li>
+      <li class="list-group-item">回帖数: <%= Comment.unscoped.count %> 条</li>
+    </ul>
+  </div>
+<% end %>

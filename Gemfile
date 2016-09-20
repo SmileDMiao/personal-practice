@@ -81,14 +81,20 @@ gem 'bulk_insert'
 # Excel
 gem 'spreadsheet'
 
+gem 'unicorn'
+
+gem 'mina'
+gem 'mina-sidekiq',:require => false
+gem 'mina-unicorn', :require => false
+
 group :development, :test do
   gem 'byebug'
   gem 'pry'
 end
 
 group :development do
-  gem 'capistrano'
-  gem 'capistrano-sidekiq'
+  # gem 'capistrano'
+  # gem 'capistrano-sidekiq'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'better_errors'

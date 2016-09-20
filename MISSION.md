@@ -21,25 +21,27 @@
 
 
 ## 计划完成的
-全文搜索 elasticsearch
-rails model cache
-gem 'redis'
-自动化部署
-mysql 慢查询(性能优化)
-custom error pages
-ruby/python爬虫笑话?
++ 全文搜索 elasticsearch
++ rails model cache
++ gem 'redis'
++ 自动化部署
++ 忘记密码
++ mysql 慢查询(性能优化)
++ custom error pages
++ ruby/python爬虫笑话?
++ 单元测试
 
 ## tips:
-pluck
-bulk insert
-stale
-partion
-index_by
-ruby 9*9算法
-raw html_safe sanitize
-ruby各种算法
-文件加密
-rails中的乐观锁和悲观锁
-activesupport::autoload
-activesupport::concern
-Rails中的三种数据预加载方式
+1. pluck
+1. bulk insert
+1. stale
+1. partion
+1. index_by
+1. ruby 9*9算法
+1. raw html_safe sanitize
+1. ruby各种算法
+1. 文件加密
+1. rails中的乐观锁和悲观锁
+1. activesupport::autoload
+1. activesupport::concern
+1. Rails中的三种数据预加载方式

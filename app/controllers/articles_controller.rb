@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
       end
     end
   end
