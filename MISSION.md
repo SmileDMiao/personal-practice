@@ -26,19 +26,11 @@
 + gem 'redis'
 + 自动化部署
 + 忘记密码
-+ mysql 慢查询(性能优化)
 + custom error pages
 + ruby/python爬虫笑话?
 + 单元测试
 
 ## tips:
-1. pluck
-1. bulk insert
-1. stale
-1. partion
-1. index_by
-1. ruby 9*9算法
-1. raw html_safe sanitize
 1. ruby各种算法
 1. 文件加密
 1. rails中的乐观锁和悲观锁

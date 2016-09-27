@@ -90,6 +90,8 @@ gem 'mina-unicorn', :require => false
 group :development, :test do
   gem 'byebug'
   gem 'pry'
+  gem 'rubycritic'
+  gem 'rack-mini-profiler'
 end
 
 group :development do
