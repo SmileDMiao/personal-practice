@@ -48,7 +48,7 @@ gem 'social-share-button'
 # 分页
 gem 'kaminari'
 
-# Dalli
+# 缓存-Dalli
 gem 'dalli'
 
 # 搜索
@@ -90,7 +90,9 @@ gem 'mina-unicorn', :require => false
 group :development, :test do
   gem 'byebug'
   gem 'pry'
+  # 自动测试代码质量
   gem 'rubycritic'
+  # 测试页面响应时间，sql查询时间
   gem 'rack-mini-profiler'
 end
 

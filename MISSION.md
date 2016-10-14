@@ -11,29 +11,16 @@
 8. 放弃mysql数据库切换到postgresql
 9. 使用sidekiq后台任务
 10. sidekiq异常提醒，系统异常提醒
-10. cancancan权限插件的使用
-11. 注册邮箱,发邮件功能
-12. rails中的各种缓存的使用
-13. 前端验证
-14. 导出数据库表结构到excel
-15. 利用redis实现自动输入完成
-16. pg和pg_search实现全文搜索，匹配高亮
+11. cancancan权限插件的使用
+12. 注册邮箱,发邮件功能
+13. rails中的各种缓存的使用
+14. 前端验证
+15. 导出数据库表结构到excel
+16. 利用redis实现自动输入完成
+17. pg和pg_search实现全文搜索，匹配高亮
+18. elasticsearch 实现全文搜索
 
 
 ## 计划完成的
-+ 全文搜索 elasticsearch
-+ rails model cache
-+ gem 'redis'
 + 自动化部署
-+ 忘记密码
-+ custom error pages
-+ ruby/python爬虫笑话?
 + 单元测试
-
-## tips:
-1. ruby各种算法
-1. 文件加密
-1. rails中的乐观锁和悲观锁
-1. activesupport::autoload
-1. activesupport::concern
-1. Rails中的三种数据预加载方式
