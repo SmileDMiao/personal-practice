@@ -51,13 +51,13 @@ Rails.application.routes.draw do
     resources :nodes
   end
 
+  # sidekiq后台
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
+  # redis自动输入完成搜索地址
   require 'soulmate/server'
   mount Soulmate::Server, :at => '/sm'
-
-
   get 'practices/soulmate' => 'practices#soulmate'
 
 end

@@ -74,7 +74,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-
+    redirect_to root_url, :alert => '软删除，还是物理删除呢?'
   end
 
   def change_password
@@ -89,6 +89,13 @@ class UsersController < ApplicationController
       render action: 'edit'
     end
   end
+
+  #忘记密码
+  # def forget_password
+  #   1.点击忘记密码，跳转页面填写邮箱，提交
+  #   2.判断邮箱，生成token，邮箱和token作为参数传入链接
+  #   3.打开链接，验证email和token，成功进入设置新密码页面，失败提示对应错误信息
+  # end
 
   #切换语言
   def language

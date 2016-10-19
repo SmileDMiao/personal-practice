@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   validates :email, email: true,
                     presence: true,
                     uniqueness: true
+  validates :item, acceptance: true
 
   before_create do
     self.auth_token = generate_token

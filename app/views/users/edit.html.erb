@@ -87,7 +87,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">删除账户</div>
       <div class="panel-body">
-        <%= form_for(@user, :url => edit_user_path, :method => :delete) do |f| %>
+        <%= form_for(@user, :url => user_path, :method => :delete) do |f| %>
           <%= render 'shared/error_messages', :target => @user %>
           <div class="form-group">
             <%= f.password_field :password, class: 'form-control', placeholder: '要删除帐号，请输入你的密码' %>

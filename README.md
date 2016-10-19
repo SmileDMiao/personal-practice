@@ -11,3 +11,5 @@
 * Redis 3.0.6
 * Memcached 1.4.25
 * ImageMagick 6.5 +
+
+实现的主要功能在这里:[任务列表](https://github.com/SmileDMiao/personal-practice/blob/master/MISSION.md)
