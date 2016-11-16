@@ -14,7 +14,7 @@
 
     <div class="box-body">
       <!-- simple_form 水平排列表单-->
-      <%= simple_form_for @food, html: { class: 'form-horizontal' },
+      <%= simple_form_for [:admin,@food], html: { class: 'form-horizontal' },
                           wrapper: :horizontal_form,
                           wrapper_mappings: {
                                   check_boxes: :horizontal_radio_and_checkboxes,

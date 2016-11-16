@@ -2,9 +2,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get 'foods/new_simple', to: 'foods#new_simple'
-  resources :foods
-
   get '/language/:locale', to: 'users#language', as: :change_locale
   get 'register', to: 'users#register'
   get 'login', to: 'users#login'
@@ -49,6 +46,9 @@ Rails.application.routes.draw do
     root to: 'home#index', as: 'root'
     resources :sections
     resources :nodes
+    get 'foods/new_simple', to: 'foods#new_simple'
+    resources :foods
+    get 'practices/soulmate' => 'practices#soulmate'
   end
 
   # sidekiq后台
@@ -58,6 +58,5 @@ Rails.application.routes.draw do
   # redis自动输入完成搜索地址
   require 'soulmate/server'
   mount Soulmate::Server, :at => '/sm'
-  get 'practices/soulmate' => 'practices#soulmate'
 
 end

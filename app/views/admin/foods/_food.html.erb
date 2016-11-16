@@ -1,0 +1,11 @@
+<tr>
+  <td><span class="label" style="background-color: <%= food.color %>"><%= food.name %></span></td>
+  <td><%= food.category %></td>
+  <td><%= food.number %></td>
+  <td><%= food.price %></td>
+  <td><%= food.country %></td>
+  <td>
+    <%= link_to t('helpers.submit.show'), admin_food_path(food), :class => 'btn btn-sm btn-success' %>
+    <%= link_to t('helpers.submit.edit'), edit_admin_food_path(food), :class => 'btn btn-sm btn-warning' %>
+    <%= link_to t('helpers.submit.destroy'), admin_food_path(food), :method => 'delete', :class => 'btn btn-sm btn-danger' %>
+</tr>
