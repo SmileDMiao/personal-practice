@@ -103,7 +103,7 @@ module ApplicationHelper
     user.try(:admin?)
   end
 
-  def highlight(text)
+  def highlight_url(text)
     #可以传入params[:search],利用正则来在匹配部分首尾加上<em></em>
     text = escape_once(text)
     text.gsub!('[h]', '<em>')

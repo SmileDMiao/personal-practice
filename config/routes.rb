@@ -38,10 +38,12 @@ Rails.application.routes.draw do
     end
   end
 
+  # 搜索和通知
   get '/search' => 'search#index', as: 'search'
   get 'notifications/index' => 'notifications#index'
   delete 'notifications/clean' => 'notifications#clean'
 
+  # 管理员后台
   namespace :admin do
     root to: 'home#index', as: 'root'
     resources :sections
@@ -49,6 +51,8 @@ Rails.application.routes.draw do
     get 'foods/new_simple', to: 'foods#new_simple'
     resources :foods
     get 'practices/soulmate' => 'practices#soulmate'
+    get 'practices/bootstrap_table' => 'practices#bootstrap_table'
+    get 'practices/get_data' => 'practices#get_data'
   end
 
   # sidekiq后台
