@@ -90,6 +90,7 @@ gem 'mina-unicorn', :require => false
 group :development, :test do
   gem 'byebug'
   gem 'pry'
+  gem 'pry-byebug'
   # 自动测试代码质量
   gem 'rubycritic'
   # 测试页面响应时间，sql查询时间
