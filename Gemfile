@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'therubyracer'
 
 # 浏览器语言偏好设置
 gem 'http_accept_language'
@@ -98,8 +99,6 @@ group :development, :test do
 end
 
 group :development do
-  # gem 'capistrano'
-  # gem 'capistrano-sidekiq'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'better_errors'
