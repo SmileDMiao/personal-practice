@@ -150,6 +150,7 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_avatar (0.3.1)
+    libv8 (3.16.14.17)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     macaddr (1.7.1)
@@ -241,6 +242,7 @@ GEM
       codeclimate-engine-rb (~> 0.3.1)
       parser (~> 2.3.1, >= 2.3.1.2)
       rainbow (~> 2.0)
+    ref (2.0.0)
     regexp_parser (0.3.6)
     ruby-ole (1.2.12)
     ruby_parser (3.8.2)
@@ -298,6 +300,9 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     systemu (2.6.5)
+    therubyracer (0.12.2)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
@@ -378,6 +383,7 @@ DEPENDENCIES
   soulmate
   spreadsheet
   spring
+  therubyracer
   turbolinks
   twemoji
   uglifier (>= 1.3.0)
@@ -386,4 +392,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
