@@ -1,5 +1,7 @@
 # unicorn 配置信息
 
+app_dir = File.expand_path("../..", __FILE__)
+
 # unmber of processes
 worker_processes 4
 
@@ -15,16 +17,16 @@ preload_app true
 check_client_connection false
 
 # app directory
-working_directory "/home/miao/hand/source/personal/personal-practice"
+working_directory app_dir
 
-pid "/home/miao/hand/source/personal/personal-practice/tmp/pids/unicorn.pid"
+pid "#{app_dir}/tmp/pids/unicorn.pid"
 
 # unicorn error log
-stderr_path "/home/miao/hand/source/personal/personal-practice/log/unicorn.stderr.log"
+stderr_path "#{app_dir}/log/unicorn.stderr.log"
 
 
 # unicorn outut log
-stdout_path "/home/miao/hand/source/personal/personal-practice/log/unicorn.stdout.log"
+stdout_path "#{app_dir}/log/unicorn.stdout.log"
 
 
 # before_fork do |server, worker|
