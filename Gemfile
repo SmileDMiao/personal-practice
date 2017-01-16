@@ -103,4 +103,3 @@ group :development do
   gem 'spring'
   gem 'better_errors'
 end
-
