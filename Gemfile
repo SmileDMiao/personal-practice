@@ -96,10 +96,16 @@ group :development, :test do
   gem 'rubycritic'
   # 测试页面响应时间，sql查询时间
   gem 'rack-mini-profiler'
+  # test framework rspec
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'capybara'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'better_errors'
 end

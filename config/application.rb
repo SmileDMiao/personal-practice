@@ -21,8 +21,15 @@ module PersonalPractice
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = 'zh-CN'
 
+    config.filter_parameters += [:password, :confirm_password]
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+    end
 
     #后台任务adapter:sidekiq(还是用sidekiq的写法好，支持特性多，不易出现问题)
     config.active_job.queue_adapter = :sidekiq

@@ -21,14 +21,7 @@ task :environment do
 end
 
 task :setup => :environment do
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
 
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
-
-  queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml'."]
 end
 
 desc 'Deploys the current version to the server.'
@@ -42,12 +35,23 @@ task :deploy => :environment do
     invoke :'deploy:cleanup'
 
     to :launch do
-      # queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
-      # queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
-      to :launch do
-        invoke :'unicorn:start'
-        invoke :'sidekiq:restart'
-      end
+      invoke :'unicorn:restart'
+      invoke :'sidekiq:restart'
     end
   end
+end
+
+desc 'start unicorn'
+task :start => :environment do
+  invoke :'unicorn:start'
+end
+
+desc 'stop unicorn'
+task :start => :environment do
+  invoke :'unicorn:stop'
+end
+
+desc 'restart unicorn'
+task :start => :environment do
+  invoke :'unicorn:restart'
 end
