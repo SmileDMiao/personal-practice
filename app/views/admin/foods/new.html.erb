@@ -16,10 +16,31 @@
     <div class="box-body">
       <!--错误信息-->
       <%= render "shared/error_messages", target: @food %>
+
+      <!--custom form builder bootstrap_form_for-->
+      <%= bootstrap_form_for [:admin,@food], :validate=>true, :html=>{:class=>"form-horizontal"} do |f|%>
+          <%= f.select :name, [["第一分类",1],["第二分类",2],["第三分类",3],["第四分类",4],],{},{} %>
+          <!--<%#= f.text_field :name, :class => 'form-control' %>-->
+
+          <%= f.date_field :created_at, :class => 'form-control' %>
+
+          <%= f.date_range_field :updated_at, :class => 'form-control', time: true %>
+
+         <%= f.time_field :updated_at, :class => 'form-control' %>
+
+          <%= f.text_field :category, :class=>'form-control' %>
+          <%= f.text_field :color, :class=>'form-control my-colorpicker' %>
+          <%= f.text_field :odor, :class=>'form-control' %>
+          <%= f.text_field :number, :class=>'form-control' %>
+          <%= f.text_field :country, :class=>'form-control' %>
+          <%= f.text_field :price, :class=>'form-control' %>
+          <%= f.text_area :description, :class=>'form-control', rows: 10 %>
+          <%= f.submit t('helpers.submit.submit'),:class=>'btn btn-block bg-maroon' %>
+      <% end %>
+
       <!-- form_for 水平排列表单-->
       <%= form_for [:admin,@food],:validate=>true, :html=>{:class=>"form-horizontal"} do |f| %>
           <div class="form-group">
-            <%#= f.label :name %>
             <label class="col-sm-2 control-label"><%= t 'foods.name' %></label>
             <div class="col-sm-8">
               <%= f.text_field :name, :class=>"form-control" %>
@@ -82,3 +103,16 @@
 
 
 </section>
+
+<script>
+
+    $(".select2").select2();
+
+    $(".timepicker").timepicker({
+        showInputs: false,
+        showMeridian: false,
+        showSeconds: true,
+        minuteStep: 5
+    });
+
+</script>>

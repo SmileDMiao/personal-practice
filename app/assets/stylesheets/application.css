@@ -19,6 +19,10 @@
  *= require ionicons
  *= require font-awesome
  *= require jquery.atwho
+ *= require select2/select2
+ *= require date_picker/bootstrap-datetimepicker
+ *= require date_picker/daterangepicker
+ *= require date_picker/bootstrap-timepicker
  *= require_tree .
  *= require_self
  */

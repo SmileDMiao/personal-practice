@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008055357) do
+ActiveRecord::Schema.define(version: 20160906030328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "zhparser"
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -25,9 +24,9 @@ ActiveRecord::Schema.define(version: 20161008055357) do
     t.string   "node_id"
     t.integer  "comment_count",      default: 0,  null: false
     t.string   "liked_user_ids",     default: [],              array: true
+    t.string   "mentioned_user_ids", default: [],              array: true
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.string   "mentioned_user_ids", default: [],              array: true
   end
 
   create_table "comments", force: :cascade do |t|
@@ -86,10 +85,10 @@ ActiveRecord::Schema.define(version: 20161008055357) do
 
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
-    t.string   "searchable_id",   limit: 32
+    t.integer  "searchable_id"
     t.string   "searchable_type"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
@@ -112,10 +111,6 @@ ActiveRecord::Schema.define(version: 20161008055357) do
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
-  create_table "tips", force: :cascade do |t|
-    t.string "message"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "full_name"
     t.string   "email"
@@ -125,17 +120,17 @@ ActiveRecord::Schema.define(version: 20161008055357) do
     t.string   "company"
     t.string   "github"
     t.string   "twitter"
-    t.integer  "article_count",                   default: 0,       null: false
-    t.integer  "comment_count",                   default: 0,       null: false
-    t.string   "favorite_article_ids",            default: [],                   array: true
-    t.string   "following_ids",                   default: [],                   array: true
-    t.string   "follower_ids",                    default: [],                   array: true
+    t.integer  "article_count",        default: 0,       null: false
+    t.integer  "comment_count",        default: 0,       null: false
+    t.string   "favorite_article_ids", default: [],                   array: true
+    t.string   "following_ids",        default: [],                   array: true
+    t.string   "follower_ids",         default: [],                   array: true
+    t.string   "tagline"
     t.string   "avatar_name"
     t.string   "avatar"
-    t.string   "language",                        default: "zh-CN"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.string   "tagline",              limit: 30
+    t.string   "language",             default: "zh-CN"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
 end

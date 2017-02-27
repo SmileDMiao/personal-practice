@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  # custom form builder helper
+  def bootstrap_form_for(object ,options = {}, &block)
+    options[:html] ||= {}
+    options[:html][:class] ||= 'form-horizontal'
+    options[:builder] = BootstrapFormBuilder
+    form_for(object, options, &block)
+  end
+
   #简单加密
   def smile
     SecureRandom.urlsafe_base64

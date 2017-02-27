@@ -3,8 +3,8 @@ default: &default
   adapter: postgresql
   encoding: utf8
   pool: 5
-  username: postgres
-  password: postgres
+  username: miao
+  password: 88740
   host: localhost
 
 development:
@@ -18,5 +18,3 @@ test:
 production:
   <<: *default
   database: blog
-  username: postgres
-  password: <%= ENV['ADMINLTE_DATABASE_PASSWORD'] %>

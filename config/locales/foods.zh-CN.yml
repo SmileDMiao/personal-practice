@@ -1,13 +1,15 @@
 zh-CN:
-  foods:
-    model: 食物
-    name: 名称
-    type: 类型
-    category: 分类
-    color: 颜色
-    odor: 味道
-    price: 价格
-    number: 数量
-    flag: 标志
-    description: 描述
-    country: 国家
+  activerecord:
+    attributes:
+      food:
+        model: 食物
+        name: 名称
+        type: 类型
+        category: 分类
+        color: 颜色
+        odor: 味道
+        price: 价格
+        number: 数量
+        flag: 标志
+        description: 描述
+        country: 国家

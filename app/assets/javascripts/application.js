@@ -18,4 +18,11 @@
 //= require rails.validations
 //= require social-share-button
 //= require jquery.atwho
+//= require select2/select2.full.min
+//= require date_picker/bootstrap-datetimepicker
+//= require date_picker/bootstrap-datetimepicker.zh-CN
+//= require date_picker/moment
+//= require date_picker/personal
+//= require date_picker/daterangepicker
+//= require date_picker/bootstrap-timepicker
 //= require_tree .
