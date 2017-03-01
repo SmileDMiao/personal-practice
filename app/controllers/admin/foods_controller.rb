@@ -24,7 +24,7 @@ module Admin
 
       respond_to do |format|
         if @food.save
-          format.html { redirect_to @food, notice: 'Product was successfully created.' }
+          format.html { redirect_to admin_food_path, notice: 'Product was successfully created.' }
         else
           format.html { render action: "new" }
         end

@@ -22,7 +22,7 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   # minView =2 format: yyyy-mm-dd; minView = 0 format: yyyy-mm-dd hh:ii
   def date_field(name, *args)
     options = args[0]
-    options[:id] ||= @object.class.name.downcase + "_#{name}"
+    options[:id] ||= @object_name + "_#{name}"
     options[:minView] ||= 2
     script = %Q(
          $(document).ready(function () {
@@ -47,7 +47,7 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   # time: false 不现实小时分钟， time: true 显示小时分钟
   def date_range_field(name, *args)
     options = args[0]
-    options[:id] ||= @object.class.name.downcase + "_#{name}"
+    options[:id] ||= @object_name + "_#{name}"
     options[:time] ||= false
     script = %Q(
          $(document).ready(function () {
@@ -71,7 +71,7 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   # only select time /H:M:S
   def time_field(name, *args)
     options = args[0]
-    options[:id] ||= @object.class.name.downcase + "_#{name}"
+    options[:id] ||= @object_name + "_#{name}"
     script = %Q(
          $(document).ready(function () {
              initBootstrapTimePicker("#{options[:id]}");
