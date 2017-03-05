@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   # letter avatar 生成默认头像
   def large_avatar_url
-      self.letter_avatar_url(192)
+      self.letter_avatar_url(240)
   end
 
   def github_url

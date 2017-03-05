@@ -9,6 +9,7 @@ module UsersHelper
 
   #用户头像链接,user:用户,img_class:class,opts:选项
   def user_avatar_tag(user, img_class, opts = {})
+    return nil unless user
     image_url = user.avatar.url
     image = image_tag(image_url, class: img_class)
 

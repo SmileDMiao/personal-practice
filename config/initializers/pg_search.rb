@@ -1,7 +1,7 @@
 PgSearch.multisearch_options = {
     :using => {
         tsearch: {
-            dictionary: 'zhcnsearch',
+            # dictionary: 'zhcnsearch',
             :prefix => true,
             :highlight => {
                 :start_sel => '<em>',

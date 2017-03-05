@@ -24,7 +24,7 @@ class Ability
 
 
   def roles_for_articles
-    can [:crete, :favorite, :like, :destroy_like, :destroy_favorite], Article
+    can [:new, :create, :favorite, :like, :destroy_like, :destroy_favorite], Article
     can [:update], Article, user_id: user.id
     can [:destroy], Article do |article|
       article.user_id == user.id && article.comments.count == 0
