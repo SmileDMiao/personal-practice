@@ -37,6 +37,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    amq-protocol (2.1.0)
     arel (6.0.3)
     ast (2.3.0)
     axiom-types (0.1.1)
@@ -53,6 +54,8 @@ GEM
     builder (3.2.2)
     bulk_insert (1.2.1)
       activerecord (>= 4.1.0)
+    bunny (2.6.4)
+      amq-protocol (>= 2.0.1)
     byebug (9.0.5)
     cancancan (1.15.0)
     capybara (2.12.0)
@@ -376,6 +379,7 @@ DEPENDENCIES
   bcrypt
   better_errors
   bulk_insert
+  bunny
   byebug
   cancancan
   capybara
@@ -432,4 +436,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.14.4
+   1.14.6

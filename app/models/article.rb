@@ -20,7 +20,11 @@ class Article < ActiveRecord::Base
   end
 
   #创建之后创建提醒信息
-  after_commit :create_reply_notify, on: :create
+  after_commit :create_reply_notify, :publish_article, on: :create
+
+  def publish_article
+    Publisher.publish("Articles", self.attributes)
+  end
 
   def create_reply_notify
     NotifyArticleJob.perform_later(id)
