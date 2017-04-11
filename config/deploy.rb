@@ -12,16 +12,27 @@ set :domain, '139.224.133.155'
 set :deploy_to, '/home/miao/practice/personal-practice'
 set :repository, 'https://github.com/SmileDMiao/personal-practice.git'
 set :branch, 'master'
+set :term_mode, nil
 
 
-set :shared_paths, ['config/database.yml', 'log']
+set :shared_paths, ['config/database.yml', 'log', 'tmp/pids']
 
 task :environment do
   invoke :'rvm:use[2.3.0]'
 end
 
 task :setup => :environment do
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
 
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
+
+  queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
+  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml'."]
+
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/pids"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/pids"]
 end
 
 desc 'Deploys the current version to the server.'
@@ -41,17 +52,7 @@ task :deploy => :environment do
   end
 end
 
-desc 'start unicorn'
-task :start => :environment do
-  invoke :'unicorn:start'
-end
-
-desc 'stop unicorn'
-task :start => :environment do
-  invoke :'unicorn:stop'
-end
-
 desc 'restart unicorn'
-task :start => :environment do
+task :restart => :environment do
   invoke :'unicorn:restart'
 end
