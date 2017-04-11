@@ -14,8 +14,9 @@ set :repository, 'https://github.com/SmileDMiao/personal-practice.git'
 set :branch, 'master'
 set :term_mode, nil
 
-
 set :shared_paths, ['config/database.yml', 'log', 'tmp/pids']
+
+set :sidekiq_pid, "#{deploy_to}/shared/tmp/pids/sidekiq.pid"
 
 task :environment do
   invoke :'rvm:use[2.3.0]'
@@ -31,8 +32,11 @@ task :setup => :environment do
   queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
   queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml'."]
 
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/pids"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/pids/"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/pids"]
+
+  command %(mkdir -p "#{fetch(:deploy_to)}/shared/pids/")
+  command %(mkdir -p "#{fetch(:deploy_to)}/shared/log/")
 end
 
 desc 'Deploys the current version to the server.'
@@ -47,6 +51,7 @@ task :deploy => :environment do
 
     to :launch do
       invoke :'unicorn:restart'
+      invoke :'sidekiq:quiet'
       invoke :'sidekiq:restart'
     end
   end
