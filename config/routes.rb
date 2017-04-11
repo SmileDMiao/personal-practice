@@ -63,4 +63,6 @@ Rails.application.routes.draw do
   require 'soulmate/server'
   mount Soulmate::Server, :at => '/sm'
 
+  resource :wechat, only: [:show, :create]
+
 end

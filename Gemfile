@@ -85,11 +85,15 @@ gem 'bulk_insert'
 # Excel
 gem 'spreadsheet'
 
+# web server
 gem 'unicorn'
 
+# deploy
 gem 'mina'
 gem 'mina-sidekiq',:require => false
 gem 'mina-unicorn', :require => false
+
+gem 'wechat'
 
 group :development, :test do
   gem 'byebug'

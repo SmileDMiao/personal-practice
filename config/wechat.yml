@@ -1,0 +1,13 @@
+default: &default
+  appid: "wx6cd29b381c25c799"
+  secret: "92626159d1523df283842e2ad6e61032"
+  access_token: "rongyu100"
+
+production:
+  appid: "my_appid"
+  secret: "my_secret"
+  access_token: "/var/tmp/wechat_access_token"
+
+development:
+  <<: *default
+#  trusted_domain_fullname: "http://your_dev.proxy.qqbrowser.cc"
