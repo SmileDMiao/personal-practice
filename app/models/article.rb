@@ -75,19 +75,19 @@ class Article < ActiveRecord::Base
   end
 
   # postgres数据库-全文搜索
-  include PgSearch
+  # include PgSearch
   # 单表搜索
-  pg_search_scope :chinese_search,
-                  :against => [:title, :body],
-                  :using => {
-                      tsearch: {
-                          # dictionary: 'zhcnsearch',
-                          :prefix => true
-                      }
-                  }
+  # pg_search_scope :chinese_search,
+  #                 :against => [:title, :body],
+  #                 :using => {
+  #                     tsearch: {
+  #                         # dictionary: 'zhcnsearch',
+  #                         :prefix => true
+  #                     }
+  #                 }
 
   # 多表搜索
-  multisearchable :against => [:title, :body]
+  # multisearchable :against => [:title, :body]
 
 
   #elasticsearch 全文搜索

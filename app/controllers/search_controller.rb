@@ -1,7 +1,8 @@
 class SearchController < ApplicationController
 
   def index
-    @result = PgSearch.multisearch(params[:search]).with_pg_search_highlight
+    # @result = PgSearch.multisearch(params[:search]).with_pg_search_highlight
+    redirect_to :back
   end
 
   # def index

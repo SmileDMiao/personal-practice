@@ -15,7 +15,6 @@ class Publisher
         c.start
       end
     end
-
   end
 
 end

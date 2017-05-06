@@ -159,8 +159,8 @@ class User < ActiveRecord::Base
   end
 
   #postgres数据库-全文搜索
-  include PgSearch
-  multisearchable :against => [:full_name]
+  # include PgSearch
+  # multisearchable :against => [:full_name]
 
   #elasticsearch 全文搜索
   # include Searchable
