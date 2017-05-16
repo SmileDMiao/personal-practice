@@ -9,4 +9,14 @@ FactoryGirl.define do
     city 'Shanghai'
   end
 
+  factory :admin, parent: :user do
+    email Setting.admin_emails.first
+  end
+
+  factory :login_user, parent: :user do
+    auth_token 'rspec'
+  end
+
+
+
 end
