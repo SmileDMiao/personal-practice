@@ -1,4 +1,4 @@
-class FetchGithubRepoJob < ActiveJob::Base
+class FetchGithubRepoJob < ApplicationJob
   queue_as :default
 
   #github repo

@@ -1,14 +1,14 @@
 source 'https://ruby.taobao.org'
 
-gem 'rails', '4.2.6'
+gem 'rails', '5.1.1'
 gem 'pg'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'jbuilder'
+gem 'sdoc', group: :doc
 gem 'therubyracer'
 
 # used for Rabbitmq
@@ -58,12 +58,12 @@ gem 'dalli'
 gem 'pg_search'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
-gem 'rack-contrib'
+# gem 'rack-contrib'
 gem 'soulmate'
 
 # 后台队列,sinatra web ui
 gem 'sidekiq'
-gem 'sinatra'
+# gem 'sinatra'
 
 # Permission
 gem 'cancancan'
@@ -95,6 +95,7 @@ gem 'mina-unicorn', :require => false
 gem 'wechat'
 
 group :development, :test do
+  gem 'listen'
   gem 'byebug'
   gem 'pry'
   gem 'pry-byebug'

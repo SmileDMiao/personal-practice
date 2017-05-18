@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -11,14 +11,14 @@ class User < ActiveRecord::Base
   has_secure_password
 
   ALLOW_LOGIN_CHARS_REGEXP = /\A[A-Za-z0-9\-\_\.]+\z/
-  validates :full_name, format: { with: ALLOW_LOGIN_CHARS_REGEXP, message: '只允许数字、大小写字母和下划线' },
-                        length: { in: 3..20 },
-                        presence: true,
-                        uniqueness: { case_sensitive: false }
-  validates :email, email: true,
-                    presence: true,
-                    uniqueness: true
-  validates :item, acceptance: true
+  # validates :full_name, format: { with: ALLOW_LOGIN_CHARS_REGEXP, message: '只允许数字、大小写字母和下划线' },
+  #                       length: { in: 3..20 },
+  #                       presence: true,
+  #                       uniqueness: { case_sensitive: false }
+  # validates :email, email: true,
+  #                   presence: true,
+  #                   uniqueness: true
+  # validates :item, acceptance: true
 
   before_create do
     self.auth_token = generate_token
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   # letter avatar 生成默认头像
   def large_avatar_url
-      self.letter_avatar_url(240)
+      # self.letter_avatar_url(240)
   end
 
   def github_url

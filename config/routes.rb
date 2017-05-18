@@ -56,12 +56,12 @@ Rails.application.routes.draw do
   end
 
   # sidekiq后台
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  # require 'sidekiq/web'
+  # mount Sidekiq::Web => '/sidekiq'
 
   # redis自动输入完成搜索地址
-  require 'soulmate/server'
-  mount Soulmate::Server, :at => '/sm'
+  # require 'soulmate/server'
+  # mount Soulmate::Server, :at => '/sm'
 
   resource :wechat, only: [:show, :create]
 

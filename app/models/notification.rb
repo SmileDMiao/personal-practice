@@ -1,4 +1,4 @@
-class Notification < ActiveRecord::Base
+class Notification < ApplicationRecord
 
   scope :unread_count, ->(user) { where(:user_id => user.id) }
 

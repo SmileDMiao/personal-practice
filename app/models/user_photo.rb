@@ -1,3 +1,3 @@
-class UserPhoto < ActiveRecord::Base
+class UserPhoto < ApplicationRecord
 
 end

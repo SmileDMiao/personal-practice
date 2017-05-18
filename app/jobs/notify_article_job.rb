@@ -1,4 +1,4 @@
-class NotifyArticleJob < ActiveJob::Base
+class NotifyArticleJob < ApplicationJob
   queue_as :default
 
   def perform(article_id)
