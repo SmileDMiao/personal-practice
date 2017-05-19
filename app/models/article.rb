@@ -8,7 +8,6 @@ class Article < ApplicationRecord
 
   validates_presence_of :title, :body, :node_id
 
-
   scope :popular, -> { order(likes_count: :desc) }
   scope :no_comment, -> { where(comment_count: 0).order(created_at: :desc) }
   scope :time_desc, -> {order(created_at: :desc)}
@@ -20,8 +19,9 @@ class Article < ApplicationRecord
   end
 
   #创建之后创建提醒信息
-  after_commit :create_reply_notify, :publish_article, on: :create
+  after_commit :create_reply_notify, on: :create
 
+  # Test of RabbitMq
   def publish_article
     Publisher.publish("Articles", self.attributes)
   end

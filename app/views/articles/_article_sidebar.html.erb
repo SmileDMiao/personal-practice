@@ -9,10 +9,13 @@
         </div>
         <div class="group">
           <div class="btn-group" role="group">
-            <%= article_favorite_tag(@article) %>
+            <% if current_user %>
+                <%= article_favorite_tag(@article) %>
+            <% end %>
           </div>
         </div>
       </div>
+
       <hr/>
       <div class="group">
         <%= social_share_button_tag (@article.title) %>
@@ -27,8 +30,8 @@
       <hr/>
       <div class="group opts">
         <% if owner?(@article) %>
-          <%= link_to "", edit_article_path(@article), class: 'fa fa-pencil', title: '修改本帖' %>
-          <%= link_to "", @article, method: :delete, 'data-confirm' => '确认删除', class: 'fa fa-trash', title: '删除本帖' %>
+            <%= link_to "", edit_article_path(@article), class: 'fa fa-pencil', title: '修改本帖' %>
+            <%= link_to "", @article, method: :delete, 'data-confirm' => '确认删除', class: 'fa fa-trash', title: '删除本帖' %>
         <% end %>
       </div>
       <a href="#" class="btn btn-block btn-move-page" data-type="bottom"><i class="fa fa-arrow-down"></i></a>
@@ -38,71 +41,74 @@
 </div>
 
 <script>
-  //移动到页面的底部
-  $('.btn-move-page').click(function (e) {
-    var moveType, opts, target;
-    target = $(e.currentTarget);
-    moveType = target.data('type');
-    opts = {
-      scrollTop: 0
-    };
-    if (moveType === 'bottom') {
-      opts.scrollTop = $('body').height();
-    }
-    $("body, html").animate(opts, 300);
-    return false;
-  });
-
-  $('a.likeable').click(function () {
-    var article_id, likes_count;
-    article_id = $(this).data("id");
-    likes_count = parseInt($(this).data("count"));
-    if ($(this).data("state") !== "active") {
-      $.ajax({
-        url: "/articles/" + article_id + "/like",
-        type: "POST",
-        data: {
-          id: article_id
+    //移动到页面的底部
+    $('.btn-move-page').click(function (e) {
+        var moveType, opts, target;
+        target = $(e.currentTarget);
+        moveType = target.data('type');
+        opts = {
+            scrollTop: 0
+        };
+        if (moveType === 'bottom') {
+            opts.scrollTop = $('body').height();
         }
-      });
-      likes_count += 1;
-      $(this).data('count', likes_count);
-      $(this).data('state', 'active')
-      $(this).attr('class', 'likeable active')
-      $("i.fa", $(this)).attr("class", "fa fa-heart");
-      $('span', $(this)).text(likes_count + " 个赞")
-    } else {
-      $.ajax({
-        url: "/articles/" + article_id + '/destroy_like',
-        type: "DELETE"
-      });
+        $("body, html").animate(opts, 300);
+        return false;
+    });
 
-      likes_count -= 1;
-      $(this).data('count', likes_count);
-      $(this).data('state', '')
-      $(this).attr('class', 'likeable')
-      $("i.fa", $(this)).attr("class", "fa fa-heart-o");
-      $('span', $(this)).text(likes_count + " 个赞")
-    }
-    return false;
+    $('a.likeable').click(function () {
+        if (!App.current_user_id) {
+            location.href = "/login"
+        }
+        var article_id, likes_count;
+        article_id = $(this).data("id");
+        likes_count = parseInt($(this).data("count"));
+        if ($(this).data("state") !== "active") {
+            $.ajax({
+                url: "/articles/" + article_id + "/like",
+                type: "POST",
+                data: {
+                    id: article_id
+                }
+            });
+            likes_count += 1;
+            $(this).data('count', likes_count);
+            $(this).data('state', 'active')
+            $(this).attr('class', 'likeable active')
+            $("i.fa", $(this)).attr("class", "fa fa-heart");
+            $('span', $(this)).text(likes_count + " 个赞")
+        } else {
+            $.ajax({
+                url: "/articles/" + article_id + '/destroy_like',
+                type: "DELETE"
+            });
 
-  });
+            likes_count -= 1;
+            $(this).data('count', likes_count);
+            $(this).data('state', '')
+            $(this).attr('class', 'likeable')
+            $("i.fa", $(this)).attr("class", "fa fa-heart-o");
+            $('span', $(this)).text(likes_count + " 个赞")
+        }
+        return false;
 
-  $('a.bookmark').click(function () {
-    var link, article_id;
-    article_id = $(this).data("id");
-    link = $(".bookmark[data-id='" + article_id + "']");
-    if (link.hasClass("active")) {
-      $.ajax({
-        url: "/articles/" + article_id + "/destroy_favorite",
-        type: "DELETE"
-      });
-      link.attr("title", "收藏").removeClass("active");
-    } else {
-      $.post("/articles/" + article_id + "/favorite");
-      link.attr("title", "取消收藏").addClass("active");
-    }
-    return false;
-  })
+    });
+
+    $('a.bookmark').click(function () {
+        var link, article_id;
+        article_id = $(this).data("id");
+        link = $(".bookmark[data-id='" + article_id + "']");
+        if (link.hasClass("active")) {
+            $.ajax({
+                url: "/articles/" + article_id + "/destroy_favorite",
+                type: "DELETE"
+            });
+            link.attr("title", "收藏").removeClass("active");
+        } else {
+            $.post("/articles/" + article_id + "/favorite");
+            link.attr("title", "取消收藏").addClass("active");
+        }
+        return false;
+    })
 
 </script>

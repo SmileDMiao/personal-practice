@@ -10,9 +10,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # @user.avatar = @user.large_avatar_url
+    @user.avatar = @user.large_avatar_url
     if @user.save
-      # UserMailer.delay.welcome_email(@user)
+      UserMailer.welcome_email(@user).deliver_later
       cookies.permanent[:auth_token] = @user.auth_token
       redirect_to :root
     else

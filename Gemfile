@@ -93,6 +93,7 @@ gem 'mina-unicorn', :require => false
 group :development, :test do
   gem 'listen'
   gem 'byebug'
+  gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-byebug'
   # 自动测试代码质量

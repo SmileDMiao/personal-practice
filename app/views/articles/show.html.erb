@@ -23,7 +23,9 @@
     <div id="reply" class="panel panel-default">
       <div class="panel-heading">回帖</div>
       <div class="panel-body">
+        <% if current_user %>
         <%= render 'comment_form' %>
+            <% end %>
       </div>
     </div>
 

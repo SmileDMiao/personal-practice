@@ -5,7 +5,9 @@ class Ability
 
   def initialize(user)
     @user = user
-    if user.admin?
+    if @user.blank?
+      roles_for_anonymous
+    elsif user.admin?
       can :manage, :all
     else
       roles_for_members
@@ -14,6 +16,12 @@ class Ability
 
 
   protected
+
+  # 未登陆权限
+  def roles_for_anonymous
+    cannot :manage, :all
+    basic_read_only
+  end
 
   # 普通会员权限
   def roles_for_members
@@ -38,6 +46,13 @@ class Ability
 
   def roles_for_users
     can [:update, :destroy], User, id: user.id
+  end
+
+  def basic_read_only
+    can [:read, :feed, :node], Article
+    can [:read, :reply_to], Comment
+    can :read, Section
+    can :read, Comment
   end
 
 end
