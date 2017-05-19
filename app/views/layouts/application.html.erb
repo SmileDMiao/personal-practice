@@ -44,50 +44,59 @@
                 <i class="fa btn-search fa-search"></i>
               </form>
             </li>
+            <% if current_user %>
+                <li class=" messages-menu">
+                  <a href="<%= notifications_index_path %>">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="label label-success"><%= unread_notify_count %></span>
+                  </a>
+                </li>
 
-            <li class=" messages-menu">
-              <a href="<%= notifications_index_path %>">
-                <i class="fa fa-envelope-o"></i>
-                <span class="label label-success"><%= unread_notify_count %></span>
-              </a>
-            </li>
+                <li class="dropdown user user-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <%= user_avatar_tag(current_user, 'avatar user-image', {:link => false}) %>
+                    <span class="hidden-xs"><%= current_user.full_name %></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="user-header">
+                      <%= user_avatar_tag(current_user, 'img-circle', {:link => false}) %>
+                      <p>
+                        <%= current_user.tagline %>
+                        <small><%= current_user.created_at %></small>
+                      </p>
+                    </li>
+                    <li class="user-body">
+                      <div class="row">
+                        <div class="col-xs-4 text-center">
+                          <a href="#">Followers</a>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                          <%= link_to '发布', new_article_path %>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                          <a href="#">Friends</a>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        <%= link_to 'Profile', user_path(current_user), :class => 'btn btn-default btn-flat' %>
+                      </div>
+                      <div class="pull-right">
+                        <%= link_to 'Sign out', logout_path, method: 'delete', :class => 'btn btn-default btn-flat' %>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+            <% else %>
+                <li class="messages-menu">
+                  <a href="<%= register_path %>">注册</a>
+                </li>
 
-            <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= user_avatar_tag(current_user, 'avatar user-image', {:link => false}) %>
-                <span class="hidden-xs"><%= current_user.full_name %></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="user-header">
-                  <%= user_avatar_tag(current_user, 'img-circle', {:link => false}) %>
-                  <p>
-                    <%= current_user.tagline %>
-                    <small><%= current_user.created_at %></small>
-                  </p>
+                <li class="messages-menu">
+                  <a href="<%= login_path %>">登陆</a>
                 </li>
-                <li class="user-body">
-                  <div class="row">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <%= link_to '发布', new_article_path %>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
-                    </div>
-                  </div>
-                </li>
-                <li class="user-footer">
-                  <div class="pull-left">
-                    <%= link_to 'Profile', user_path(current_user), :class => 'btn btn-default btn-flat' %>
-                  </div>
-                  <div class="pull-right">
-                    <%= link_to 'Sign out', logout_path, method: 'delete', :class => 'btn btn-default btn-flat' %>
-                  </div>
-                </li>
-              </ul>
-            </li>
+            <% end %>
 
           </ul>
         </div>

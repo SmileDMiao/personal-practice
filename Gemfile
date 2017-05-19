@@ -58,12 +58,10 @@ gem 'dalli'
 gem 'pg_search'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
-# gem 'rack-contrib'
-gem 'soulmate'
 
 # 后台队列,sinatra web ui
 gem 'sidekiq'
-# gem 'sinatra'
+gem 'sinatra'
 
 # Permission
 gem 'cancancan'
@@ -85,14 +83,12 @@ gem 'bulk_insert'
 gem 'spreadsheet'
 
 # web server
-gem 'unicorn'
+gem 'puma'
 
 # deploy
 gem 'mina'
 gem 'mina-sidekiq',:require => false
 gem 'mina-unicorn', :require => false
-
-gem 'wechat'
 
 group :development, :test do
   gem 'listen'
@@ -111,7 +107,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'better_errors'

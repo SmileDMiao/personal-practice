@@ -32,10 +32,9 @@ namespace :foods do
                     :price => random_price,
                     :country => '中国')
         food.save
-        puts 'success'
       end
     end
-
+    puts 'success'
   end
 
 

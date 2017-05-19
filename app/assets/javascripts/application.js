@@ -9,7 +9,6 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-// bug:打开一个高度不够的页面，页面只有当前打开页面的额高度，导致左边菜单栏高度不够，禁用turbolinks可以消除对app.js的影响
 //
 //= require jquery
 //= require jquery_ujs
