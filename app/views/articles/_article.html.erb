@@ -1,5 +1,4 @@
-<!--这里使用缓存反而比没有使用缓存要慢，也不知为何?-->
-<%# cache(['article',article]) do %>
+<% cache(['article',article]) do %>
 <div class="topic media">
   <div class="media-left">
     <%= user_avatar_tag(article.user, :avatar) %>
@@ -22,4 +21,4 @@
     <%= link_to(article.comment_count, class: 'state-false') %>
   </div>
 </div>
-<%# end %>
+<% end %>
