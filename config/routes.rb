@@ -38,6 +38,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :messages
+
+  mount ActionCable.server => '/cable'
+
   # 搜索和通知
   get '/search' => 'search#index', as: 'search'
   get 'notifications/index' => 'notifications#index'

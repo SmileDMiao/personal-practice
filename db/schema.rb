@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906030328) do
+ActiveRecord::Schema.define(version: 20170519203945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 20160906030328) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", id: :serial, limit: 32, force: :cascade do |t|
+    t.string "send_user_id"
+    t.string "receive_user_id"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "nodes", id: :serial, limit: 32, force: :cascade do |t|
     t.string "name"
     t.string "summary"
@@ -84,7 +92,7 @@ ActiveRecord::Schema.define(version: 20160906030328) do
 
   create_table "pg_search_documents", id: :serial, force: :cascade do |t|
     t.text "content"
-    t.integer "searchable_id"
+    t.string "searchable_id", limit: 32
     t.string "searchable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
