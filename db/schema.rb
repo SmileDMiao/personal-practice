@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20170519203945) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "bulk_upserts", force: :cascade do |t|
+    t.string "name", limit: 20
+    t.string "email", limit: 20
+    t.string "city", limit: 20
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_bulk_name", unique: true
+  end
+
   create_table "comments", id: :serial, limit: 32, force: :cascade do |t|
     t.text "body", null: false
     t.string "article_id", null: false

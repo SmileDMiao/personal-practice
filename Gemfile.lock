@@ -201,6 +201,7 @@ GEM
     multi_json (1.12.1)
     multipart-post (2.0.0)
     mustermann (1.0.0)
+    mysql2 (0.4.6)
     nio4r (2.0.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
@@ -355,6 +356,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    upsert (2.2.1)
     uuid (2.3.8)
       macaddr (~> 1.0)
     virtus (1.0.5)
@@ -404,6 +406,7 @@ DEPENDENCIES
   mina-sidekiq
   mina-unicorn
   mini_magick
+  mysql2
   pg
   pg_search
   pry
@@ -428,6 +431,7 @@ DEPENDENCIES
   turbolinks
   twemoji
   uglifier
+  upsert
   uuid
 
 BUNDLED WITH

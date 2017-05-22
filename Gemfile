@@ -2,6 +2,7 @@ source 'https://ruby.taobao.org'
 
 gem 'rails', '5.1.1'
 gem 'pg'
+gem 'mysql2'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -78,6 +79,8 @@ gem 'jquery-atwho-rails'
 
 # 批量插入数据
 gem 'bulk_insert'
+# 批量插入/更新数据
+gem 'upsert'
 
 # Excel
 gem 'spreadsheet'
