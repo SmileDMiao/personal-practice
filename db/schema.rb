@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20170519203945) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "messages", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "chats", id: :serial, limit: 32, force: :cascade do |t|
     t.string "send_user_id"
     t.string "receive_user_id"
     t.text "message"

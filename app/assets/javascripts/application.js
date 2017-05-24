@@ -18,9 +18,7 @@
 //= require social-share-button
 //= require jquery.atwho
 //= require_tree .
-//
-// window.App = {
-//     'locale': 'zh-CN',
-//     'current_user_id': null,
-//     'root_url': 'If deploy to production you can set this as your website address'
-// }
+
+
+App.locale = 'zh-CN'
+App.current_user_id = null

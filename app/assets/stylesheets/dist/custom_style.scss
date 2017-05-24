@@ -7,6 +7,18 @@
 .avatar-lg{  width:96px;  height:96px;  border-radius:50%;  overflow:hidden;
 }
 
+// 所有用户展示
+.user-list {
+  h2 { font-size:14px; margin:0; }
+  .user {
+    text-align:center; margin-bottom:20px;
+    overflow: hidden;;
+    .name {
+      a { color: #333; }
+    }
+  }
+}
+
 //节点导航
 .node-list{
     .node{

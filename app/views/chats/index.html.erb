@@ -1,0 +1,16 @@
+<div class="box">
+  <div class="panel panel-default user-list">
+    <div class="panel-heading">所有的会员</div>
+    <div class="panel-body row">
+      <% @users.each do |item| %>
+          <div class="user col-sm-1">
+            <div><%= chat_avatar_tag(item, 'avatar') %></div>
+            <div class="name"><%= user_name_tag(item) %></div>
+          </div>
+      <% end %>
+    </div>
+    <div class="panel-footer clearfix">
+      <%= paginate @users, :theme => 'bootstrap3' %>
+    </div>
+  </div>
+</div>

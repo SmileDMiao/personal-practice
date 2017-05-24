@@ -6,7 +6,7 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
 # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    $('#messages').append data['message']
+    $('#chats').append data['message']
 # Called when there's incoming data on the websocket for this channel
 
   speak: (message) ->
