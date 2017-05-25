@@ -9,7 +9,7 @@ module ApplicationCable
 
     protected
     def find_verified_user
-      cookies[:auth_token] || reject_unauthorized_connection
+      User.find_by_auth_token(cookies[:auth_token]) || reject_unauthorized_connection
     end
 
   end

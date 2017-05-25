@@ -12,8 +12,8 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
   speak: (message) ->
     @perform 'speak', message: message
 
-$(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
+$(document).on 'keypress', '[data-behavior~=chat_speaker]', (event) ->
   if event.keyCode is 13 # return = send
-    App.chat.speak event.target.value
+    App.chat.speak {'message':event.target.value, 'send_user_id': App.current_user_id, 'receive_user_id': App.receive_user_id}
     event.target.value = ""
     event.preventDefault()

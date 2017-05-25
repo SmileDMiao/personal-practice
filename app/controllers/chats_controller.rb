@@ -6,8 +6,8 @@ class ChatsController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    binding.pry
-    @messages = Message.where(send_user_id: @user.id, receive_user_id: current_user.id).or(Message.where(send_user_id: current_user.id, receive_user_id: @user.id))
+    @messages = Message.where(send_user_id: @user.id, receive_user_id: current_user.id).
+        or(Message.where(send_user_id: current_user.id, receive_user_id: @user.id)).order(created_at: :ASC)
   end
 
 
