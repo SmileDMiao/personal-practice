@@ -4,6 +4,7 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
 
   disconnected: ->
 # Called when the subscription has been terminated by the server
+    App.cable.disconnect()
 
   received: (data) ->
     $('#chats').append data['message']
