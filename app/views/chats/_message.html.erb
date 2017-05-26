@@ -1,7 +1,7 @@
 <div class="direct-chat-msg <%= current_user.id == message.send_user_id ? 'right' : nil %>">
   <div class="direct-chat-info clearfix">
-    <span class="direct-chat-name pull-left"><%= message_user_name(message) %></span>
-    <span class="direct-chat-timestamp pull-right"><%= message.created_at.to_date %></span>
+    <span class="direct-chat-name <%= current_user.id == message.send_user_id ? 'pull-right' : nil %>"><%= message_user_name(message) %></span>
+    <span class="direct-chat-timestamp <%= current_user.id == message.send_user_id ? 'pull-right' : nil %>"><%= message.created_at.to_date %></span>
   </div>
   <%= message_user_avatar(message) %>
   <div class="direct-chat-text">
