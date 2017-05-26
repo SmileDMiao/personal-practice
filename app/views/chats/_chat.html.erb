@@ -1,4 +1,3 @@
-<% binding.pry %>
 <div class="direct-chat-msg <%= current_user.id == message.send_user_id ? 'right' : nil %>">
   <div class="direct-chat-info clearfix">
     <span class="direct-chat-name <%= current_user.id == message.send_user_id ? 'pull-right' : nil %>"><%= message_user_name_chat(message, current_user) %></span>

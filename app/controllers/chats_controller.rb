@@ -1,5 +1,7 @@
 class ChatsController < ApplicationController
 
+  before_action :check_login
+
   def index
     @users = User.all.page(params[:page])
   end

@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  def check_login
+    unless current_user
+      redirect_to({:controller => 'users', :action => 'login'})
+    end
+  end
+
   def set_locale
     #另一种写法 current_user&.language
     user_locale = cookies[:locale] || http_head_locale || current_user.try(:language).to_sym || I18n.default_locale

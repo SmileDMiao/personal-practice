@@ -6,7 +6,7 @@ module Admin
     before_action :require_admin
 
     def require_admin
-      return render_403 unless current_user.admin?
+      return render_403 unless current_user.try(:admin?)
     end
 
   end
