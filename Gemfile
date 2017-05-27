@@ -30,15 +30,13 @@ gem 'bcrypt'
 # 异常提醒
 gem 'exception_notification'
 
-# markdown emoji 代码高亮
+# markdown 代码高亮
 gem 'redcarpet'
-gem 'twemoji'
 gem 'coderay'
 
 # 上传组件
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'jquery-fileupload-rails'
 
 # 头像
 gem 'letter_avatar'

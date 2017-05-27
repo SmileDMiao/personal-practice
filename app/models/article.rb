@@ -105,5 +105,14 @@ class Article < ApplicationRecord
   #       node_name: self.node.name
   #   }
   # end
+  extend ActiveSupport::Concern
+  require 'elasticsearch/model'
+  include Elasticsearch::Model
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :title, analyzer: 'english', index_options: 'offsets'
+    end
+  end
 
 end
