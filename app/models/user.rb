@@ -159,15 +159,4 @@ class User < ApplicationRecord
     Setting.admin_emails.include?(email)
   end
 
-  #postgres数据库-全文搜索
-  # include PgSearch
-  # multisearchable :against => [:full_name]
-
-  #elasticsearch 全文搜索
-  # include Searchable
-  #
-  # def as_indexed_json(_options = {})
-  #   as_json(only: [:full_name])
-  # end
-
 end

@@ -1,5 +1,9 @@
 class Article < ApplicationRecord
 
+  extend ActiveSupport::Concern
+  include Elasticsearch::Model
+  include Searchable
+
   belongs_to :user
   belongs_to :node
   has_many :comments, dependent: :destroy
@@ -74,45 +78,17 @@ class Article < ApplicationRecord
     save
   end
 
-  # postgres数据库-全文搜索
-  # include PgSearch
-  # 单表搜索
-  # pg_search_scope :chinese_search,
-  #                 :against => [:title, :body],
-  #                 :using => {
-  #                     tsearch: {
-  #                         # dictionary: 'zhcnsearch',
-  #                         :prefix => true
-  #                     }
-  #                 }
 
-  # 多表搜索
-  # multisearchable :against => [:title, :body]
+  index_name    'personal'
+  document_type 'articles'
 
+  mapping do
+    indexes :title, term_vector: :yes
+    indexes :body, term_vector: :yes
+  end
 
-  #elasticsearch 全文搜索
-  # include Searchable
-  #
-  # mapping do
-  #   indexes :title, term_vector: :yes
-  #   indexes :body, term_vector: :yes
-  # end
-  #
-  # def as_indexed_json(_options = {})
-  #   {
-  #       title: self.title,
-  #       body: self.body,
-  #       node_name: self.node.name
-  #   }
-  # end
-  extend ActiveSupport::Concern
-  require 'elasticsearch/model'
-  include Elasticsearch::Model
-
-  settings index: { number_of_shards: 1 } do
-    mappings dynamic: 'false' do
-      indexes :title, analyzer: 'english', index_options: 'offsets'
-    end
+  def as_indexed_json(options={})
+    as_json(only: ['title','body'])
   end
 
 end

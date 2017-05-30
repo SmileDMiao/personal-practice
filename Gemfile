@@ -54,7 +54,6 @@ gem 'kaminari'
 gem 'dalli'
 
 # 搜索
-gem 'pg_search'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
