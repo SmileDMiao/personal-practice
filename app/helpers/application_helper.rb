@@ -113,8 +113,9 @@ module ApplicationHelper
 
   def highlight_url(text)
     #可以传入params[:search],利用正则来在匹配部分首尾加上<em></em>
-    text = escape_once(text)
-    text.gsub!('[h]', '<em>')
+    # text = escape_once(text)
+    text.gsub!('<em>', '<h>')
+    text.gsub!('</em>', '</h>')
     text.gsub!('[/h]', '</em>')
     text.gsub!(/\\n|\\r/, '')
     raw text

@@ -4,8 +4,8 @@
   </div>
 
   <div class="panel-body">
-    <% @result.each do |item| %>
-      <%= render partial: item.searchable_type.downcase, locals: { item: item} %>
+    <% @result.records.each_with_hit do |item, hit| %>
+        <%= render partial: 'article', locals: { item: item, hit: hit } %>
     <% end %>
   </div>
 

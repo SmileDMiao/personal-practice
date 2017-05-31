@@ -12,8 +12,8 @@ class SearchController < ApplicationController
             }
         },
         highlight: {
-            pre_tags: ['[em]'],
-            post_tags: ['[/em]'],
+            pre_tags: ['<em>'],
+            post_tags: ['</em>'],
             fields: {title: {}, body: {}}
         }
     }
