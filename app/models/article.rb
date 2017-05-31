@@ -1,6 +1,5 @@
 class Article < ApplicationRecord
 
-  extend ActiveSupport::Concern
   include Elasticsearch::Model
   include Searchable
 
