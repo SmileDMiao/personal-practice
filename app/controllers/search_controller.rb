@@ -5,7 +5,7 @@ class SearchController < ApplicationController
     search_params = {
         query: {
             simple_query_string: {
-                query: '撒旦 快乐',
+                query: params[:search],
                 default_operator: 'AND',
                 minimum_should_match: '70%',
                 fields: %w(title body)
