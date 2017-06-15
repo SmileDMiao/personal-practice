@@ -1,0 +1,2 @@
+class BulkUpsert < ApplicationRecord
+end
