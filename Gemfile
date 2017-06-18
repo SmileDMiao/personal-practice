@@ -7,7 +7,6 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jbuilder'
 gem 'sdoc', group: :doc
 gem 'therubyracer'
@@ -84,6 +83,10 @@ gem 'spreadsheet'
 
 # web server
 gem 'puma'
+gem 'unicorn'
+
+# Graphql API
+gem 'graphql'
 
 # deploy
 gem 'mina'
@@ -91,6 +94,7 @@ gem 'mina-sidekiq',:require => false
 gem 'mina-unicorn', :require => false
 
 group :development, :test do
+  # debug
   gem 'listen'
   gem 'byebug'
   gem 'binding_of_caller'
@@ -104,11 +108,16 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'capybara'
 end
 
 group :development do
+  # 加速
   gem 'spring'
   gem 'spring-commands-rspec'
+  # 友好的错误提示
   gem 'better_errors'
+  # Graphql请求web页面
+  gem 'graphiql-rails'
 end
+
+gem 'graphiql-rails', group: :development

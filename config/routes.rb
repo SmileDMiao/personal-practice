@@ -54,10 +54,14 @@ Rails.application.routes.draw do
     resources :nodes
     get 'foods/new_simple', to: 'foods#new_simple'
     resources :foods
-    get 'practices/soulmate' => 'practices#soulmate'
     get 'practices/bootstrap_table' => 'practices#bootstrap_table'
     get 'practices/get_data' => 'practices#get_data'
   end
+
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
+  end
+  post '/graphql', to: 'graphql#execute'
 
   # sidekiq后台
   require 'sidekiq/web'
