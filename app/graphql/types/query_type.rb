@@ -1,13 +1,24 @@
 Types::QueryType = GraphQL::ObjectType.define do
-  name "Query"
+  name '搜索'
   # Add root-level fields here.
   # They will be entry points for queries on your schema.
 
-  # TODO: remove me
-  field :testField, types.String do
-    description "An example field added by the generator"
+  field :acticle do
+    type ArticleType
+    argument :title, !types.String
+    description 'Find a article by title'
     resolve ->(obj, args, ctx) {
-      "Hello World!"
+      Article.find_by_title(args["title"])
     }
   end
+
+  field :acticle do
+    type ArticleType
+    argument :category, !types.String
+    description 'Find a article by title'
+    resolve ->(obj, args, ctx) {
+      Article.all
+    }
+  end
+
 end

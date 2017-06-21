@@ -43,7 +43,12 @@ module PersonalPractice
     #namespace:缓存命名空间，expires_in:换粗 过期时间,compress:缓存过大时是否压缩,l_size:dalli connection pool
     config.cache_store = [:mem_cache_store, '127.0.0.1', { :namespace => 'malzahar', :compress => true }]
 
+    # form_builder
     config.eager_load_paths << Rails.root.join('app', 'form_builders')
+
+    # GraphQL
+    config.autoload_paths << Rails.root.join('app/graphql')
+    config.autoload_paths << Rails.root.join('app/graphql/types')
 
   end
 end

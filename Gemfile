@@ -119,5 +119,3 @@ group :development do
   # Graphql请求web页面
   gem 'graphiql-rails'
 end
-
-gem 'graphiql-rails', group: :development
