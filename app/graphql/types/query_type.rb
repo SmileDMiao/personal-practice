@@ -8,16 +8,24 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :title, !types.String
     description 'Find a article by title'
     resolve ->(obj, args, ctx) {
-      Article.find_by_title(args["title"])
+      Article.find_by_title(args['title'])
     }
   end
 
   field :acticle do
-    type ArticleType
+    type types[ArticleType]
     argument :category, !types.String
-    description 'Find a article by title'
+    description 'Find all articles'
     resolve ->(obj, args, ctx) {
       Article.all
+    }
+  end
+
+  field :user do
+    type types[UserType]
+    description 'Find all users'
+    resolve ->(obj, args, ctx) {
+      User.all
     }
   end
 
