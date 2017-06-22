@@ -12,4 +12,5 @@ UserType = GraphQL::ObjectType.define do
   field :comment_count, types.Int
   field :tagline, types.String
   field :created_at, types.String
+  field :articles, types[ArticleType]
 end

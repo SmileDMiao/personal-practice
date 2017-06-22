@@ -164,9 +164,6 @@
               <%= link_to (fa_icon 'circle-o', :text => 'Food'), admin_foods_path %>
             </li>
             <li>
-              <%= link_to (fa_icon 'circle-o', :text => '自动完成'), admin_practices_soulmate_path %>
-            </li>
-            <li>
               <%= link_to (fa_icon 'circle-o', :text => 'bootstrap table'), admin_practices_bootstrap_table_path %>
             </li>
           </ul>
@@ -179,7 +176,7 @@
     <%= notice_message %>
     <%= yield %>
   </div>
-  <!-- /.content-wrapper -->
+
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <%= link_to '简体中文', change_locale_path(locale: "zh-CN") %>&nbsp;

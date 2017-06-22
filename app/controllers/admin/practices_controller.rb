@@ -1,10 +1,6 @@
 module Admin
   class PracticesController < Admin::ApplicationController
 
-    def soulmate
-
-    end
-
     def bootstrap_table
       @num = Food.count
       @food = Food.select(:id, :name, :category, :number).offset(params[:offset]).limit(params[:limit])
