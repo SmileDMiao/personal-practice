@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  host: localhost
+  pool: 500
+  database: blog
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
