@@ -62,6 +62,7 @@ gem 'sinatra'
 
 # Permission
 gem 'cancancan'
+gem 'pundit'
 
 # Setting
 gem 'rails-settings-cached'
