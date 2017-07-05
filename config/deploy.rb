@@ -13,6 +13,7 @@ set :deploy_to, '/home/miao/practice/personal-practice'
 set :repository, 'https://github.com/SmileDMiao/personal-practice.git'
 set :branch, 'master'
 set :term_mode, nil
+set :rails_env, 'production'
 
 set :shared_paths, ['config/database.yml', 'log', 'tmp/pids']
 
