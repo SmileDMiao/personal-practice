@@ -3,8 +3,6 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  has_and_belongs_to_many :roles
-  has_many :permissions, through: :roles
 
   attr_accessor :new_password, :confirm_password
 
