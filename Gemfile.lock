@@ -212,8 +212,6 @@ GEM
       pry (~> 0.10)
     public_suffix (2.0.5)
     puma (3.8.2)
-    pundit (1.1.0)
-      activesupport (>= 3.0.0)
     rack (2.0.3)
     rack-mini-profiler (0.10.4)
       rack (>= 1.2.0)
@@ -357,6 +355,7 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    wisper (2.0.0)
 
 PLATFORMS
   ruby
@@ -399,7 +398,6 @@ DEPENDENCIES
   pry
   pry-byebug
   puma
-  pundit
   rack-mini-profiler
   rails (= 5.1.1)
   rails-settings-cached
@@ -420,6 +418,7 @@ DEPENDENCIES
   unicorn
   upsert
   uuid
+  wisper
 
 BUNDLED WITH
    1.15.1

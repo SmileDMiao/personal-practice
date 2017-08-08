@@ -2,6 +2,7 @@ class Article < ApplicationRecord
 
   include Elasticsearch::Model
   include Searchable
+  include Wisper::Publisher
 
   belongs_to :user
   belongs_to :node
@@ -31,6 +32,7 @@ class Article < ApplicationRecord
 
   def create_reply_notify
     NotifyArticleJob.perform_later(id)
+    publish(:article_create, self)
   end
 
   def self.notify_article_created(article_id)

@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # helper_method声明一个controller的action为一个helper方法
   # set_locale设置语言
-  include Pundit
   protect_from_forgery with: :exception
 
   helper_method :current_user
@@ -38,9 +37,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: '访问被拒绝，你可能没有权限.'
   end
 
-  # pundit权限过滤
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
+  #错误页面
   def render_optional_error_file(status_code)
     status = status_code.to_s
     fname = %w(404 403 422 500).include?(status) ? status : 'unknown'

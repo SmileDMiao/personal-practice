@@ -11,16 +11,16 @@ module ExceptionNotifier
       messages = []
       messages << exception.inspect
       unless exception.backtrace.blank?
-        messages << "\n"
+        messages << '\n'
         messages << exception.backtrace
       end
 
       if Rails.env.production?
-        ExceptionLog.create(title: @title, body: messages.join("\n"))
+        ExceptionLog.create(title: @title, body: messages.join('\n'))
       else
-        Rails.logger.info "\n================================================"
-        Rails.logger.info messages.join("\n")
-        Rails.logger.info "================================================\n"
+        Rails.logger.info '\n================================================'
+        Rails.logger.info messages.join('\n')
+        Rails.logger.info '================================================\n'
       end
     end
   end

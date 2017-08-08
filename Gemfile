@@ -85,6 +85,8 @@ gem 'spreadsheet'
 gem 'puma'
 gem 'unicorn'
 
+gem 'wisper'
+
 # Graphql API
 gem 'graphql'
 
