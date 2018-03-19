@@ -10,4 +10,4 @@ class PostsWorker
     ack!
   end
 
-en
+end
