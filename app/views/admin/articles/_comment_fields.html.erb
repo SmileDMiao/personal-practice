@@ -1,0 +1,5 @@
+<div class="form-group nested-fields">
+  <%= f.hidden_field :user_id%>
+  <%= f.text_area :body, class: 'article-editor form-control', rows: '4', tabindex: '1' %>
+  <%= link_to_remove_association "删除评论", f,  class: "btn btn-primary" %>
+</div>

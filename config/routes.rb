@@ -40,7 +40,11 @@ Rails.application.routes.draw do
 
   resources :chats
 
-  mount ActionCable.server => '/cable'
+  namespace :api do
+    namespace :v1 do
+      resources :users
+    end
+  end
 
   # 搜索和通知
   get '/search' => 'search#index', as: 'search'
@@ -56,6 +60,7 @@ Rails.application.routes.draw do
     resources :foods
     get 'practices/bootstrap_table' => 'practices#bootstrap_table'
     get 'practices/get_data' => 'practices#get_data'
+    resources :articles
   end
 
   if Rails.env.development?
@@ -66,5 +71,7 @@ Rails.application.routes.draw do
   # sidekiq后台
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
+
+  mount ActionCable.server => '/cable'
 
 end

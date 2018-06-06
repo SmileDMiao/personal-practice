@@ -16,6 +16,7 @@
 //= require rails.validations
 //= require social-share-button
 //= require jquery.atwho
+//= require cocoon
 //= require_tree .
 
 

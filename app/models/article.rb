@@ -7,6 +7,7 @@ class Article < ApplicationRecord
   belongs_to :user
   belongs_to :node
   has_many :comments, dependent: :destroy
+  accepts_nested_attributes_for :comments, allow_destroy: true
 
   paginates_per 20
 

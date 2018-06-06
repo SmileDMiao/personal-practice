@@ -22,6 +22,7 @@ gem 'uuid'
 
 # 表单
 gem 'simple_form'
+gem 'cocoon'
 
 # 加密
 gem 'bcrypt'
@@ -51,10 +52,14 @@ gem 'kaminari'
 
 # 缓存-Dalli
 gem 'dalli'
+gem "redis", "~> 3.3" 
 
 # 搜索
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+
+# 日志
+gem "lograge"
 
 # 后台队列,sinatra web ui
 gem 'sidekiq'
@@ -108,7 +113,7 @@ group :development, :test do
   gem 'rack-mini-profiler'
   # test framework rspec
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'database_cleaner'
 end
 
