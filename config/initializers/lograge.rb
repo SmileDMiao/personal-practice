@@ -1,7 +1,7 @@
 Rails.application.configure do
 	config.lograge.enabled = true
 	config.lograge.base_controller_class = ['ActionController::API', 'ActionController::Base']
-	config.lograge.keep_original_rails_log = false
+	config.lograge.keep_original_rails_log = true
 	config.lograge.logger = ActiveSupport::Logger.new "#{Rails.root}/log/lograge.log"
 	config.lograge.formatter = Lograge::Formatters::Json.new
 
@@ -18,7 +18,8 @@ Rails.application.configure do
 		{
 			params: event.payload[:params].except(*exceptions),
 			datetime: event.time.to_s,
-			response: event.payload[:response]
+			response: event.payload[:response],
+			type: event.payload[:type]
 		}
 	end
 end

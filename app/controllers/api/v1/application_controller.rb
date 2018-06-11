@@ -6,7 +6,8 @@ module Api
 			# 记录api的response body
 			def append_info_to_payload(payload)
 				super
-				payload[:response] = response.body
+				payload[:response] = JSON.parse(response.body)
+				payload[:type] = 'Api'
 			end
 
 		end

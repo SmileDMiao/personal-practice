@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     #另一种写法 current_user&.language
+    Thread.current[:uuid] = request.uuid
     user_locale = cookies[:locale] || http_head_locale || current_user.try(:language).to_sym || I18n.default_locale
     I18n.locale = user_locale
   end
@@ -63,6 +64,11 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     redirect_to root_path, alert: '访问被拒绝，你可能没有权限.'
+  end
+
+  def append_info_to_payload(payload)
+    super
+    payload[:type] = 'Request'
   end
 
 end

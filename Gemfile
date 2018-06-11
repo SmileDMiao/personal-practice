@@ -1,7 +1,7 @@
 source 'https://gems.ruby-china.org'
 
 gem 'rails', '5.1.1'
-gem 'pg'
+gem 'pg', '~> 0.18'
 gem 'mysql2'
 gem 'sass-rails'
 gem 'uglifier'
@@ -60,6 +60,9 @@ gem 'elasticsearch-rails'
 
 # 日志
 gem "lograge"
+
+# influxdb
+gem 'influxdb'
 
 # 后台队列,sinatra web ui
 gem 'sidekiq'
