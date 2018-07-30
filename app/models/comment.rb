@@ -21,7 +21,7 @@ class Comment < ApplicationRecord
 
   after_commit :create_reply_notify, on: :create
   def create_reply_notify
-    NotifyCommentJob.perform_later(id)
+    NotifyCommentWorker.perform_async(id)
   end
 
   def self.notify_comment_created(comment_id)

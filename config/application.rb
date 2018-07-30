@@ -25,7 +25,7 @@ module PersonalPractice
     end
 
     #后台任务adapter:sidekiq(还是用sidekiq的写法好，支持特性多，不易出现问题)
-    config.active_job.queue_adapter = :sidekiq
+    # config.active_job.queue_adapter = :sidekiq
 
     #文件缓存
     $file_store = ActiveSupport::Cache::FileStore.new(Rails.root.join('tmp/cache'))

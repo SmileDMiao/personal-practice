@@ -1,0 +1,6 @@
+# TODO How to run on multiple Hosts
+scheduler_first_worker:
+  every: '5s'
+  class: SchedulerFirstWorker
+  queue: scheduler
+  description: 'First Test Sidekiq Scheduler'

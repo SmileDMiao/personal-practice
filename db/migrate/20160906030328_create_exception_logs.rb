@@ -1,4 +1,4 @@
-class CreateExceptionLogs < ActiveRecord::Migration
+class CreateExceptionLogs < ActiveRecord::Migration[5.1]
   def change
     create_table :exception_logs do |t|
       t.string :title

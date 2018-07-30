@@ -1,4 +1,5 @@
-source 'https://gems.ruby-china.org'
+# source 'https://gems.ruby-china.com'
+source 'https://rubygems.org'
 
 gem 'rails', '5.1.1'
 gem 'pg', '~> 0.18'
@@ -52,14 +53,15 @@ gem 'kaminari'
 
 # 缓存-Dalli
 gem 'dalli'
-gem "redis", "~> 3.3" 
+gem 'redis', '~> 3.3'
+gem 'redis-namespace'
 
 # 搜索
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
 # 日志
-gem "lograge"
+gem 'lograge'
 
 # influxdb
 gem 'influxdb'
@@ -67,6 +69,10 @@ gem 'influxdb'
 # 后台队列,sinatra web ui
 gem 'sidekiq'
 gem 'sinatra'
+gem 'sidekiq-grouping'
+gem 'sidekiq-scheduler'
+gem 'sidekiq-status'
+gem 'sidekiq-unique-jobs'
 
 # Permission
 gem 'cancancan'

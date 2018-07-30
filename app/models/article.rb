@@ -32,7 +32,7 @@ class Article < ApplicationRecord
   end
 
   def create_reply_notify
-    NotifyArticleJob.perform_later(id)
+    NotifyArticleWorker.perform_async(id)
     publish(:article_create, self)
   end
 

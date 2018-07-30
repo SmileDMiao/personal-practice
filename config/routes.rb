@@ -70,6 +70,9 @@ Rails.application.routes.draw do
 
   # sidekiq后台
   require 'sidekiq/web'
+  require 'sidekiq-status/web'
+  require 'sidekiq/grouping/web'
+  require 'sidekiq-scheduler/web'
   mount Sidekiq::Web => '/sidekiq'
 
   mount ActionCable.server => '/cable'

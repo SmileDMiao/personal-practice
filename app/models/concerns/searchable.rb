@@ -5,15 +5,15 @@ module Searchable
     include Elasticsearch::Model
 
     after_commit on: [:create] do
-      SearchIndexerJob.perform_later('index', self.class.name, self.id)
+      SearchIndexerWorker.perform_async('index', self.class.name, self.id)
     end
 
     after_commit on: [:update] do
-      SearchIndexerJob.perform_later('update', self.class.name, self.id)
+      SearchIndexerWorker.perform_async('update', self.class.name, self.id)
     end
 
     after_commit on: [:destroy] do
-      SearchIndexerJob.perform_later('delete', self.class.name, self.id)
+      SearchIndexerWorker.perform_async('delete', self.class.name, self.id)
     end
 
   end

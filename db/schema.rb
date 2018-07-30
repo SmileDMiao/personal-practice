@@ -28,15 +28,6 @@ ActiveRecord::Schema.define(version: 20170519203945) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "bulk_upserts", force: :cascade do |t|
-    t.string "name", limit: 20
-    t.string "email", limit: 20
-    t.string "city", limit: 20
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_bulk_name", unique: true
-  end
-
   create_table "comments", id: :serial, limit: 32, force: :cascade do |t|
     t.text "body", null: false
     t.string "article_id", null: false
@@ -68,7 +59,7 @@ ActiveRecord::Schema.define(version: 20170519203945) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "chats", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "messages", id: :serial, limit: 32, force: :cascade do |t|
     t.string "send_user_id"
     t.string "receive_user_id"
     t.text "message"
@@ -99,15 +90,6 @@ ActiveRecord::Schema.define(version: 20170519203945) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "pg_search_documents", id: :serial, force: :cascade do |t|
-    t.text "content"
-    t.string "searchable_id", limit: 32
-    t.string "searchable_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
-  end
-
   create_table "sections", id: :serial, limit: 32, force: :cascade do |t|
     t.string "name"
     t.integer "sort", default: 0, null: false
@@ -115,13 +97,13 @@ ActiveRecord::Schema.define(version: 20170519203945) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "settings", id: :serial, force: :cascade do |t|
+  create_table "settings", force: :cascade do |t|
     t.string "var", null: false
     t.text "value"
     t.integer "thing_id"
     t.string "thing_type", limit: 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
   end
 

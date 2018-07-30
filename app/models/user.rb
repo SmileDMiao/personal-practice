@@ -55,7 +55,7 @@ class User < ApplicationRecord
     cache_key = github_repositories_cache_key
     items = $file_store.read(cache_key)
     if items.nil?
-      FetchGithubRepoJob.perform_later(id)
+      FetchGithubRepoWorker.perform_async(id)
       items = []
     end
     items
