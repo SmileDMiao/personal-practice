@@ -116,6 +116,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-byebug'
+	gem 'pry-doc'
   # 自动测试代码质量
   gem 'rubycritic'
   # 测试页面响应时间，sql查询时间
@@ -124,6 +125,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+
+  gem 'rails-perftest'
+  gem 'swagger-docs'
 end
 
 group :development do

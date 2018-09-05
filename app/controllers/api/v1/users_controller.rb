@@ -3,6 +3,8 @@ module Api
 
 		class UsersController < Api::V1::ApplicationController
 
+			include Swagger::Api::V1::UsersController
+
 			def index
 				response = HTTParty.get('http://apis.juhe.cn/idcard/index', 	{query: {cardno: '32092419921103213X', dtype: 'json', key: '85f856b53bff832789a33690af0ce501'}})
 				render json: response
