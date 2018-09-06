@@ -127,7 +127,6 @@ group :development, :test do
   gem 'database_cleaner'
 
   gem 'rails-perftest'
-  gem 'swagger-docs'
 end
 
 group :development do
