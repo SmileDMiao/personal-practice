@@ -18,7 +18,7 @@ Rails.application.configure do
 		{
 			params: event.payload[:params].except(*exceptions),
 			datetime: event.time.to_s,
-			response: event.payload[:response],
+			# response: event.payload[:response],
 			type: event.payload[:type]
 		}
 	end

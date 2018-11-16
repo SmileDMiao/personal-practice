@@ -38,7 +38,7 @@ module SQLLog
 
       return if IGNORE_PAYLOAD_NAMES.include?(payload[:name])
       return if payload[:cached]
-      
+
       name = payload[:name]
       name  = "CACHE #{name}" if payload[:cached]
       binds = nil
@@ -52,15 +52,17 @@ module SQLLog
       end
 
       log = {
-        name: payload[:name],
-        duration: event.duration.round(1),
-        binds: binds,
-        message: payload[:sql],
-        uuid: uuid,
-        datetime: event.time.to_s,
-        type: 'Sql'
+        values: {
+          name: payload[:name] || '',
+          duration: event.duration.round(1) || '',
+          binds: binds || '',
+          message: payload[:sql] || '',
+          uuid: uuid || '',
+          datetime: event.time.to_s || '',
+          type: 'Sql'
+        }
       }
-      # binding.pry
+
       # $influxdb.write_point("sql_log", log)
       logger.debug log
     end
