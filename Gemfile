@@ -1,7 +1,7 @@
-# source 'https://gems.ruby-china.com'
-source 'https://rubygems.org'
+source 'https://gems.ruby-china.com'
+# source 'https://rubygems.org'
 
-gem 'rails', '5.1.1'
+gem 'rails', '5.1.6.2'
 gem 'pg', '~> 0.18'
 gem 'mysql2'
 gem 'sass-rails'
@@ -37,7 +37,7 @@ gem 'coderay'
 
 # 上传组件
 gem 'carrierwave'
-gem 'mini_magick'
+gem 'mini_magick', ">= 4.9.4"
 
 # 头像
 gem 'letter_avatar'
@@ -126,6 +126,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'database_cleaner'
 
+  gem 'rubocop-rspec'
   gem 'rails-perftest'
 end
 
