@@ -1,7 +1,7 @@
 source 'https://gems.ruby-china.com'
 # source 'https://rubygems.org'
 
-gem 'rails', '5.1.6.2'
+gem 'rails', '5.2.4.1'
 gem 'pg', '~> 0.18'
 gem 'mysql2'
 gem 'sass-rails'
@@ -53,8 +53,9 @@ gem 'kaminari'
 
 # 缓存-Dalli
 gem 'dalli'
-gem 'redis', '~> 3.3'
+gem 'redis'
 gem 'redis-namespace'
+gem 'hiredis'
 
 # 搜索
 gem 'elasticsearch-model'

@@ -99,10 +99,11 @@ class UsersController < ApplicationController
 
   #切换语言
   def language
+    binding.pry
     locale = params[:locale].to_s.strip.to_sym
     cookies[:locale] = locale
     if request.env['HTTP_REFERER'].present?
-      redirect_to :back
+      redirect_back(fallback_location:  request.headers['HTTP_REFERER'])
     else
       redirect_to :root
     end

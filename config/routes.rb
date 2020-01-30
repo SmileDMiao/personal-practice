@@ -53,6 +53,13 @@ Rails.application.routes.draw do
 
   # 管理员后台
   namespace :admin do
+    # sidekiq后台
+    require 'sidekiq/web'
+    require 'sidekiq-status/web'
+    require 'sidekiq/grouping/web'
+    require 'sidekiq-scheduler/web'
+    mount Sidekiq::Web => '/sidekiq'
+
     root to: 'home#index', as: 'root'
     resources :sections
     resources :nodes
@@ -68,12 +75,7 @@ Rails.application.routes.draw do
   end
   post '/graphql', to: 'graphql#execute'
 
-  # sidekiq后台
-  require 'sidekiq/web'
-  require 'sidekiq-status/web'
-  require 'sidekiq/grouping/web'
-  require 'sidekiq-scheduler/web'
-  mount Sidekiq::Web => '/sidekiq'
+
 
   mount ActionCable.server => '/cable'
 

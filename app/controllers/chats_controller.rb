@@ -3,7 +3,7 @@ class ChatsController < ApplicationController
   before_action :check_login
 
   def index
-    @users = User.all.page(params[:page])
+    @users = User.all.where.not(id: current_user.id).page(params[:page])
   end
 
   def show

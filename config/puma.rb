@@ -1,21 +1,25 @@
 app_dir = File.expand_path("../..", __FILE__)
 shared_dir = "#{app_dir}/tmp"
 
+
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-threads 5, 5
+threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+threads threads_count, threads_count
+
+
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
-port 3000
+port ENV.fetch("PORT") { 3000 }
 
 # Specifies the `environment` that Puma will run in.
 #
-environment 'production'
+environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
@@ -55,27 +59,24 @@ end
 
 
 # Allow puma to be restarted by `rails restart` command.
-# plugin :tmp_restart
-
-
-
+plugin :tmp_restart
 
 
 # Store the pid of the server in the file at "path".
 #
-pidfile "#{shared_dir}/tmp/pids/puma.pid"
+pidfile "#{shared_dir}/pids/puma.pid"
 
 # Use "path" as the file to store the server info state. This is
 # used by "pumactl" to query and control the server.
 #
-state_path "#{shared_dir}/tmp/sockets/puma.state"
+state_path "#{shared_dir}/sockets/puma.state"
 
 # Redirect STDOUT and STDERR to files specified. The 3rd parameter
 # ("append") specifies whether the output is appended, the default is
 # "false".
 #
 # stdout_redirect '/u/apps/lolcat/log/stdout', '/u/apps/lolcat/log/stderr'
-stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+# stdout_redirect "#{shared_dir}/log/pumca.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
 
 # Disable request logging.
 #
@@ -88,8 +89,6 @@ stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.std
 #
 # The default is "tcp://0.0.0.0:9292".
 #
-bind 'tcp://0.0.0.0:9292'
-bind 'unix:///var/run/puma.sock'
 # bind 'unix:///var/run/puma.sock?umask=0111'
 # bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'
 
