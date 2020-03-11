@@ -99,7 +99,6 @@ class UsersController < ApplicationController
 
   #切换语言
   def language
-    binding.pry
     locale = params[:locale].to_s.strip.to_sym
     cookies[:locale] = locale
     if request.env['HTTP_REFERER'].present?

@@ -8,16 +8,16 @@ RUN apk update && apk add --update apache2-utils
 ARG RAILS_ENV
 ENV RAILS_ENV $RAILS_ENV
 
-# establish where Nginx should look for files
+# Establish where Nginx should look for files
 ENV RAILS_ROOT /var/www/personal_practice
 
 # Set our working directory inside the image
 WORKDIR $RAILS_ROOT
 
-# create log directory
+# Create log directory
 RUN mkdir log
 
-# copy over static assets
+# Copy over static assets
 COPY public public/
 
 # Copy Nginx config template

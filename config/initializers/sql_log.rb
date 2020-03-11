@@ -1,13 +1,13 @@
 #config/initializers/sql_log.rb
 # 先把默认的subscriber去掉。
-Lograge.module_eval do
-  ActiveSupport::LogSubscriber.log_subscribers.each do |subscriber|
-    case subscriber
-    when ActiveRecord::LogSubscriber
-      unsubscribe(:active_record, subscriber)
-    end
-  end
-end
+# Lograge.module_eval do
+#   ActiveSupport::LogSubscriber.log_subscribers.each do |subscriber|
+#     case subscriber
+#     when ActiveRecord::LogSubscriber
+#       unsubscribe(:active_record, subscriber)
+#     end
+#   end
+# end
 
 # 自己实现一个subscriber
 module SQLLog
