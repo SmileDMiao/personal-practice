@@ -10,7 +10,6 @@ module Admin
     end
 
     def create
-      binding.pry
       permit_params
       @article = Article.new(permit_params)
       @article.user_id = current_user.id
@@ -24,10 +23,10 @@ module Admin
 
     def update
     end
-    
+
 
     private
-    
+
     def permit_params
       params.require(:article).permit(:node_id, :title, :body, comments_attributes: [:user_id, :body, :_destroy])
     end

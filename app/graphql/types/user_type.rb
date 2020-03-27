@@ -1,16 +1,11 @@
-UserType = GraphQL::ObjectType.define do
-  name 'User'
-  field :id, types.String
-  field :full_name, types.String
-  field :email, types.String
-  field :auth_token, types.String
-  field :city, types.String
-  field :company, types.String
-  field :github, types.String
-  field :twiteer, types.String
-  field :article_count, types.Int
-  field :comment_count, types.Int
-  field :tagline, types.String
-  field :created_at, types.String
-  field :articles, types[ArticleType]
+module Types
+  class UserType < Types::BaseObject
+    graphql_name 'User'
+
+    field :id, ID, null: false
+    field :full_name, String ,null: false
+    field :email, String ,null: true
+    field :city, String, null: true
+    field :company, String, null: true
+  end
 end

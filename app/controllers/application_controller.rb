@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   def set_locale
     #另一种写法 current_user&.language
     Thread.current[:uuid] = request.uuid
-    user_locale = cookies[:locale] || http_head_locale || current_user.try(:language).to_sym || I18n.default_locale
+    user_locale = cookies[:locale] || http_head_locale || current_user.try(:language)&.to_sym || I18n.default_locale
     I18n.locale = user_locale
   end
 

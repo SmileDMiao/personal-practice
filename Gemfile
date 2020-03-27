@@ -103,7 +103,8 @@ gem 'unicorn'
 gem 'wisper'
 
 # Graphql API
-gem 'graphql'
+gem 'graphql', '1.10.5'
+gem 'graphql-preload'
 
 # deploy
 gem 'mina'

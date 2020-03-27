@@ -46,11 +46,5 @@ module PersonalPractice
 
     # form_builder
     config.eager_load_paths << Rails.root.join('app', 'form_builders')
-
-    # GraphQL
-    config.autoload_paths << Rails.root.join('app/graphql')
-    config.autoload_paths << Rails.root.join('app/graphql/types')
-    config.autoload_paths << Rails.root.join('app/graphql/mutations')
-
   end
 end

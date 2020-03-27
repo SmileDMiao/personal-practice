@@ -1,32 +1,40 @@
-Types::QueryType = GraphQL::ObjectType.define do
-  name 'Query'
-  # Add root-level fields here.
-  # They will be entry points for queries on your schema.
+module Types
+  class QueryType < Types::BaseObject
+    # Add root-level fields here.
+    # They will be entry points for queries on your schema.
 
-  field :acticle do
-    type ArticleType
-    argument :title, !types.String
-    description 'Find a article by title'
-    resolve ->(obj, args, ctx) {
-      Article.find_by_title(args['title'])
-    }
+    # TODO: remove me
+    field :test_field, String, null: false, description: "An example field added by the generator"
+    def test_field
+      "Hello World!"
+    end
+
+    field :articles, [Types::ArticleType], null: false , resolver: Resolvers::Articles
+    field :user, Types::UserType, 'user', resolver: Resolvers::User
   end
-
-  field :acticle do
-    type types[ArticleType]
-    argument :category, !types.String
-    description 'Find all articles'
-    resolve ->(obj, args, ctx) {
-      Article.all
-    }
-  end
-
-  field :user do
-    type types[UserType]
-    description 'Find all users'
-    resolve ->(obj, args, ctx) {
-      User.all
-    }
-  end
-
 end
+
+
+# testFiled
+# {
+#   testFiled
+# }
+
+# Article List
+# {
+#   articles {
+#     title,
+#     body,
+#     createdAt
+#     user {
+#       email
+#     }
+#   }
+# }
+
+# find user by id
+# {
+#   user(id: "7ff60960258d01387bcb784f437ccd66"){
+#     fullName
+#   }
+# }

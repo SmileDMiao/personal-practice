@@ -1,18 +1,15 @@
-# example:所有文章标题内容用户评论
-# query {
-#   acticle(category: "all"){
-#     title
-#     body
-#     user {
-#       full_name
-#     }
-#     comments {
-#       body
-#     }
-#
-#   }
-# }
-PersonalPracticeSchema = GraphQL::Schema.define do
+ class PersonalPracticeSchema < GraphQL::Schema
+  mutation(Types::MutationType)
   query(Types::QueryType)
-  mutation(MutationType)
+
+  # Opt in to the new runtime (default in future graphql-ruby versions)
+  use GraphQL::Execution::Interpreter
+  use GraphQL::Analysis::AST
+
+  # Add built-in connections for pagination
+  use GraphQL::Pagination::Connections
+
+  # Enable preloading
+  use GraphQL::Batch
+  enable_preloading
 end
