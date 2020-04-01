@@ -103,6 +103,7 @@ gem 'unicorn'
 gem 'wisper'
 
 # Graphql API
+gem 'batch-loader'
 gem 'graphql', '1.10.5'
 gem 'graphql-preload'
 
