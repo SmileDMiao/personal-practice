@@ -9,7 +9,7 @@ module Types
       "Hello World!"
     end
 
-    field :articles, [Types::ArticleType], null: false , resolver: Resolvers::Articles
+    field :articles, [Types::ArticleType], null: false, resolver: Resolvers::Articles
     field :user, Types::UserType, 'user', resolver: Resolvers::User
   end
 end

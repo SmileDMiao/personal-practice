@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-  load_and_authorize_resource only: [:edit, :update, :destroy]
   before_action :set_user, except: [:register, :create, :login, :sign_up, :logout, :language]
 
   def register

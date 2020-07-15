@@ -1,25 +1,20 @@
-source 'https://gems.ruby-china.com'
+source 'https://rubygems.org'
 # source 'https://rubygems.org'
 
 gem 'rails', '5.2.4.1'
 gem 'pg', '~> 0.18'
-gem 'mysql2'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'jbuilder'
 gem 'sdoc', group: :doc
-gem 'therubyracer'
 
 # used for Rabbitmq
 gem 'bunny'
 
 # 浏览器语言偏好设置
 gem 'http_accept_language'
-
-# uuid
-gem 'uuid'
 
 # 表单
 gem 'simple_form'
@@ -29,7 +24,7 @@ gem 'cocoon'
 gem 'bcrypt'
 
 # 异常提醒
-gem 'exception_notification'
+gem 'exception-track'
 
 # markdown 代码高亮
 gem 'redcarpet'
@@ -37,7 +32,7 @@ gem 'coderay'
 
 # 上传组件
 gem 'carrierwave'
-gem 'mini_magick', ">= 4.9.4"
+gem 'mini_magick', '>= 4.9.4'
 
 # 头像
 gem 'letter_avatar'
@@ -76,7 +71,7 @@ gem 'sidekiq-status'
 gem 'sidekiq-unique-jobs'
 
 # Permission
-gem 'cancancan'
+gem 'pundit'
 
 # Setting
 gem 'rails-settings-cached'
@@ -88,9 +83,8 @@ gem 'font-ionicons-rails'
 # @功能
 gem 'jquery-atwho-rails'
 
-# 批量插入数据
+# 批量插入数据 批量插入/更新数据
 gem 'bulk_insert'
-# 批量插入/更新数据
 gem 'upsert'
 
 # Excel
@@ -98,8 +92,8 @@ gem 'spreadsheet'
 
 # web server
 gem 'puma'
-gem 'unicorn'
 
+# Pub/Sub
 gem 'wisper'
 
 # Graphql API
@@ -110,7 +104,6 @@ gem 'graphql-preload'
 # deploy
 gem 'mina'
 gem 'mina-sidekiq',:require => false
-gem 'mina-unicorn', :require => false
 
 group :development, :test do
   # debug

@@ -1,6 +1,6 @@
 class CreateFoods < ActiveRecord::Migration[5.1]
   def change
-    create_table :foods do |t|
+    create_table :foods, id: :uuid do |t|
       t.string    :name,      :limit => 20
       t.string    :category,  :limit => 20
       t.string    :color,     :limit => 20
@@ -11,6 +11,5 @@ class CreateFoods < ActiveRecord::Migration[5.1]
       t.string    :country,   :limit => 20
       t.timestamps null: false
     end
-    change_column :foods, :id, :string, :limit => 32
   end
 end

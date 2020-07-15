@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
 
-  load_and_authorize_resource only: [:new, :edit, :create, :update, :destroy, :favorite, :like, :destroy_like, :destroy_favorite]
   before_action :set_article, only: [:show, :edit, :update, :like, :destroy_like, :destroy]
 
   def index

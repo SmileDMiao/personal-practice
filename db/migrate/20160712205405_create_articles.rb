@@ -1,6 +1,6 @@
 class CreateArticles < ActiveRecord::Migration[5.1]
   def change
-    create_table :articles do |t|
+    create_table :articles, id: :uuid do |t|
       t.string  :title
       t.text    :body
       t.integer :likes_count
@@ -12,6 +12,5 @@ class CreateArticles < ActiveRecord::Migration[5.1]
       t.string  :mentioned_user_ids, default: [], array: true
       t.timestamps null: false
     end
-    change_column :articles, :id, :string, :limit => 32
   end
 end

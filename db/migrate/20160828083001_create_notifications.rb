@@ -1,6 +1,6 @@
 class CreateNotifications < ActiveRecord::Migration[5.1]
   def change
-    create_table :notifications do |t|
+    create_table :notifications, id: :uuid do |t|
       t.string     :user_id,            null: false
       t.string     :actor_id
       t.string     :notify_type,        null: false
@@ -11,6 +11,5 @@ class CreateNotifications < ActiveRecord::Migration[5.1]
       t.datetime   :read_at
       t.timestamps null: false
     end
-    change_column :notifications, :id, :string, :limit => 32
   end
 end

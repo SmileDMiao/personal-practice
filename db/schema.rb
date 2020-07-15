@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200130131050) do
+ActiveRecord::Schema.define(version: 2020_01_30_131050) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "articles", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "articles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.integer "likes_count", default: 0
@@ -28,7 +29,16 @@ ActiveRecord::Schema.define(version: 20200130131050) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "bulk_upserts", force: :cascade do |t|
+    t.string "name", limit: 20
+    t.string "email", limit: 20
+    t.string "city", limit: 20
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_bulk_name", unique: true
+  end
+
+  create_table "comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "body", null: false
     t.string "article_id", null: false
     t.string "user_id", null: false
@@ -39,14 +49,14 @@ ActiveRecord::Schema.define(version: 20200130131050) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "exception_logs", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "exception_logs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "foods", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "foods", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", limit: 20
     t.string "category", limit: 20
     t.string "color", limit: 20
@@ -59,7 +69,7 @@ ActiveRecord::Schema.define(version: 20200130131050) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "messages", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "send_user_id"
     t.string "receive_user_id"
     t.text "message"
@@ -67,7 +77,7 @@ ActiveRecord::Schema.define(version: 20200130131050) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "nodes", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "nodes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "summary"
     t.string "section_id", limit: 32, null: false
@@ -77,7 +87,7 @@ ActiveRecord::Schema.define(version: 20200130131050) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "notifications", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "user_id", null: false
     t.string "actor_id"
     t.string "notify_type", null: false
@@ -90,7 +100,7 @@ ActiveRecord::Schema.define(version: 20200130131050) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sections", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "sections", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.integer "sort", default: 0, null: false
     t.datetime "created_at", null: false
@@ -105,7 +115,7 @@ ActiveRecord::Schema.define(version: 20200130131050) do
     t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
-  create_table "users", id: :serial, limit: 32, force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "full_name"
     t.string "email"
     t.string "password_digest"

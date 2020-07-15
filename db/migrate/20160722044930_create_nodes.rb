@@ -1,6 +1,6 @@
 class CreateNodes < ActiveRecord::Migration[5.1]
   def change
-    create_table :nodes do |t|
+    create_table :nodes, id: :uuid do |t|
       t.string :name
       t.string :summary
       t.string :section_id,    :limit => 32,  :null => false
@@ -8,6 +8,5 @@ class CreateNodes < ActiveRecord::Migration[5.1]
       t.integer :topics_count, :default => 0, :null => false
       t.timestamps null: false
     end
-    change_column :nodes, :id, :string, :limit => 32
   end
 end

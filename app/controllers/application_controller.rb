@@ -33,11 +33,6 @@ class ApplicationController < ActionController::Base
     render_optional_error_file(403)
   end
 
-  #cancancan权限过滤
-  rescue_from CanCan::AccessDenied do |_exception|
-    redirect_to root_path, alert: '访问被拒绝，你可能没有权限.'
-  end
-
   #错误页面
   def render_optional_error_file(status_code)
     status = status_code.to_s
