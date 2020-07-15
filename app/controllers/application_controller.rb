@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  # helper_method声明一个controller的action为一个helper方法
-  # set_locale设置语言
+  include Pundit
+
   protect_from_forgery with: :exception
 
   helper_method :current_user
@@ -19,9 +19,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    #另一种写法 current_user&.language
     Thread.current[:uuid] = request.uuid
-    user_locale = cookies[:locale] || http_head_locale || current_user.try(:language)&.to_sym || I18n.default_locale
+    user_locale = cookies[:locale] || http_head_locale || current_user&.language&.to_sym || I18n.default_locale
     I18n.locale = user_locale
   end
 

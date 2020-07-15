@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -8,43 +10,23 @@ Bundler.require(*Rails.groups)
 
 module PersonalPractice
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 6.0
 
-    config.load_defaults 5.1
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
 
-    config.time_zone = 'Beijing'
-    config.active_record.default_timezone = :local
-
-    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = 'zh-CN'
-
-    config.filter_parameters += [:password, :confirm_password]
-
-    config.generators do |g|
-      g.test_framework :rspec
-      g.fixture_replacement :factory_bot, dir: 'spec/factories'
-    end
-
-    #后台任务adapter:sidekiq(还是用sidekiq的写法好，支持特性多，不易出现问题)
-    # config.active_job.queue_adapter = :sidekiq
-
-    #文件缓存
-    $file_store = ActiveSupport::Cache::FileStore.new(Rails.root.join('tmp/cache'))
-
-    #异常提醒
-    config.eager_load_paths.push(*%W(#{config.root}/lib/exception_notification))
-
-    #使用内存缓存
-    # config.cache_store = :memory_store
-
-    #使用文件缓存
-    # config.cache_store = :file_store, Rails.root.join('tmp')
-
-    #使用memcached缓存服务器
-    #namespace:缓存命名空间，expires_in:换粗 过期时间,compress:缓存过大时是否压缩,l_size:dalli connection pool
-    # config.cache_store = [:mem_cache_store, '127.0.0.1', { :namespace => 'malzahar', :compress => true }]
-    config.cache_store = :redis_cache_store, {url: 'redis://localhost:6379/1', expires_in: 120.minutes, dirver: :hiredis}
-
-    # form_builder
-    config.eager_load_paths << Rails.root.join('app', 'form_builders')
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.qq.com',
+      port: 587,
+      domain: '2268571581@qq.com',
+      user_name: '2268571581',
+      password: '13024188155',
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
   end
 end

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 # source 'https://rubygems.org'
 
-gem 'rails', '5.2.4.1'
+gem 'rails', '~> 6.0'
 gem 'pg', '~> 0.18'
 gem 'sass-rails'
 gem 'uglifier'
@@ -17,7 +17,7 @@ gem 'bunny'
 gem 'http_accept_language'
 
 # 表单
-gem 'simple_form'
+# gem 'simple_form'
 gem 'cocoon'
 
 # 加密
@@ -57,7 +57,7 @@ gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
 # 日志
-gem 'lograge'
+# gem 'lograge'
 
 # influxdb
 gem 'influxdb'
@@ -84,7 +84,7 @@ gem 'font-ionicons-rails'
 gem 'jquery-atwho-rails'
 
 # 批量插入数据 批量插入/更新数据
-gem 'bulk_insert'
+# gem 'bulk_insert'
 gem 'upsert'
 
 # Excel
@@ -97,9 +97,9 @@ gem 'puma'
 gem 'wisper'
 
 # Graphql API
-gem 'batch-loader'
-gem 'graphql', '1.10.5'
-gem 'graphql-preload'
+# gem 'batch-loader'
+# gem 'graphql', '1.10.5'
+# gem 'graphql-preload'
 
 # deploy
 gem 'mina'
@@ -118,7 +118,7 @@ group :development, :test do
   # 测试页面响应时间，sql查询时间
   gem 'rack-mini-profiler'
   # test framework rspec
-  gem 'rspec-rails'
+  # gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
 

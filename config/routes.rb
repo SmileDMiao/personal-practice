@@ -1,6 +1,6 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
-  post "/graphql", to: "graphql#execute"
+Rails.application.routes.draw do
   root 'home#index'
 
   get '/language/:locale', to: 'users#language', as: :change_locale
@@ -8,6 +8,14 @@ Rails.application.routes.draw do
   get 'login', to: 'users#login'
   post 'sign_up', to: 'users#sign_up'
   delete 'logout', to: 'users#logout'
+
+  post '/graphql', to: 'graphql#execute'
+
+  # 搜索和通知
+  get '/search' => 'search#index', as: 'search'
+  get 'notifications/index' => 'notifications#index'
+  delete 'notifications/clean' => 'notifications#clean'
+
   resources :users do
     member do
       patch :change_password
@@ -47,11 +55,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # 搜索和通知
-  get '/search' => 'search#index', as: 'search'
-  get 'notifications/index' => 'notifications#index'
-  delete 'notifications/clean' => 'notifications#clean'
-
   # 管理员后台
   namespace :admin do
     # sidekiq后台
@@ -71,13 +74,5 @@ Rails.application.routes.draw do
     resources :articles
   end
 
-  if Rails.env.development?
-    mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
-  end
-  post '/graphql', to: 'graphql#execute'
-
-
-
   mount ActionCable.server => '/cable'
-
 end
