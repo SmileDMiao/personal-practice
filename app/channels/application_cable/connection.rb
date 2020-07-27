@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
-
     identified_by :current_user
 
     def connect
@@ -12,9 +13,8 @@ module ApplicationCable
     end
 
     protected
-    def find_verified_user
-      User.find_by_auth_token(cookies[:auth_token]) || reject_unauthorized_connection
-    end
-
+      def find_verified_user
+        User.find_by_auth_token(cookies[:auth_token]) || reject_unauthorized_connection
+      end
   end
 end

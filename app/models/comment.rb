@@ -1,11 +1,12 @@
-class Comment < ApplicationRecord
+# frozen_string_literal: true
 
+class Comment < ApplicationRecord
   belongs_to :user
-  belongs_to :article, :touch => true
+  belongs_to :article, touch: true
 
   validates_presence_of :body
 
-  scope :time_desc, -> {order(created_at: :desc)}
+  scope :time_desc, -> { order(created_at: :desc) }
 
   after_commit :update_parent_article, on: :create
   after_destroy :update_parent_article
@@ -34,12 +35,12 @@ class Comment < ApplicationRecord
 
     # 给发帖人发回帖通知
     if comment.user_id != article.user_id && !notified_user_ids.include?(article.user_id)
-      Notification.create notify_type: 'article_comment',
+      Notification.create notify_type: "article_comment",
                           actor_id: comment.user_id,
                           user_id: article.user_id,
                           target_id: comment.id,
-                          target_type: 'COMMENT',
-                          second_target_type: 'ARTICLE',
+                          target_type: "COMMENT",
+                          second_target_type: "ARTICLE",
                           second_target_id: article.id
       notified_user_ids << article.user_id
     end
@@ -49,9 +50,9 @@ class Comment < ApplicationRecord
 
     # 给关注者发通知
     default_note = {
-        notify_type: 'article_comment',
-        target_type: 'Comment', target_id: comment.id,
-        second_target_type: 'Article', second_target_id: article.id,
+        notify_type: "article_comment",
+        target_type: "Comment", target_id: comment.id,
+        second_target_type: "Article", second_target_id: article.id,
         actor_id: comment.user_id
     }
     Notification.bulk_insert do |worker|
@@ -69,12 +70,12 @@ class Comment < ApplicationRecord
     Notification.bulk_insert do |worker|
       notified_user_ids.each do |user_id|
         note = {
-            notify_type: 'mention',
+            notify_type: "mention",
             actor_id: comment.user_id,
             user_id: user_id,
-            target_type: 'Comment',
+            target_type: "Comment",
             target_id: comment_id,
-            second_target_type: 'Comment',
+            second_target_type: "Comment",
             second_target_id: comment.article_id
         }
         worker.add(note)
@@ -83,5 +84,4 @@ class Comment < ApplicationRecord
 
     true
   end
-
 end

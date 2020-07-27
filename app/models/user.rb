@@ -1,5 +1,6 @@
-class User < ApplicationRecord
+# frozen_string_literal: true
 
+class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
@@ -7,11 +8,10 @@ class User < ApplicationRecord
   attr_accessor :new_password, :confirm_password
 
   mount_uploader :avatar, AvatarUploader
-  #这个方法是rails自带的，密码字段必须是password_digest，在页面上必须是password + password_confirmation
   has_secure_password
 
   ALLOW_LOGIN_CHARS_REGEXP = /\A[A-Za-z0-9\-\_\.]+\z/
-  validates :full_name, format: { with: ALLOW_LOGIN_CHARS_REGEXP, message: '只允许数字、大小写字母、中横线、下划线' },
+  validates :full_name, format: { with: ALLOW_LOGIN_CHARS_REGEXP, message: "只允许数字、大小写字母、中横线、下划线" },
                         presence: true,
                         uniqueness: true
 
@@ -38,16 +38,16 @@ class User < ApplicationRecord
 
   # letter avatar 生成默认头像
   def large_avatar_url
-      self.letter_avatar_url(240)
+    self.letter_avatar_url(240)
   end
 
   def github_url
-    return '' if github.blank?
+    return "" if github.blank?
     "https://github.com/#{github.split('/').last}"
   end
 
   def twitter_url
-    return '' if twitter.blank?
+    return "" if twitter.blank?
     "https://twitter.com/#{twitter}"
   end
 
@@ -67,11 +67,11 @@ class User < ApplicationRecord
 
   def github_repo_api_url
     github_login = self.github
-    resource_name = 'users'
+    resource_name = "users"
     "https://api.github.com/#{resource_name}/#{github_login}/repos?type=owner&sort=pushed&client_id=#{Setting.github_token}&client_secret=#{Setting.github_secret}"
   end
 
-  #获取github项目列表并存入文件缓存
+  # 获取github项目列表并存入文件缓存
   def self.fetch_github_repositories(user_id)
     user = User.find_by_id(user_id)
     return unless user
@@ -87,11 +87,11 @@ class User < ApplicationRecord
     items = JSON.parse(json)
     items = items.collect do |a1|
       {
-          name: a1['name'],
-          url: a1['html_url'],
-          watchers: a1['watchers'],
-          language: a1['language'],
-          description: a1['description']
+          name: a1["name"],
+          url: a1["html_url"],
+          watchers: a1["watchers"],
+          language: a1["language"],
+          description: a1["description"]
       }
     end
     items = items.sort { |a, b| b[:watchers] <=> a[:watchers] }.take(10)
@@ -99,13 +99,13 @@ class User < ApplicationRecord
     items
   end
 
-  #喜欢文章
+  # 喜欢文章
   def favorite_article(article_id)
     favorite_article_ids << article_id
     save
   end
 
-  #取消喜欢文章
+  # 取消喜欢文章
   def unfavorite_article(article_id)
     favorite_article_ids.delete(article_id)
     save
@@ -115,7 +115,7 @@ class User < ApplicationRecord
     following_ids.include?(user.id)
   end
 
-  #follow用户
+  # follow用户
   def follow_user(user)
     self.following_ids << user.id
     self.following_ids = self.following_ids.uniq
@@ -126,7 +126,7 @@ class User < ApplicationRecord
     Notification.notify_follow(user.id, self.id)
   end
 
-  #取消follow用户
+  # 取消follow用户
   def unfollow_user(user)
     following_ids.delete(user.id)
     save
@@ -145,7 +145,7 @@ class User < ApplicationRecord
   def read_article(article, opts = {})
     return if article.blank?
 
-    #pluck: select id form comments
+    # pluck: select id form comments
     opts[:comment_ids] ||= article.comment.pluck(:id)
 
     range_sql = "
@@ -158,5 +158,4 @@ class User < ApplicationRecord
   def admin?
     Setting.admin_emails.include?(email)
   end
-
 end

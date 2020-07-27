@@ -1,4 +1,6 @@
-#分页插件参数配置文件
+# frozen_string_literal: true
+
+# 分页插件参数配置文件
 Kaminari.configure do |config|
   # config.default_per_page = 25
   # config.max_per_page = nil

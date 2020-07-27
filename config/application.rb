@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,12 +20,12 @@ module PersonalPractice
 
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      address: 'smtp.qq.com',
+      address: "smtp.qq.com",
       port: 587,
-      domain: '2268571581@qq.com',
-      user_name: '2268571581',
-      password: '13024188155',
-      authentication: 'plain',
+      domain: "2268571581@qq.com",
+      user_name: "2268571581",
+      password: "13024188155",
+      authentication: "plain",
       enable_starttls_auto: true
     }
   end

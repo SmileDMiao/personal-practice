@@ -2,8 +2,8 @@
 
 module Mutations
   class Comments::Update < BaseMutation
-    graphql_name 'UpdateComment'
-    description '更新评论'
+    graphql_name "UpdateComment"
+    description "更新评论"
 
     field :comment, Types::CommentType, null: true
 

@@ -1,5 +1,6 @@
-class Publisher
+# frozen_string_literal: true
 
+class Publisher
   class << self
     def publish(exchange, message = {})
       x = channel.fanout("Article.#{exchange}")
@@ -16,5 +17,4 @@ class Publisher
       end
     end
   end
-
 end

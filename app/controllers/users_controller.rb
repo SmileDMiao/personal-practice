@@ -1,5 +1,6 @@
-class UsersController < ApplicationController
+# frozen_string_literal: true
 
+class UsersController < ApplicationController
   before_action :set_user, except: [:register, :create, :login, :sign_up, :logout, :language]
 
   def register
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
     @user.avatar_name = params[:user][:avatar].try(:original_filename)
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: "User was successfully updated." }
       else
         format.html { render action: "edit" }
       end
@@ -73,41 +74,41 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    redirect_to root_url, :alert => '软删除，还是物理删除呢?'
+    redirect_to root_url, alert: "软删除，还是物理删除呢?"
   end
 
   def change_password
     user = params[:user]
     if @user.authenticate(user[:password]) && user[:new_password] == user[:confirm_password]
-      #更新密码操作
+      # 更新密码操作
       @user.update(password_digest: BCrypt::Password.create(user[:new_password]))
       @user.save
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, notice: "User was successfully updated."
     else
       @user.errors.add(:password, :invalid)
-      render action: 'edit'
+      render action: "edit"
     end
   end
 
-  #忘记密码
+  # 忘记密码
   # def forget_password
   #   1.点击忘记密码，跳转页面填写邮箱，提交
   #   2.判断邮箱，生成token，邮箱和token作为参数传入链接
   #   3.打开链接，验证email和token，成功进入设置新密码页面，失败提示对应错误信息
   # end
 
-  #切换语言
+  # 切换语言
   def language
     locale = params[:locale].to_s.strip.to_sym
     cookies[:locale] = locale
-    if request.env['HTTP_REFERER'].present?
-      redirect_back(fallback_location:  request.headers['HTTP_REFERER'])
+    if request.env["HTTP_REFERER"].present?
+      redirect_back(fallback_location:  request.headers["HTTP_REFERER"])
     else
       redirect_to :root
     end
   end
 
-  #用户文章
+  # 用户文章
   def articles
     @articles = @user.articles.time_desc.page(params[:page]).per(10)
     fresh_when([@articles, @user])
@@ -126,7 +127,7 @@ class UsersController < ApplicationController
 
   def following
     @users = @user.following.page(params[:page]).per(60)
-    render template: '/users/followers'
+    render template: "/users/followers"
   end
 
   def followers
@@ -136,27 +137,25 @@ class UsersController < ApplicationController
 
   def follow
     current_user.follow_user(@user)
-    render json: {code: 0, data: {followers_count: @user.follower_ids.length}}
+    render json: { code: 0, data: { followers_count: @user.follower_ids.length } }
   end
 
   def unfollow
     current_user.unfollow_user(@user)
-    render json: {code: 0, data: {followers_count: @user.follower_ids.length}}
+    render json: { code: 0, data: { followers_count: @user.follower_ids.length } }
   end
 
 
   private
-  def user_params
-    params.require(:user).permit!
-  end
-
-  def set_user
-    @user = User.find_by_id(params[:id])
-
-    if @user.blank?
-      render_404
+    def user_params
+      params.require(:user).permit!
     end
-  end
 
+    def set_user
+      @user = User.find_by_id(params[:id])
+
+      if @user.blank?
+        render_404
+      end
+    end
 end
-

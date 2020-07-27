@@ -1,5 +1,6 @@
-class Article < ApplicationRecord
+# frozen_string_literal: true
 
+class Article < ApplicationRecord
   include Elasticsearch::Model
   include Searchable
   include Wisper::Publisher
@@ -15,7 +16,7 @@ class Article < ApplicationRecord
 
   scope :popular, -> { order(likes_count: :desc) }
   scope :no_comment, -> { where(comment_count: 0).order(created_at: :desc) }
-  scope :time_desc, -> {order(created_at: :desc)}
+  scope :time_desc, -> { order(created_at: :desc) }
 
 
   def liked_by_user?(user)
@@ -23,7 +24,7 @@ class Article < ApplicationRecord
     liked_user_ids.include?(user.id)
   end
 
-  #创建之后创建提醒信息
+  # 创建之后创建提醒信息
   after_commit :create_reply_notify, on: :create
 
   # Test of RabbitMq
@@ -46,7 +47,7 @@ class Article < ApplicationRecord
     notified_user_ids = article.mentioned_user_ids
 
     # 给关注者发通知
-    default_note = {notify_type: 'article', target_type: 'Article', target_id: article.id, actor_id: article.user_id}
+    default_note = { notify_type: "article", target_type: "Article", target_id: article.id, actor_id: article.user_id }
     Notification.bulk_insert do |worker|
       follower_ids.each do |uid|
         # 排除同一个回复过程中已经提醒过的人
@@ -61,7 +62,7 @@ class Article < ApplicationRecord
     Notification.bulk_insert(set_size: 100) do |worker|
       notified_user_ids.each do |user_id|
         note = {
-            notify_type: 'mention',
+            notify_type: "mention",
             actor_id: article.user_id,
             user_id: user_id,
             target_type: self.class.name,
@@ -81,16 +82,15 @@ class Article < ApplicationRecord
   end
 
 
-  index_name    'personal'
-  document_type 'articles'
+  index_name    "personal"
+  document_type "articles"
 
   mapping do
     indexes :title, term_vector: :yes
     indexes :body, term_vector: :yes
   end
 
-  def as_indexed_json(options={})
-    as_json(only: ['title','body'])
+  def as_indexed_json(options = {})
+    as_json(only: ["title", "body"])
   end
-
 end

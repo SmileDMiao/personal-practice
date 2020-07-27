@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 $influxdb = InfluxDB::Client.new("blog", hosts: ["127.0.0.1"], port: 8086, username: "root", password: "root")
 
 # 关注 ActionController 的 process_action 通知，会收到所有的请求

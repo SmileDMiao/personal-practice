@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class QueryType < Types::BaseObject
     # Add root-level fields here.
@@ -10,7 +12,7 @@ module Types
     end
 
     field :articles, [Types::ArticleType], null: false, resolver: Resolvers::Articles
-    field :user, Types::UserType, 'user', resolver: Resolvers::User
+    field :user, Types::UserType, "user", resolver: Resolvers::User
   end
 end
 

@@ -1,25 +1,26 @@
-module ApplicationHelper
+# frozen_string_literal: true
 
+module ApplicationHelper
   # custom form builder helper
-  def bootstrap_form_for(object ,options = {}, &block)
+  def bootstrap_form_for(object, options = {}, &block)
     options[:html] ||= {}
-    options[:html][:class] ||= 'form-horizontal'
+    options[:html][:class] ||= "form-horizontal"
     options[:builder] = BootstrapFormBuilder
     form_for(object, options, &block)
   end
 
-  #简单加密
+  # 简单加密
   def smile
     SecureRandom.urlsafe_base64
   end
 
-  #flash 提示信息
+  # flash 提示信息
   def notice_message
     flash_messages = []
     flash.each do |type, message|
       type = :success if type.to_sym == :notice
       type = :danger if type.to_sym == :alert
-      text = content_tag(:div, button_tag('×', 'type' => 'button', :class => 'close', 'data-dismiss' => 'alert','aria-hidden' => 'true') + message, class: "alert alert-dismissible alert-#{type}")
+      text = content_tag(:div, button_tag("×", "type" => "button", :class => "close", "data-dismiss" => "alert", "aria-hidden" => "true") + message, class: "alert alert-dismissible alert-#{type}")
       flash_messages << text if message
     end
     flash_messages.join("\n").html_safe
@@ -37,7 +38,7 @@ module ApplicationHelper
     render_options = {
         filter_html:     true,
         hard_wrap:       true,
-        link_attributes: { rel: 'nofollow' }
+        link_attributes: { rel: "nofollow" }
     }
     renderer = CodeRayify.new(render_options)
     extensions = {
@@ -51,13 +52,13 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
 
-  #多久时间之前
+  # 多久时间之前
   def time_ago_now(time)
     time = time.iso8601
-    '于' + distance_of_time_in_words_to_now(time) + '前发布'
+    "于" + distance_of_time_in_words_to_now(time) + "前发布"
   end
 
-  #用户菜单render
+  # 用户菜单render
   def render_list(opts = {})
     list = []
     yield(list)
@@ -67,14 +68,14 @@ module ApplicationHelper
       urls = link.match(/href=(["'])(.*?)(\1)/) || []
       url = urls.length > 2 ? urls[2] : nil
       if url && current_page?(url) || (@current && @current.include?(url))
-        item_class = 'active'
+        item_class = "active"
       end
-      items << content_tag('li', raw(link), class: item_class)
+      items << content_tag("li", raw(link), class: item_class)
     end
-    content_tag('ul', raw(items.join("")), opts)
+    content_tag("ul", raw(items.join("")), opts)
   end
 
-  #是否当前用户，是否文章作者
+  # 是否当前用户，是否文章作者
   def owner?(item)
     return false if item.blank? || current_user.blank?
     if item.is_a?(User)
@@ -86,23 +87,23 @@ module ApplicationHelper
 
   def birthday_tag
     t = Time.now
-    return '' unless t.month == 11 && t.day == 22
+    return "" unless t.month == 11 && t.day == 22
     age = t.year - 2011
     title = "德云色 创立 #{age} 周年纪念日"
     html = []
     html << "<div style='text-align:center;margin-bottom:20px; line-height:200%;'>"
     %w(dancers beers cake birthday crown gift crown birthday cake beers dancers).each do |name|
-      html << image_tag(asset_path("assets/emojis/#{name}.png"), class: 'emoji', title: title)
+      html << image_tag(asset_path("assets/emojis/#{name}.png"), class: "emoji", title: title)
     end
-    html << '<br />'
+    html << "<br />"
     html << title
-    html << '</div>'
-    raw html.join(' ')
+    html << "</div>"
+    raw html.join(" ")
   end
 
   def random_tips
     tips = Setting.tips
-    return '没有维护小贴士' if tips.blank?
+    return "没有维护小贴士" if tips.blank?
     tips.sample
   end
 
@@ -112,13 +113,12 @@ module ApplicationHelper
   end
 
   def highlight_url(text)
-    #可以传入params[:search],利用正则来在匹配部分首尾加上<em></em>
+    # 可以传入params[:search],利用正则来在匹配部分首尾加上<em></em>
     # text = escape_once(text)
-    text.gsub!('<em>', '<h>')
-    text.gsub!('</em>', '</h>')
-    text.gsub!('[/h]', '</em>')
-    text.gsub!(/\\n|\\r/, '')
+    text.gsub!("<em>", "<h>")
+    text.gsub!("</em>", "</h>")
+    text.gsub!("[/h]", "</em>")
+    text.gsub!(/\\n|\\r/, "")
     raw text
   end
-
 end

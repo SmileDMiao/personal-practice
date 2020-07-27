@@ -2,8 +2,8 @@
 
 module Mutations
   class Comments::Delete < BaseMutation
-    graphql_name 'DeleteComment'
-    description '删除评论'
+    graphql_name "DeleteComment"
+    description "删除评论"
 
     field :comment, Types::CommentType, null: true
 

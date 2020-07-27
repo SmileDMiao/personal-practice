@@ -1,7 +1,7 @@
 # encoding: utf-8
+# frozen_string_literal: true
 
 class AvatarUploader < CarrierWave::Uploader::Base
-
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -14,9 +14,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
-  #缓存文件存放位置
+  # 缓存文件存放位置
   def cache_dir
-    '/tmp/personal_practice-cache'
+    "/tmp/personal_practice-cache"
   end
 
   # Override the directory where uploaded files will be stored.
@@ -61,5 +61,4 @@ class AvatarUploader < CarrierWave::Uploader::Base
       "#{@name}.#{file.extension}"
     end
   end
-
 end

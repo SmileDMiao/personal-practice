@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # 异常通知
 module ExceptionNotifier
   class DatabaseNotifier

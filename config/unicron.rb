@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # unicorn 配置信息
 
 app_dir = File.expand_path("../..", __FILE__)
@@ -12,7 +14,7 @@ timeout 30
 # 监听tcp端口可以直接访问该端口，也可以不监听tcp端口
 # backlog: number of clients,default 1024
 # tcp_nopush: Default: false This defaulted to true in unicorn 3.4 - 3.7,大概是减少延迟,提高性能的作用
-listen "/tmp/unicorn_blog.sock", :backlog => 64
+listen "/tmp/unicorn_blog.sock", backlog: 64
 # listen 3000, :tcp_nopush => true
 
 # before forking work process 预加载

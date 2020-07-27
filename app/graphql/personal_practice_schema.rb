@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PersonalPracticeSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
@@ -36,13 +38,13 @@ class PersonalPracticeSchema < GraphQL::Schema
     end
 
     def unauthorized_object(error)
-      message = '未登录或者登录过期'
-      raise GraphQL::ExecutionError.new(message, options: { code: 401, detail: 'Unauthorized' })
+      message = "未登录或者登录过期"
+      raise GraphQL::ExecutionError.new(message, options: { code: 401, detail: "Unauthorized" })
     end
 
     def unauthorized_field(error)
-      message = '未登录或者登录过期'
-      raise GraphQL::ExecutionError.new(message, options: { code: 401, detail: 'Unauthorized' })
+      message = "未登录或者登录过期"
+      raise GraphQL::ExecutionError.new(message, options: { code: 401, detail: "Unauthorized" })
     end
   end
 end

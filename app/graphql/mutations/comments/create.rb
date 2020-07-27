@@ -2,8 +2,8 @@
 
 module Mutations
   class Comments::Create < BaseMutation
-    graphql_name 'CreateComment'
-    description '创建评论'
+    graphql_name "CreateComment"
+    description "创建评论"
 
     field :comment, Types::CommentType, null: true
 

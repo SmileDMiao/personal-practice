@@ -1,5 +1,6 @@
-module UserSupport
+# frozen_string_literal: true
 
+module UserSupport
   extend ActiveSupport::Concern
 
   included do
@@ -9,6 +10,4 @@ module UserSupport
     end
 
   end
-
-
 end

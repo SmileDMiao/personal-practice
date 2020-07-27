@@ -1,5 +1,6 @@
-class PostsWorker
+# frozen_string_literal: true
 
+class PostsWorker
   # include Sneakers::Worker
   #
   # from_queue 'rabcus.posts', env: nil
@@ -9,5 +10,4 @@ class PostsWorker
   #   puts row_post
   #   ack!
   # end
-
 end

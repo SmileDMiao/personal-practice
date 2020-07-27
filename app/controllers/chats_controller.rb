@@ -1,5 +1,6 @@
-class ChatsController < ApplicationController
+# frozen_string_literal: true
 
+class ChatsController < ApplicationController
   before_action :check_login
 
   def index
@@ -11,6 +12,4 @@ class ChatsController < ApplicationController
     @messages = Message.where(send_user_id: @user.id, receive_user_id: current_user.id).
         or(Message.where(send_user_id: current_user.id, receive_user_id: @user.id)).order(created_at: :ASC)
   end
-
-
 end

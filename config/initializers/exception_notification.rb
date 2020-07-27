@@ -1,8 +1,10 @@
-require 'exception_notification/rails'
+# frozen_string_literal: true
 
-require 'exception_notification/sidekiq'
+require "exception_notification/rails"
 
-require 'exception_notification/database_notifier'
+require "exception_notification/sidekiq"
+
+require "exception_notification/database_notifier"
 
 
 

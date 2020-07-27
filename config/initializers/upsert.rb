@@ -1,4 +1,6 @@
-require 'active_record'
+# frozen_string_literal: true
+
+require "active_record"
 
 module ActiveRecord
   class Base
@@ -16,10 +18,10 @@ module ActiveRecord
       rows = rows.map do |row|
         values = row.map.with_index do |val|
           connection.quote(val)
-        end.join ', '
+        end.join ", "
         "(#{ values })"
       end
-      field_list = fields.map {|e| %Q("#{e}")}.join ', '
+      field_list = fields.map { |e| %Q("#{e}") }.join ", "
 
       sql = "INSERT INTO #{ table_name } (#{ field_list }) VALUES #{ rows.join ', ' }"
       if upsert
@@ -28,7 +30,7 @@ module ActiveRecord
         else
           update = upsert[:update]
         end
-        update = update.map {|field| "#{ field } = EXCLUDED.#{ field }"}
+        update = update.map { |field| "#{ field } = EXCLUDED.#{ field }" }
 
         sql += " ON CONFLICT (#{ upsert[:conflict].join ', ' }) DO UPDATE SET #{ update.join ', ' }"
         if upsert[:where]
@@ -51,10 +53,10 @@ module ActiveRecord
       rows = rows.map do |row|
         values = row.map.with_index do |val|
           connection.quote(val)
-        end.join ', '
+        end.join ", "
         "(#{ values })"
       end
-      field_list = fields.join ', '
+      field_list = fields.join ", "
 
       sql = "INSERT INTO #{ table_name } (#{ field_list }) VALUES #{ rows.join ', ' }"
       if upsert
@@ -63,7 +65,7 @@ module ActiveRecord
         else
           update = upsert[:update]
         end
-        update = update.map {|field| "#{ field } = VALUES(#{ field })"}
+        update = update.map { |field| "#{ field } = VALUES(#{ field })" }
 
         sql += " ON DUPLICATE KEY UPDATE #{ update.join ', ' }"
         if upsert[:where]
@@ -72,6 +74,5 @@ module ActiveRecord
       end
       connection.execute(sql)
     end
-
   end
 end

@@ -1,4 +1,6 @@
-#config/initializers/sql_log.rb
+# frozen_string_literal: true
+
+# config/initializers/sql_log.rb
 # 先把默认的subscriber去掉。
 # Lograge.module_eval do
 #   ActiveSupport::LogSubscriber.log_subscribers.each do |subscriber|
@@ -40,7 +42,7 @@ module SQLLog
       return if payload[:cached]
 
       name = payload[:name]
-      name  = "CACHE #{name}" if payload[:cached]
+      name = "CACHE #{name}" if payload[:cached]
       binds = nil
       uuid = Thread.current[:uuid] || nil
 
@@ -53,13 +55,13 @@ module SQLLog
 
       log = {
         values: {
-          name: payload[:name] || '',
-          duration: event.duration.round(1) || '',
-          binds: binds || '',
-          message: payload[:sql] || '',
-          uuid: uuid || '',
-          datetime: event.time.to_s || '',
-          type: 'Sql'
+          name: payload[:name] || "",
+          duration: event.duration.round(1) || "",
+          binds: binds || "",
+          message: payload[:sql] || "",
+          uuid: uuid || "",
+          datetime: event.time.to_s || "",
+          type: "Sql"
         }
       }
 
@@ -69,23 +71,23 @@ module SQLLog
 
     private
 
-    def logger
-      ActiveSupport::Logger.new "#{Rails.root}/log/lograge.log"
-    end
-
-    def type_casted_binds(casted_binds)
-      casted_binds.respond_to?(:call) ? casted_binds.call : casted_binds
-    end
-
-    def render_bind(attr, value)
-      if attr.is_a?(Array)
-        attr = attr.first
-      elsif attr.type.binary? && attr.value
-        value = "<#{attr.value_for_database.to_s.bytesize} bytes of binary data>"
+      def logger
+        ActiveSupport::Logger.new "#{Rails.root}/log/lograge.log"
       end
 
-      [attr && attr.name, value]
-    end
+      def type_casted_binds(casted_binds)
+        casted_binds.respond_to?(:call) ? casted_binds.call : casted_binds
+      end
+
+      def render_bind(attr, value)
+        if attr.is_a?(Array)
+          attr = attr.first
+        elsif attr.type.binary? && attr.value
+          value = "<#{attr.value_for_database.to_s.bytesize} bytes of binary data>"
+        end
+
+        [attr && attr.name, value]
+      end
   end
 end
 

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Admin
   class NodesController < Admin::ApplicationController
-
     def index
       @nodes = Node.includes(:section).page(params[:page]).per(10).order(:section_id)
       respond_to do |format|
@@ -17,7 +18,7 @@ module Admin
       @node = Node.new(permit_params)
 
       if @node.save
-        redirect_to(admin_nodes_path, notice: 'Section was successfully created.')
+        redirect_to(admin_nodes_path, notice: "Section was successfully created.")
       else
         render action: "new"
       end
@@ -27,11 +28,10 @@ module Admin
       @node = Node.find(params[:id])
       @node.destroy
 
-      redirect_to(admin_nodes_path, notice: 'Section was successfully deleted.')
+      redirect_to(admin_nodes_path, notice: "Section was successfully deleted.")
     end
 
     def show
-
     end
 
     def edit
@@ -42,7 +42,7 @@ module Admin
       @node = Node.find(params[:id])
 
       if @node.update_attributes(permit_params)
-        redirect_to(admin_nodes_path, notice: 'Post was successfully updated.')
+        redirect_to(admin_nodes_path, notice: "Post was successfully updated.")
       else
         render action: "edit"
       end
@@ -50,9 +50,8 @@ module Admin
 
 
     private
-    def permit_params
-      params.require(:node).permit!
-    end
-
+      def permit_params
+        params.require(:node).permit!
+      end
   end
 end
