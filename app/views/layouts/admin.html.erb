@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
-  
+
   <%= csrf_meta_tags %>
 </head>
 <body class="hold-transition skin-red-light sidebar-mini">
@@ -76,20 +76,6 @@
 
         <li class="treeview">
           <a href="#">
-            <%= fa_icon 'dashboard' %> <span>用户管理</span> <%= fa_icon 'angle-left', :class => 'pull-right' %>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active">
-              <%= link_to (fa_icon 'circle-o', :text => 'Dashboard v1'), '' %>
-            </li>
-            <li>
-              <%= link_to (fa_icon 'circle-o', :text => 'Dashboard v2'), '' %>
-            </li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
             <%= fa_icon 'th' %></i> <span>分类导航</span> <%= fa_icon 'angle-left', :class => 'pull-right' %>
           </a>
           <ul class="treeview-menu">
@@ -98,56 +84,6 @@
             </li>
             <li>
               <%= link_to (fa_icon 'circle-o', :text => '节点管理'), admin_nodes_path %>
-            </li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Charts</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li>
-              <%= link_to (fa_icon 'circle-o', :text => 'ChartJS'), '' %>
-            </li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li>
-              <%= link_to (fa_icon 'circle-o', :text => 'General'), '' %>
-            </li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>Forms</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li>
-              <%= link_to (fa_icon 'circle-o', :text => 'General Elements'), '' %>
-            </li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Tables</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li>
-              <%= link_to (fa_icon 'circle-o', :text => 'Simple tables'), '' %>
             </li>
           </ul>
         </li>

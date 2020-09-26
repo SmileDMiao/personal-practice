@@ -11,14 +11,11 @@
       <%= render 'shared/box_tools' %>
     </div>
     <div class="box-body">
-      <%= simple_form_for([:admin,@section]) do |f| %>
-          <%= render 'shared/error_messages', target: @section %>
-          <%= f.input :name %>
-          <%= f.input :sort %>
-          <div class="form-group">
-            <%= f.submit t('helpers.submit.submit'), class: 'btn btn-primary' %>
-            <%= link_to 'Back', admin_sections_path, class: 'btn btn-default' %>
-          </div>
+      <%= bootstrap_form_for([:admin,@section], :validate=>true, :html=>{:class=>"form-horizontal"}) do |f| %>
+        <%= render 'shared/error_messages', target: @section %>
+        <%= f.text_field :name, :class=>'form-control' %>
+        <%= f.text_field :sort, :class=>'form-control' %>
+        <%= f.submit t('helpers.submit.submit'),:class=>'btn btn-block bg-maroon' %>
       <% end %>
     </div>
   </div>

@@ -24,9 +24,6 @@ gem "cocoon"
 # 加密
 gem "bcrypt"
 
-# 异常提醒
-gem "exception-track"
-
 # markdown 代码高亮
 gem "redcarpet"
 gem "coderay"
@@ -85,7 +82,7 @@ gem "font-ionicons-rails"
 gem "jquery-atwho-rails"
 
 # 批量插入数据 批量插入/更新数据
-# gem 'bulk_insert'
+gem "bulk_insert"
 gem "upsert"
 
 # Excel
@@ -99,7 +96,8 @@ gem "wisper"
 
 # Graphql API
 gem "batch-loader"
-gem "graphql"
+gem "graphql", "1.11.3"
+gem "graphql-preload", github: "Envek/graphql-preload"
 
 # deploy
 gem "mina"

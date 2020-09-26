@@ -12,19 +12,15 @@
     </div>
 
     <div class="box-body">
-      <%= simple_form_for([:admin,@node]) do |f| %>
+      <%= bootstrap_form_for [:admin, @node], :validate=>true, :html=>{:class=>"form-horizontal"} do |f| %>
           <%= render 'shared/error_messages', target: @node %>
-          <fieldset>
-            <%= f.input :name %>
-            <%= f.input :section_id, collection: Section.all.collect { |s| [s.name,s.id] } %>
-            <%= f.input :sort %>
-            <%= f.input :summary, as: :text %>
-            <div class="form-group">
-              <%= f.submit t('helpers.submit.submit'), class: 'btn btn-primary' %>
-              <%= link_to 'Back', admin_nodes_path, class: 'btn btn-default' %>
-            </div>
-          </fieldset>
+            <%= f.text_field :name, :class=>'form-control' %>
+            <%= f.select :section_id, collection: Section.all.collect { |s| [s.name,s.id] } %>
+            <%= f.text_field :sort, :class=>'form-control' %>
+            <%= f.text_area :summary, :class=>'form-control' %>
+            <%= f.submit t('helpers.submit.submit'),:class=>'btn btn-block bg-maroon' %>
       <% end %>
     </div>
   </div>
 </section>
+
