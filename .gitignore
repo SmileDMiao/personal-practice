@@ -18,4 +18,5 @@ public/system
 public/assets/*
 db/schema.rb
 .idea
+.vscode
 rabcus/.idea
