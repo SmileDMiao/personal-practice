@@ -2,6 +2,8 @@
 
 source "https://rubygems.org"
 
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
 gem "rails", "~> 6.0"
 gem "pg", "~> 0.18"
 gem "sass-rails"
@@ -25,11 +27,11 @@ gem "cocoon"
 gem "bcrypt"
 
 # markdown 代码高亮
-gem "redcarpet"
+gem "redcarpet", ">= 3.5.1"
 gem "coderay"
 
 # 上传组件
-gem "carrierwave"
+gem "carrierwave", ">= 2.1.1"
 gem "mini_magick", ">= 4.9.4"
 
 # 头像
