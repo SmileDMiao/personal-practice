@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-
   factory :user do
     sequence(:full_name) { |n| "name#{n}" }
     sequence(:email) { |n| "225656565#{n}@qq.com" }

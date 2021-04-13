@@ -18,7 +18,6 @@ class Article < ApplicationRecord
   scope :no_comment, -> { where(comment_count: 0).order(created_at: :desc) }
   scope :time_desc, -> { order(created_at: :desc) }
 
-
   def liked_by_user?(user)
     return false if user.blank?
     liked_user_ids.include?(user.id)
@@ -29,7 +28,7 @@ class Article < ApplicationRecord
 
   # Test of RabbitMq
   def publish_article
-    Publisher.publish("Articles", self.attributes)
+    Publisher.publish("Articles", attributes)
   end
 
   def create_reply_notify
@@ -47,7 +46,7 @@ class Article < ApplicationRecord
     notified_user_ids = article.mentioned_user_ids
 
     # 给关注者发通知
-    default_note = { notify_type: "article", target_type: "Article", target_id: article.id, actor_id: article.user_id }
+    default_note = {notify_type: "article", target_type: "Article", target_id: article.id, actor_id: article.user_id}
     Notification.bulk_insert do |worker|
       follower_ids.each do |uid|
         # 排除同一个回复过程中已经提醒过的人
@@ -62,11 +61,11 @@ class Article < ApplicationRecord
     Notification.bulk_insert(set_size: 100) do |worker|
       notified_user_ids.each do |user_id|
         note = {
-            notify_type: "mention",
-            actor_id: article.user_id,
-            user_id: user_id,
-            target_type: self.class.name,
-            target_id: self.id
+          notify_type: "mention",
+          actor_id: article.user_id,
+          user_id: user_id,
+          target_type: self.class.name,
+          target_id: id
         }
         worker.add(note)
       end
@@ -81,8 +80,7 @@ class Article < ApplicationRecord
     save
   end
 
-
-  index_name    "personal"
+  index_name "personal"
   document_type "articles"
 
   mapping do

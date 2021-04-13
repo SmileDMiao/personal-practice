@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post "/graphql", to: "graphql#execute"
 
   # 搜索和通知
-  get "/search" => "search#index", as: "search"
+  get "/search" => "search#index", :as => "search"
   get "notifications/index" => "notifications#index"
   delete "notifications/clean" => "notifications#clean"
 
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get "articles/node:id" => "articles#node", as: "node_articles"
+  get "articles/node:id" => "articles#node", :as => "node_articles"
   resources :articles do
     member do
       post :like

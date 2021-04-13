@@ -13,7 +13,7 @@ module Mutations
 
     def resolve(**inputs)
       comment = Comment.create!(inputs)
-      { comment: comment }
+      {comment: comment}
     end
   end
 end

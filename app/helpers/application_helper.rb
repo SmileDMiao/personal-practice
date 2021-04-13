@@ -36,18 +36,18 @@ module ApplicationHelper
 
   def markdown(text)
     render_options = {
-        filter_html:     true,
-        hard_wrap:       true,
-        link_attributes: { rel: "nofollow" }
+      filter_html: true,
+      hard_wrap: true,
+      link_attributes: {rel: "nofollow"}
     }
     renderer = CodeRayify.new(render_options)
     extensions = {
-        autolink:           true,
-        fenced_code_blocks: true,
-        lax_spacing:        true,
-        no_intra_emphasis:  true,
-        strikethrough:      true,
-        superscript:        true
+      autolink: true,
+      fenced_code_blocks: true,
+      lax_spacing: true,
+      no_intra_emphasis: true,
+      strikethrough: true,
+      superscript: true
     }
     Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
@@ -92,7 +92,7 @@ module ApplicationHelper
     title = "德云色 创立 #{age} 周年纪念日"
     html = []
     html << "<div style='text-align:center;margin-bottom:20px; line-height:200%;'>"
-    %w(dancers beers cake birthday crown gift crown birthday cake beers dancers).each do |name|
+    %w[dancers beers cake birthday crown gift crown birthday cake beers dancers].each do |name|
       html << image_tag(asset_path("assets/emojis/#{name}.png"), class: "emoji", title: title)
     end
     html << "<br />"

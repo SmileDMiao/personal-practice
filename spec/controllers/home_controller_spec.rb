@@ -10,7 +10,5 @@ RSpec.describe HomeController, type: :controller do
       get :index
       expect(response).to redirect_to(login_path)
     end
-
   end
-
 end

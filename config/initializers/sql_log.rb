@@ -71,23 +71,23 @@ module SQLLog
 
     private
 
-      def logger
-        ActiveSupport::Logger.new "#{Rails.root}/log/lograge.log"
+    def logger
+      ActiveSupport::Logger.new "#{Rails.root}/log/lograge.log"
+    end
+
+    def type_casted_binds(casted_binds)
+      casted_binds.respond_to?(:call) ? casted_binds.call : casted_binds
+    end
+
+    def render_bind(attr, value)
+      if attr.is_a?(Array)
+        attr = attr.first
+      elsif attr.type.binary? && attr.value
+        value = "<#{attr.value_for_database.to_s.bytesize} bytes of binary data>"
       end
 
-      def type_casted_binds(casted_binds)
-        casted_binds.respond_to?(:call) ? casted_binds.call : casted_binds
-      end
-
-      def render_bind(attr, value)
-        if attr.is_a?(Array)
-          attr = attr.first
-        elsif attr.type.binary? && attr.value
-          value = "<#{attr.value_for_database.to_s.bytesize} bytes of binary data>"
-        end
-
-        [attr && attr.name, value]
-      end
+      [attr && attr.name, value]
+    end
   end
 end
 

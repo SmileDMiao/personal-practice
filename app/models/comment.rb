@@ -50,10 +50,10 @@ class Comment < ApplicationRecord
 
     # 给关注者发通知
     default_note = {
-        notify_type: "article_comment",
-        target_type: "Comment", target_id: comment.id,
-        second_target_type: "Article", second_target_id: article.id,
-        actor_id: comment.user_id
+      notify_type: "article_comment",
+      target_type: "Comment", target_id: comment.id,
+      second_target_type: "Article", second_target_id: article.id,
+      actor_id: comment.user_id
     }
     Notification.bulk_insert do |worker|
       follower_ids.each do |uid|
@@ -70,13 +70,13 @@ class Comment < ApplicationRecord
     Notification.bulk_insert do |worker|
       notified_user_ids.each do |user_id|
         note = {
-            notify_type: "mention",
-            actor_id: comment.user_id,
-            user_id: user_id,
-            target_type: "Comment",
-            target_id: comment_id,
-            second_target_type: "Comment",
-            second_target_id: comment.article_id
+          notify_type: "mention",
+          actor_id: comment.user_id,
+          user_id: user_id,
+          target_type: "Comment",
+          target_id: comment_id,
+          second_target_type: "Comment",
+          second_target_id: comment.article_id
         }
         worker.add(note)
       end

@@ -11,7 +11,7 @@ module Admin
     end
 
     def new
-      @node = Node.new()
+      @node = Node.new
     end
 
     def create
@@ -48,10 +48,10 @@ module Admin
       end
     end
 
-
     private
-      def permit_params
-        params.require(:node).permit!
-      end
+
+    def permit_params
+      params.require(:node).permit!
+    end
   end
 end

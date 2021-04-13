@@ -1,9 +1,9 @@
 class BulkUpsert < ActiveRecord::Migration[5.1]
   def change
     create_table :bulk_upserts do |t|
-      t.string :name, :limit => 20
-      t.string :email, :limit => 20
-      t.string :city, :limit => 20
+      t.string :name, limit: 20
+      t.string :email, limit: 20
+      t.string :city, limit: 20
       t.timestamps null: false
       t.index ["name"], name: "index_bulk_name", unique: true, using: :btree
     end
@@ -70,6 +70,5 @@ class BulkUpsert < ActiveRecord::Migration[5.1]
     #   upsert.row(name: 'a', email: 'ssddddd.sql', created_at: '2017-01-01', updated_at: '2016-01-01')
     #   upsert.row(name: 'b', email: 'ss.sql', created_at: '2016-01-01', updated_at: '2016-01-01')
     # end
-
   end
 end

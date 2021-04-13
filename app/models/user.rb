@@ -10,8 +10,8 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   has_secure_password
 
-  ALLOW_LOGIN_CHARS_REGEXP = /\A[A-Za-z0-9\-\_\.]+\z/
-  validates :full_name, format: { with: ALLOW_LOGIN_CHARS_REGEXP, message: "只允许数字、大小写字母、中横线、下划线" },
+  ALLOW_LOGIN_CHARS_REGEXP = /\A[A-Za-z0-9\-_.]+\z/
+  validates :full_name, format: {with: ALLOW_LOGIN_CHARS_REGEXP, message: "只允许数字、大小写字母、中横线、下划线"},
                         presence: true,
                         uniqueness: true
 
@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   before_create do
     self.auth_token = generate_token
-    self.avatar_name = self.full_name
+    self.avatar_name = full_name
   end
 
   def generate_token
@@ -31,19 +31,19 @@ class User < ApplicationRecord
   end
 
   def letter_avatar_url(size)
-    letter_avatar_address = LetterAvatar.generate(self.full_name, size)
+    letter_avatar_address = LetterAvatar.generate(full_name, size)
     avatar_address = Rails.root + letter_avatar_address
     File.open(avatar_address)
   end
 
   # letter avatar 生成默认头像
   def large_avatar_url
-    self.letter_avatar_url(240)
+    letter_avatar_url(240)
   end
 
   def github_url
     return "" if github.blank?
-    "https://github.com/#{github.split('/').last}"
+    "https://github.com/#{github.split("/").last}"
   end
 
   def twitter_url
@@ -66,7 +66,7 @@ class User < ApplicationRecord
   end
 
   def github_repo_api_url
-    github_login = self.github
+    github_login = github
     resource_name = "users"
     "https://api.github.com/#{resource_name}/#{github_login}/repos?type=owner&sort=pushed&client_id=#{Setting.github_token}&client_secret=#{Setting.github_secret}"
   end
@@ -87,11 +87,11 @@ class User < ApplicationRecord
     items = JSON.parse(json)
     items = items.collect do |a1|
       {
-          name: a1["name"],
-          url: a1["html_url"],
-          watchers: a1["watchers"],
-          language: a1["language"],
-          description: a1["description"]
+        name: a1["name"],
+        url: a1["html_url"],
+        watchers: a1["watchers"],
+        language: a1["language"],
+        description: a1["description"]
       }
     end
     items = items.sort { |a, b| b[:watchers] <=> a[:watchers] }.take(10)
@@ -117,13 +117,13 @@ class User < ApplicationRecord
 
   # follow用户
   def follow_user(user)
-    self.following_ids << user.id
-    self.following_ids = self.following_ids.uniq
+    following_ids << user.id
+    self.following_ids = following_ids.uniq
     save
     user.follower_ids << id
     user.follower_ids = user.follower_ids.uniq
     user.save
-    Notification.notify_follow(user.id, self.id)
+    Notification.notify_follow(user.id, id)
   end
 
   # 取消follow用户
@@ -135,11 +135,11 @@ class User < ApplicationRecord
   end
 
   def following
-    User.where(id: self.following_ids)
+    User.where(id: following_ids)
   end
 
   def followers
-    User.where(id: self.follower_ids)
+    User.where(id: follower_ids)
   end
 
   def read_article(article, opts = {})

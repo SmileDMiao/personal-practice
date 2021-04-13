@@ -11,7 +11,7 @@ module Mutations
 
     def resolve(id:)
       comment = Comment.find(id).destroy
-      { comment: comment }
+      {comment: comment}
     end
   end
 end

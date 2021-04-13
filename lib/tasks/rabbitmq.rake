@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 namespace :rabbitmq do
-
   desc "setup routing"
 
   task :setup do
@@ -18,5 +17,4 @@ namespace :rabbitmq do
     queue.bind("Article.Articles")
     conn.close
   end
-
 end

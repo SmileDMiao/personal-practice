@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def check_login
     unless current_user
-      redirect_to({ controller: "users", action: "login" })
+      redirect_to({controller: "users", action: "login"})
     end
   end
 
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   # 错误页面
   def render_optional_error_file(status_code)
     status = status_code.to_s
-    fname = %w(404 403 422 500).include?(status) ? status : "unknown"
+    fname = %w[404 403 422 500].include?(status) ? status : "unknown"
     render template: "/errors/#{fname}", format: [:html],
            handler: [:erb], status: status, layout: "application"
   end
@@ -46,22 +46,23 @@ class ApplicationController < ActionController::Base
   end
 
   private
-    # 检测出用户浏览器中设置的语言偏好
-    def http_head_locale
-      http_accept_language.language_region_compatible_from(I18n.available_locales)
-    end
 
-    # 获取当前用户的方法
-    def current_user
-      @current_user ||= User.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
-    end
+  # 检测出用户浏览器中设置的语言偏好
+  def http_head_locale
+    http_accept_language.language_region_compatible_from(I18n.available_locales)
+  end
 
-    def user_not_authorized
-      redirect_to root_path, alert: "访问被拒绝，你可能没有权限."
-    end
+  # 获取当前用户的方法
+  def current_user
+    @current_user ||= User.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
+  end
 
-    def append_info_to_payload(payload)
-      super
-      payload[:type] = "Request"
-    end
+  def user_not_authorized
+    redirect_to root_path, alert: "访问被拒绝，你可能没有权限."
+  end
+
+  def append_info_to_payload(payload)
+    super
+    payload[:type] = "Request"
+  end
 end

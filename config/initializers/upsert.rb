@@ -16,31 +16,30 @@ module ActiveRecord
     def self.bulk_write_pg(fields, rows, upsert = nil)
       return 0 if rows.empty?
       rows = rows.map do |row|
-        values = row.map.with_index do |val|
+        values = row.map do |val|
           connection.quote(val)
         end.join ", "
-        "(#{ values })"
+        "(#{values})"
       end
-      field_list = fields.map { |e| %Q("#{e}") }.join ", "
+      field_list = fields.map { |e| %("#{e}") }.join ", "
 
-      sql = "INSERT INTO #{ table_name } (#{ field_list }) VALUES #{ rows.join ', ' }"
+      sql = "INSERT INTO #{table_name} (#{field_list}) VALUES #{rows.join ", "}"
       if upsert
-        if !upsert[:update]
-          update = fields.map(&:to_s) - upsert[:conflict].map(&:to_s)
+        update = if !upsert[:update]
+          fields.map(&:to_s) - upsert[:conflict].map(&:to_s)
         else
-          update = upsert[:update]
+          upsert[:update]
         end
-        update = update.map { |field| "#{ field } = EXCLUDED.#{ field }" }
+        update = update.map { |field| "#{field} = EXCLUDED.#{field}" }
 
-        sql += " ON CONFLICT (#{ upsert[:conflict].join ', ' }) DO UPDATE SET #{ update.join ', ' }"
+        sql += " ON CONFLICT (#{upsert[:conflict].join ", "}) DO UPDATE SET #{update.join ", "}"
         if upsert[:where]
-          sql += " WHERE #{ upsert[:where] }"
+          sql += " WHERE #{upsert[:where]}"
         end
       end
       res = connection.execute(sql)
       res.cmd_tuples
     end
-
 
     # fields = %w(name email city created_at updated_at)
     # rows = [
@@ -51,25 +50,25 @@ module ActiveRecord
     def self.bulk_write_mysql(fields, rows, upsert = nil)
       return 0 if rows.empty?
       rows = rows.map do |row|
-        values = row.map.with_index do |val|
+        values = row.map do |val|
           connection.quote(val)
         end.join ", "
-        "(#{ values })"
+        "(#{values})"
       end
       field_list = fields.join ", "
 
-      sql = "INSERT INTO #{ table_name } (#{ field_list }) VALUES #{ rows.join ', ' }"
+      sql = "INSERT INTO #{table_name} (#{field_list}) VALUES #{rows.join ", "}"
       if upsert
-        if !upsert[:update]
-          update = fields.map(&:to_s) - upsert[:conflict].map(&:to_s)
+        update = if !upsert[:update]
+          fields.map(&:to_s) - upsert[:conflict].map(&:to_s)
         else
-          update = upsert[:update]
+          upsert[:update]
         end
-        update = update.map { |field| "#{ field } = VALUES(#{ field })" }
+        update = update.map { |field| "#{field} = VALUES(#{field})" }
 
-        sql += " ON DUPLICATE KEY UPDATE #{ update.join ', ' }"
+        sql += " ON DUPLICATE KEY UPDATE #{update.join ", "}"
         if upsert[:where]
-          sql += " WHERE #{ upsert[:where] }"
+          sql += " WHERE #{upsert[:where]}"
         end
       end
       connection.execute(sql)

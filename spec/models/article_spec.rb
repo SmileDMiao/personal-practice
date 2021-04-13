@@ -12,5 +12,4 @@ RSpec.describe Article, type: :model do
     article.save
     expect(article.liked_by_user?(user)).to eq true
   end
-
 end

@@ -5,7 +5,6 @@ require "sidekiq/testing"
 Sidekiq::Testing.fake!
 
 RSpec.describe SchedulerFirstWorker, type: :worker do
-
   describe ".perform" do
     it "should work" do
       SchedulerFirstWorker.perform_async
@@ -14,5 +13,4 @@ RSpec.describe SchedulerFirstWorker, type: :worker do
       assert_equal 0, SchedulerFirstWorker.jobs.size
     end
   end
-
 end

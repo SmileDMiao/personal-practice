@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:register, :create, :login, :sign_up, :logout, :language]
 
   def register
-    @user = User.new()
+    @user = User.new
     render layout: false
   end
 
@@ -102,7 +102,7 @@ class UsersController < ApplicationController
     locale = params[:locale].to_s.strip.to_sym
     cookies[:locale] = locale
     if request.env["HTTP_REFERER"].present?
-      redirect_back(fallback_location:  request.headers["HTTP_REFERER"])
+      redirect_back(fallback_location: request.headers["HTTP_REFERER"])
     else
       redirect_to :root
     end
@@ -137,25 +137,25 @@ class UsersController < ApplicationController
 
   def follow
     current_user.follow_user(@user)
-    render json: { code: 0, data: { followers_count: @user.follower_ids.length } }
+    render json: {code: 0, data: {followers_count: @user.follower_ids.length}}
   end
 
   def unfollow
     current_user.unfollow_user(@user)
-    render json: { code: 0, data: { followers_count: @user.follower_ids.length } }
+    render json: {code: 0, data: {followers_count: @user.follower_ids.length}}
   end
 
-
   private
-    def user_params
-      params.require(:user).permit!
-    end
 
-    def set_user
-      @user = User.find_by_id(params[:id])
+  def user_params
+    params.require(:user).permit!
+  end
 
-      if @user.blank?
-        render_404
-      end
+  def set_user
+    @user = User.find_by_id(params[:id])
+
+    if @user.blank?
+      render_404
     end
+  end
 end

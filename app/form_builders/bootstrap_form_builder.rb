@@ -11,9 +11,9 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     define_method(method_name) do |name, *args|
       content_tag :div, class: "form-group" do
         label(name, class: "col-sm-3 control-label") +
-            content_tag(:div, class: "col-sm-6") do
-              super(name, *args)
-            end
+          content_tag(:div, class: "col-sm-6") do
+            super(name, *args)
+          end
       end
     end
   end
@@ -25,21 +25,21 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     options = args[0]
     options[:id] ||= @object_name + "_#{name}"
     options[:minView] ||= 2
-    script = %Q(
+    script = %(
          $(document).ready(function () {
              initBootstrapDateTimePicker("#{options[:id]}",#{options[:minView]});
          });
       )
     content_tag :div, class: "form-group" do
       label(name, class: "control-label col-sm-3") +
-          content_tag(:div, class: "col-sm-6") do
-            content_tag :div, class: "input-group" do
-              native_text_field(name, *args) + javascript_tag(script) +
-                content_tag(:span, class: "input-group-addon") do
-                  content_tag("i", class: "fa fa-calendar") {}
-                end
-            end
+        content_tag(:div, class: "col-sm-6") do
+          content_tag :div, class: "input-group" do
+            native_text_field(name, *args) + javascript_tag(script) +
+              content_tag(:span, class: "input-group-addon") do
+                content_tag("i", class: "fa fa-calendar") {}
+              end
           end
+        end
     end
   end
 
@@ -50,21 +50,21 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     options = args[0]
     options[:id] ||= @object_name + "_#{name}"
     options[:time] ||= false
-    script = %Q(
+    script = %(
          $(document).ready(function () {
              initBootstrapDateRangePicker("#{options[:id]}",#{options[:time]});
          });
       )
     content_tag :div, class: "form-group" do
       label(name, class: "control-label col-sm-3") +
-          content_tag(:div, class: "col-sm-6") do
-            content_tag :div, class: "input-group" do
-              native_text_field(name, *args) + javascript_tag(script) +
-                  content_tag(:span, class: "input-group-addon") do
-                    content_tag("i", class: "fa fa-calendar") {}
-                  end
-            end
+        content_tag(:div, class: "col-sm-6") do
+          content_tag :div, class: "input-group" do
+            native_text_field(name, *args) + javascript_tag(script) +
+              content_tag(:span, class: "input-group-addon") do
+                content_tag("i", class: "fa fa-calendar") {}
+              end
           end
+        end
     end
   end
 
@@ -73,21 +73,21 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   def time_field(name, *args)
     options = args[0]
     options[:id] ||= @object_name + "_#{name}"
-    script = %Q(
+    script = %(
          $(document).ready(function () {
              initBootstrapTimePicker("#{options[:id]}");
          });
       )
     content_tag :div, class: "form-group" do
       label(name, class: "control-label col-sm-3") +
-          content_tag(:div, class: "col-sm-6") do
-            content_tag :div, class: "input-group bootstrap-timepicker" do
-              native_text_field(name, *args) + javascript_tag(script) +
-                  content_tag(:span, class: "input-group-addon") do
-                    content_tag("i", class: "fa fa-clock-o") {}
-                  end
-            end
+        content_tag(:div, class: "col-sm-6") do
+          content_tag :div, class: "input-group bootstrap-timepicker" do
+            native_text_field(name, *args) + javascript_tag(script) +
+              content_tag(:span, class: "input-group-addon") do
+                content_tag("i", class: "fa fa-clock-o") {}
+              end
           end
+        end
     end
   end
 
@@ -99,9 +99,9 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     html_options[:class] ||= "form-control select2"
     content_tag :div, class: "form-group" do
       label(method, class: "col-sm-3 control-label") +
-          content_tag(:div, class: "col-sm-6") do
-            super(method, choices, options, html_options, &block)
-          end
+        content_tag(:div, class: "col-sm-6") do
+          super(method, choices, options, html_options, &block)
+        end
     end
   end
 

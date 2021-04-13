@@ -8,7 +8,7 @@
 # Client-side middleware runs before the pushing of the job to Redis and allows you to modify/stop the job before it gets pushed.
 
 Sidekiq.configure_server do |config|
-  config.redis = { namespace: "personal_practice", url: "redis://localhost:6379/6" }
+  config.redis = {namespace: "personal_practice", url: "redis://localhost:6379/6"}
 
   config.on(:startup) do
     Sidekiq.schedule = YAML.load_file(File.expand_path("../../sidekiq-scheduler.yml", __FILE__))
@@ -20,7 +20,7 @@ Sidekiq.configure_server do |config|
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = { namespace: "personal_practice", url: "redis://localhost:6379/6" }
+  config.redis = {namespace: "personal_practice", url: "redis://localhost:6379/6"}
 
   Sidekiq::Status.configure_client_middleware config, expiration: 30.minutes
 end

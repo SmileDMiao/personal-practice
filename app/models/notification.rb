@@ -5,9 +5,9 @@ class Notification < ApplicationRecord
 
   def self.notify_follow(user_id, follower_id)
     opts = {
-        notify_type: "follow",
-        user_id: user_id,
-        actor_id: follower_id
+      notify_type: "follow",
+      user_id: user_id,
+      actor_id: follower_id
     }
     return if Notification.where(opts).count > 0
     Notification.bulk_insert do |worker|

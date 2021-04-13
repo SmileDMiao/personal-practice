@@ -13,11 +13,11 @@ module Admin
     end
 
     def new_simple
-      @food = Food.new()
+      @food = Food.new
     end
 
     def new
-      @food = Food.new()
+      @food = Food.new
     end
 
     def create
@@ -65,12 +65,12 @@ module Admin
       end
     end
 
-
     private
-      # strong_parameters-详情查看官方文档
-      def permit_params
-        # 一开始我使用type而不是category，但是保存失败，type属于rails的关键字，请避免使用
-        params.require(:food).permit!
-      end
+
+    # strong_parameters-详情查看官方文档
+    def permit_params
+      # 一开始我使用type而不是category，但是保存失败，type属于rails的关键字，请避免使用
+      params.require(:food).permit!
+    end
   end
 end

@@ -7,7 +7,7 @@ module Admin
     end
 
     def new
-      @section = Section.new()
+      @section = Section.new
     end
 
     def create
@@ -44,10 +44,10 @@ module Admin
       end
     end
 
-
     private
-      def permit_params
-        params.require(:section).permit!
-      end
+
+    def permit_params
+      params.require(:section).permit!
+    end
   end
 end

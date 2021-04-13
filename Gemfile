@@ -122,8 +122,9 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "database_cleaner"
 
-  gem "rubocop-rspec"
   gem "rails-perftest"
+
+  gem "standard"
 end
 
 group :development do

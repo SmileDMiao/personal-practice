@@ -9,7 +9,7 @@ class Setting < RailsSettings::Base
   field :github_secret, default: "13c7e55e8e53c57a399181e96ea3a55a3fdd9c7c"
 
   field :tips, type: :array, default: [
-  "你从树上下来吧，我们再也不改需求了",
-  "如果你不装比，我就原谅你"
+    "你从树上下来吧，我们再也不改需求了",
+    "如果你不装比，我就原谅你"
   ]
 end

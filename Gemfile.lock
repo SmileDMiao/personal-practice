@@ -343,8 +343,8 @@ GEM
     regexp_property_values (1.0.0)
     request_store (1.5.0)
       rack (>= 1.4)
-    rexml (3.2.4)
-    rubocop (1.10.0)
+    rexml (3.2.5)
+    rubocop (1.11.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -355,9 +355,9 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.4.1)
       parser (>= 2.7.1.5)
-    rubocop-rspec (2.2.0)
-      rubocop (~> 1.0)
-      rubocop-ast (>= 1.1.0)
+    rubocop-performance (1.10.1)
+      rubocop (>= 0.90.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
     ruby-ole (1.2.12.2)
     ruby-progressbar (1.11.0)
     ruby-vips (2.0.17)
@@ -447,6 +447,9 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
+    standard (1.0.4)
+      rubocop (= 1.11.0)
+      rubocop-performance (= 1.10.1)
     thor (1.1.0)
     thread_safe (0.3.6)
     thwait (0.2.0)
@@ -523,7 +526,6 @@ DEPENDENCIES
   redcarpet (>= 3.5.1)
   redis
   redis-namespace
-  rubocop-rspec
   rubycritic
   sass-rails
   sdoc
@@ -538,6 +540,7 @@ DEPENDENCIES
   spreadsheet
   spring
   spring-commands-rspec
+  standard
   uglifier
   upsert
   wisper

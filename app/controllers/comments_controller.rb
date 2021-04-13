@@ -9,15 +9,15 @@ class CommentsController < ApplicationController
     @comment.article_id = params[:article_id]
     @comment.user_id = current_user.id
 
-    full_name = @comment.body.scan(/@([A-Za-z0-9\-\_\.]{3,20})/).flatten.map(&:downcase)
+    full_name = @comment.body.scan(/@([A-Za-z0-9\-_.]{3,20})/).flatten.map(&:downcase)
     if full_name.any?
       @comment.mentioned_user_ids = User.where("lower(full_name) IN (?) AND id != (?)", full_name, @comment.user_id).limit(5).pluck(:id)
     end
 
-    if @comment.save
-      @msg = t("topics.reply_success")
+    @msg = if @comment.save
+      t("topics.reply_success")
     else
-      @msg = @comment.errors.full_messages.join("<br />")
+      @comment.errors.full_messages.join("<br />")
     end
   end
 
@@ -54,17 +54,17 @@ class CommentsController < ApplicationController
     render plain: @comment.likes_count
   end
 
-
   private
-    def comment_params
-      params.require(:comment).permit!
-    end
 
-    def set_article
-      @article = Article.find(params[:article_id])
-    end
+  def comment_params
+    params.require(:comment).permit!
+  end
 
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+  def set_article
+    @article = Article.find(params[:article_id])
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 end

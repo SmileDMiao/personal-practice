@@ -10,7 +10,6 @@ class PersonalPracticeSchema < GraphQL::Schema
   use BatchLoader::GraphQL
   enable_preloading
 
-
   mutation(Types::MutationType)
   query(Types::QueryType)
 end

@@ -3,7 +3,7 @@
 module UsersHelper
   # 查看用户连接
   def user_name_tag(user)
-    return "匿名".freeze if user.blank?
+    return "匿名" if user.blank?
     name = user.full_name
     link_to(name, user_path(user))
   end
@@ -40,9 +40,9 @@ module UsersHelper
     icon = '<i class="fa fa-user"></i>'
     login = user.id
     if followed
-      link_to raw("#{icon} <span>取消关注</span>"), "#", "data-id" => login, class: "#{class_names} active"
+      link_to raw("#{icon} <span>取消关注</span>"), "#", "data-id" => login, :class => "#{class_names} active"
     else
-      link_to raw("#{icon} <span>关注</span>"), "#", "data-id" => login, class: class_names
+      link_to raw("#{icon} <span>关注</span>"), "#", "data-id" => login, :class => class_names
     end
   end
 end

@@ -3,11 +3,10 @@
 require "rails_helper"
 
 RSpec.describe ApplicationHelper, type: :helper do
-
   describe "Test time age helper method " do
     it "should work" do
       t = Time.now
-      expect(helper.time_ago_now(t)).to match ("于" + distance_of_time_in_words_to_now(t.iso8601) + "前发布")
+      expect(helper.time_ago_now(t)).to match("于" + distance_of_time_in_words_to_now(t.iso8601) + "前发布")
     end
   end
 
@@ -22,7 +21,5 @@ RSpec.describe ApplicationHelper, type: :helper do
     it "you are a admin" do
       expect(helper.admin?(admin)).to be_truthy
     end
-
   end
-
 end

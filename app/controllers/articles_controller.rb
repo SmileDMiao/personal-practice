@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
 
-    full_name = @article.body.scan(/@([A-Za-z0-9\-\_\.]{3,20})/).flatten.map(&:downcase)
+    full_name = @article.body.scan(/@([A-Za-z0-9\-_.]{3,20})/).flatten.map(&:downcase)
     if full_name.any?
       @article.mentioned_user_ids = User.where("lower(full_name) IN (?) AND id != (?)", full_name, @article.user_id).limit(5).pluck(:id)
     end
@@ -37,7 +37,8 @@ class ArticlesController < ApplicationController
     fresh_when([@comments, @article])
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     authorize @article
@@ -97,18 +98,18 @@ class ArticlesController < ApplicationController
 
   private
 
-    def article_params
-      params.require(:article).permit!
-    end
+  def article_params
+    params.require(:article).permit!
+  end
 
-    def set_article
-      @article ||= Article.find(params[:id])
-    end
+  def set_article
+    @article ||= Article.find(params[:id])
+  end
 
-    def check_current_user_status_for_article
-      return false unless current_user
+  def check_current_user_status_for_article
+    return false unless current_user
 
-      # 通知处理
-      current_user.read_article(@article, comment_ids: @comments.collect(&:id))
-    end
+    # 通知处理
+    current_user.read_article(@article, comment_ids: @comments.collect(&:id))
+  end
 end

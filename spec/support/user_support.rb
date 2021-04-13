@@ -8,6 +8,5 @@ module UserSupport
       let(:user) { create :user }
       @current_user = user
     end
-
   end
 end

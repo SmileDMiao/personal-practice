@@ -32,6 +32,5 @@ pid "#{app_dir}/tmp/pids/unicorn.pid"
 # unicorn error log
 stderr_path "#{app_dir}/log/unicorn.stderr.log"
 
-
 # unicorn outut log
 stdout_path "#{app_dir}/log/unicorn.stdout.log"
