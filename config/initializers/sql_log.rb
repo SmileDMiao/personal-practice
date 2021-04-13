@@ -41,8 +41,6 @@ module SQLLog
       return if IGNORE_PAYLOAD_NAMES.include?(payload[:name])
       return if payload[:cached]
 
-      name = payload[:name]
-      name = "CACHE #{name}" if payload[:cached]
       binds = nil
       uuid = Thread.current[:uuid] || nil
 
@@ -86,7 +84,7 @@ module SQLLog
         value = "<#{attr.value_for_database.to_s.bytesize} bytes of binary data>"
       end
 
-      [attr && attr.name, value]
+      [attr && attr&.name, value]
     end
   end
 end

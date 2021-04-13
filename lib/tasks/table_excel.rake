@@ -59,7 +59,7 @@ namespace :table_excel do
 
     file_name = "数据字典.xls"
     book.write "#{Rails.root}/public/#{file_name}"
-  rescue Exception => e
+  rescue => e
     puts e.message
   end
 
@@ -122,7 +122,7 @@ namespace :table_excel do
     end
     file_name = "数据字典.xls"
     book.write "#{Rails.root}/public/#{file_name}"
-  rescue Exception => e
+  rescue => e
     puts e.message
   end
 end

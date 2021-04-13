@@ -10,8 +10,6 @@ namespace :rabbitmq do
 
     ch = conn.create_channel
 
-    x = ch.fanout("Article.Articles")
-
     queue = ch.queue("rabcus.posts", durable: true)
 
     queue.bind("Article.Articles")

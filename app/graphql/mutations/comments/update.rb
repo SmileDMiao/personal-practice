@@ -12,7 +12,7 @@ module Mutations
 
     def resolve(id:, body:)
       comment = Comment.find(id)
-      comment.update!(body: body) if comment
+      comment&.update!(body: body) if comment
       {comment: comment}
     end
   end

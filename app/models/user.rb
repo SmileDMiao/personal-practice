@@ -43,11 +43,13 @@ class User < ApplicationRecord
 
   def github_url
     return "" if github.blank?
+
     "https://github.com/#{github.split("/").last}"
   end
 
   def twitter_url
     return "" if twitter.blank?
+
     "https://twitter.com/#{twitter}"
   end
 

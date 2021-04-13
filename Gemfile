@@ -59,9 +59,6 @@ gem "elasticsearch-rails"
 # 日志
 gem "lograge"
 
-# influxdb
-gem "influxdb"
-
 # 后台队列,sinatra web ui
 gem "sidekiq"
 gem "sinatra"

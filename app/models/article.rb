@@ -38,7 +38,7 @@ class Article < ApplicationRecord
 
   def self.notify_article_created(article_id)
     article = Article.find_by_id(article_id)
-    return unless article && article.user
+    return unless article && article&.user
 
     follower_ids = article.user.follower_ids.uniq
     return if follower_ids.empty?

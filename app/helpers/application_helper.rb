@@ -67,7 +67,7 @@ module ApplicationHelper
       item_class = ""
       urls = link.match(/href=(["'])(.*?)(\1)/) || []
       url = urls.length > 2 ? urls[2] : nil
-      if url && current_page?(url) || (@current && @current.include?(url))
+      if url && current_page?(url) || (@current && @current&.include?(url))
         item_class = "active"
       end
       items << content_tag("li", raw(link), class: item_class)
