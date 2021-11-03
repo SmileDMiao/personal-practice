@@ -5,7 +5,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem "rails", "~> 6.0"
-gem "pg", "~> 0.18"
+gem "pg", '~> 1.1', '>= 1.1.4'
 gem "sass-rails"
 gem "uglifier"
 gem "coffee-rails"
@@ -58,6 +58,9 @@ gem "elasticsearch-rails"
 
 # 日志
 gem "lograge"
+
+# influxdb
+gem "influxdb"
 
 # 后台队列,sinatra web ui
 gem "sidekiq"

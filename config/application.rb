@@ -21,11 +21,12 @@ module PersonalPractice
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       address: "smtp.qq.com",
-      port: 587,
+      port: 465,
       domain: "2268571581@qq.com",
       user_name: "2268571581",
-      password: "13024188155",
+      password: "wcnslkvojtepdjeh",
       authentication: "plain",
+      ssl: true,
       enable_starttls_auto: true
     }
   end
