@@ -21,6 +21,8 @@ class GraphqlController < ApplicationController
     handle_error_in_development e
   end
 
+
+
   private
 
   # Handle form data, JSON body, or a blank value
