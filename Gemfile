@@ -113,13 +113,22 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-byebug"
   gem "pry-doc"
+
   # 自动测试代码质量
   gem "rubycritic"
+
   # 测试页面响应时间，sql查询时间
   gem "rack-mini-profiler"
+
+
+
   # test framework rspec
   # gem 'rspec-rails'
   gem "factory_bot_rails"
+
+
+
+
   gem "database_cleaner"
 
   gem "rails-perftest"

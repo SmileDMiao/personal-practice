@@ -10,6 +10,7 @@ worker_processes 4
 # timeout of worker process (s)
 timeout 30
 
+
 # 监听本地socket,tcp端口
 # 监听tcp端口可以直接访问该端口，也可以不监听tcp端口
 # backlog: number of clients,default 1024
