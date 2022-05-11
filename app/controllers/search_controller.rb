@@ -19,5 +19,6 @@ class SearchController < ApplicationController
       }
     }
     @result = Elasticsearch::Model.search(search_params, [Article]).page(params[:page])
+    puts "==="
   end
 end
