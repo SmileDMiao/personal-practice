@@ -44,12 +44,12 @@ class CreateBulkUpserts < ActiveRecord::Migration[6.1]
     # email = VALUES(email); )
 
     # Postgresql
-    # %Q( INSERT INTO bulk_upserts (name, email, city, created_at, updated_at)
-    # VALUES ( 'miao1', 'bbcccc@qq.com', 'a', '2016-01-01', '2016-01-01'),
-    #        ('miao2', 'bbcccc@qq.com', 'a', '2016-01-01', '2016-01-01'),
-    #        ('miao2', 'bbccccdd@qq.com', 'a', '2016-01-01', '2016-01-01')
-    # ON CONFLICT(name) DO  UPDATE
-    # SET email = EXCLUDED.email;)
+    %Q( INSERT INTO bulk_upserts (name, email, city, created_at, updated_at)
+    VALUES ( 'miao1', 'bbcccc@qq.com', 'a', '2016-01-01', '2016-01-01'),
+           ('miao2', 'bbcccc@qq.com', 'a', '2016-01-01', '2016-01-01'),
+           ('miao2', 'bbccccdd@qq.com', 'a', '2016-01-01', '2016-01-01')
+    ON CONFLICT(name) DO  UPDATE
+    SET email = EXCLUDED.email;)
 
     # CONNECTION
     # connection = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "root", :database => "blog")

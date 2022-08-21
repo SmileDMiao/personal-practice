@@ -26,12 +26,14 @@ namespace :foods do
 
     food_hash.each do |key, value|
       value.each do |name|
-        food = Food.new(name: name,
-                        category: key,
-                        color: random_color,
-                        number: random_number,
-                        price: random_price,
-                        country: "中国")
+        food = Food.new(
+          name: name,
+          category: key,
+          color: random_color,
+          number: random_number,
+          price: random_price,
+          country: "中国"
+        )
         food.save
       end
     end
