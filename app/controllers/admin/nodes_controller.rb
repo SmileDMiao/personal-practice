@@ -5,7 +5,7 @@ module Admin
     def index
       @nodes = Node.includes(:section).page(params[:page]).per(10).order(:section_id)
       respond_to do |format|
-        format.html # index.html.erb
+        format.html
         format.js
       end
     end

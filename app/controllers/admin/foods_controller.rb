@@ -3,12 +3,11 @@
 module Admin
   class FoodsController < Admin::ApplicationController
     def index
-      # params[:page]分页参数(可定制),10records per page
       @foods = Food.all
       @foods = @foods.page(params[:page])
       @foods = @foods.search(params[:table_search]).page(params[:page]) if params[:table_search]
       respond_to do |format|
-        format.html # index.html.erb
+        format.html
         format.js
       end
     end
@@ -37,7 +36,7 @@ module Admin
       @food = Food.find(params[:id])
 
       respond_to do |format|
-        format.html # show.html.erb
+        format.html
       end
     end
 

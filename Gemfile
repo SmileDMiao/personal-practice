@@ -120,15 +120,9 @@ group :development, :test do
   # 测试页面响应时间，sql查询时间
   gem "rack-mini-profiler"
 
-
-
   # test framework rspec
   # gem 'rspec-rails'
   gem "factory_bot_rails"
-
-
-
-
   gem "database_cleaner"
   gem "rails-perftest"
   gem "standard"
